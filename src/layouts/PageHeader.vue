@@ -1,5 +1,5 @@
 <template>
-  <div
+  <header
     class="zh-home-header"
     :class="[isActive ? 'zh-home-header' : 'zh-home-header isFiexd']"
   >
@@ -38,29 +38,6 @@
         <router-link :to="{ name: 'Zhuanlan' }">专栏</router-link>
       </div>
       <div class="zh-header-select">
-        <el-autocomplete
-          popper-class="my-autocomplete"
-          v-model="selectValue"
-          :fetch-suggestions="querySearch"
-          :placeholder="placeholder"
-          @focus="zhSelect"
-          :class="[hiddenBtn ? 'zh-header-select-input' : '']"
-          @blur="zhSelect"
-          @select="handleSelect"
-        >
-          <i
-            class="el-icon-edit el-input__icon"
-            slot="suffix"
-            @click="handleIconClick"
-          ></i>
-          <template slot-scope="{ item }">
-            <div class="name">{{ item.query }}</div>
-            <span class="addr">{{ item.display_query }}</span>
-          </template>
-        </el-autocomplete>
-        <ElButton type="primary" v-show="!hiddenBtn" v-model="selectValue"
-          >搜索</ElButton
-        >
       </div>
     </div>
     <div
@@ -89,12 +66,12 @@
         </svg>
       </div>
       <div class="zh-header-hide-writer">
-        <el-button type="primary" size="mini" @click="writerArticle"
-          >写文章</el-button
+        <a-button type="primary" size="small" @click="writerArticle"
+          >写文章</a-button
         >
       </div>
     </div>
-  </div>
+  </header>
 </template>
 
 <script>
@@ -112,14 +89,15 @@ export default {
     };
   },
   created() {
-    this.render();
-    this.navlist = Router[0].children;
+    this.render()
   },
   mounted() {
     window.addEventListener("scroll", this.getScroll);
   },
   methods: {
+    render(){
 
+    },
     zhSelect() {
       this.hiddenBtn = this.hiddenBtn ? false : true;
     },

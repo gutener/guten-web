@@ -1,13 +1,15 @@
 <template>
   <div>
     <zh-header />
-    <el-container class="zh-main">
-      <div style="padding-top:20px;width:100%;">
-        <!-- Main content -->
-        <router-view></router-view>
+    <main class="guten-main">
+      <div class="Hotstory">
+        <div class="Hotstory-container">
+          <!-- Main content -->
+          <router-view></router-view>
+          <zh-asider/>
+        </div>
       </div>
-      <zh-asider />
-    </el-container>
+    </main>
   </div>
 </template>
 
@@ -25,10 +27,17 @@ export default {
 };
 </script>
 
-<style>
-.zh-main {
+<style lang="less" scoped>
+@import url('../components/global.less');
+.Hotstory-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  align-items: flex-start;
   width: 1000px;
-  margin: 0 auto;
-  padding-bottom: 20px;
+  padding: 0 16px;
+  margin: 10px auto
 }
 </style>

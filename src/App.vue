@@ -1,6 +1,6 @@
 <template>
   <a-locale-provider :locale="locale">
-    <div id="app">
+    <div id="root">
       <router-view/>
     </div>
   </a-locale-provider>
@@ -38,9 +38,4 @@
     }
   }
 </script>
-<style>
-  #app {
-    height: 100%;
-    background: #f6f6f6;
-  }
-</style>
+

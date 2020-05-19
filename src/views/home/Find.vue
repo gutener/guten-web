@@ -17,8 +17,8 @@
         <span>最新专题</span>
       </h3>
       <Card :datas="newSpeciaData" />
-      <el-button @click="moreData" style="margin:0 auto;display:block;" round
-        >查看更多内容 >></el-button
+      <a-button @click="moreData" style="margin:0 auto;display:block;" round
+        >查看更多内容 >></a-button
       >
     </div>
   </div>

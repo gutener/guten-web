@@ -7,13 +7,13 @@
           <router-link :to="{ name: 'Specials' }">热榜</router-link>
         </div>
         <div class="zh-specials-hotlist">
-          <el-button
+          <a-button
             v-for="item in specialsbtnlist"
             :key="item.name"
             :data-name="item.identifier"
             @click="childNavBtn"
             round
-            >{{ item.name }}</el-button
+            >{{ item.name }}</a-button
           >
         </div>
         <zh-loading v-show="loading" />
@@ -64,6 +64,9 @@ export default {
       Serve.hostLists(params).then(res => {
         this.specialsData = res.data;
       });
+    },
+    render(){
+
     }
   },
   components: {

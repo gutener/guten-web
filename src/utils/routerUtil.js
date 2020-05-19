@@ -4,7 +4,9 @@ import { Layout } from '@/layouts'
 
 // 前端路由表
 const constantRouterComponents = {
-  Layout: Layout
+  Layout: Layout,
+
+  home: () => import('@/views/home/Home'),
 }
 
 // 前端未找到页面路由（固定不用改）
