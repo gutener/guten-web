@@ -1,5 +1,9 @@
 // eslint-disable-next-line
 import { UserLayout} from '@/layouts'
+import Layout from "@/components/Layout.vue"
+import Home from "@/views/home/Home.vue"
+import Find from "@/views/home/Find.vue"
+import Specials from "@/views/home/Specials.vue";
 /**
  * 基础路由
  * @type { *[] }
@@ -31,5 +35,33 @@ export const constantRouterMap = [
   {
     path: '/404',
     component: () => import(/* webpackChunkName: "fail" */ '@/views/exception/404')
-  }
+  },
+  {
+    path: "/",
+    name: "Root",
+    component: Layout,
+    redirect: {
+      name: "Home"
+    },
+    children: [
+      {
+        path: "/home",
+        name: "Home",
+        component: Home,
+        title: "主页"
+      },
+      {
+        path: "/zhihu/find",
+        name: "Find",
+        component: Find,
+        title: "发现"
+      },
+      {
+        path: "/zhihu/specials",
+        name: "Specials",
+        component: Specials,
+        title: "热榜"
+      }
+    ]
+  },
 ]

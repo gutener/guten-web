@@ -68,7 +68,8 @@
                       v-else
                       :src="code.src"
                       class="login-code-img"
-                      @click="refreshCode">
+                      @click="refreshCode"
+                      crossorigin>
                     <!-- <i class="icon-shuaxin login-code-icon" @click="refreshCode"></i> -->
                 </div>
               </a-col>
@@ -286,7 +287,6 @@ export default {
       })
     },
     loginSuccess (res) {
-      console.log(res.result)
       this.$router.push({ name: 'dashboard' })
     },
     requestFailed (err) {
