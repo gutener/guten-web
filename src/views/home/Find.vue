@@ -43,7 +43,7 @@
 </style>
 
 <script>
-import card from "@/components/_zh-introCard";
+import card from "@/components/PageHelper/IntroCard"
 export default {
   data() {
     return {

@@ -1,6 +1,5 @@
 // eslint-disable-next-line
-import { UserLayout} from '@/layouts'
-import Layout from "@/components/Layout.vue"
+import { UserLayout,Layout } from '@/layouts'
 import Home from "@/views/home/Home.vue"
 import Find from "@/views/home/Find.vue"
 import Specials from "@/views/home/Specials.vue";
@@ -38,14 +37,11 @@ export const constantRouterMap = [
   },
   {
     path: "/",
-    name: "Root",
+    name: "Home",
     component: Layout,
-    redirect: {
-      name: "Home"
-    },
     children: [
       {
-        path: "/home",
+        path: "/",
         name: "Home",
         component: Home,
         title: "主页"

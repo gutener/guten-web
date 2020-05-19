@@ -45,7 +45,8 @@
 </template>
 
 <script>
-import loading from "@/components/_zh-loading";
+import loading from "@/components/PageHelper/Loading"
+
 export default {
   data() {
     return {

@@ -12,8 +12,8 @@
 </template>
 
 <script>
-import zhHeader from "./_zh-header";
-import zhAsider from "./_zh-asider";
+import zhHeader from "./PageHeader";
+import zhAsider from "./Asider";
 export default {
   data() {
     return {};

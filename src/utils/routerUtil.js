@@ -1,9 +1,10 @@
 import { axios } from '@/utils/request'
 // eslint-disable-next-line
-import { UserLayout} from '@/layouts'
+import { Layout } from '@/layouts'
 
 // 前端路由表
 const constantRouterComponents = {
+  Layout: Layout
 }
 
 // 前端未找到页面路由（固定不用改）

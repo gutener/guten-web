@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import Tag from "../components/_zh-tag";
+import Tag from "./Tag";
 export default {
   props: {
     datas: {

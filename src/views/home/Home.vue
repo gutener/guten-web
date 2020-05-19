@@ -3,8 +3,8 @@
     <el-container>
       <el-main class="zh-home-main">
         <div class="zh-main-tabs">
-          <router-link :to="{ name: 'Home' }">推荐</router-link>
-          <router-link :to="{ name: 'Specials' }">热榜</router-link>
+          <router-link :to="{ name: 'Home' }">首页</router-link>
+          <router-link :to="{ name: 'Explore' }">发现</router-link>
         </div>
         <zh-loading v-show="loading" />
         <div class="zh-main-list">
@@ -33,8 +33,7 @@
 </template>
 
 <script>
-// @ is an alias to /src
-import loading from "@/components/_zh-loading";
+import loading from "@/components/PageHelper/Loading"
 export default {
   name: "home",
   data() {
@@ -48,7 +47,7 @@ export default {
   },
   methods: {
     zhSelect() {
-      this.hiddenBtn = this.hiddenBtn ? false : true;
+      this.hiddenBtn = this.hiddenBtn ? false : true
     }
   },
   components: {
