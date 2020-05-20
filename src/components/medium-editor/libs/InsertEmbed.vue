@@ -16,7 +16,7 @@
                 v-on:uploaded="uploadCallback"
                 v-on:imageClick="imageClickHandler"
         ></insert-image>
-        <insert-youtube :editor="editor" v-on:onChange="onChange" :insert="insert"></insert-youtube>
+        <insert-bilibili :editor="editor" v-on:onChange="onChange" :insert="insert"></insert-bilibili>
       </div>
     </div>
     <image-position
@@ -28,7 +28,7 @@
 
 <script>
   import InsertImage from './Embed/InsertImage'
-  import InsertYoutube from './Embed/InsertYoutube'
+  import InsertBilibili from './Embed/InsertBilibili'
   import ImagePosition from './Embed/ImagePosition'
   import {library} from '@fortawesome/fontawesome-svg-core'
   import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome'
@@ -42,7 +42,7 @@
       FontAwesomeIcon,
       InsertImage,
       ImagePosition,
-      InsertYoutube
+      InsertBilibili
     },
     data() {
       return {

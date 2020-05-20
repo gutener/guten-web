@@ -40,7 +40,6 @@
         })
       },
       detectEmbed(e) {
-        console.log(this.embedElm)
         if (e.keyCode === 13 && this.embedElm) {
           const url = this.embedElm.innerHTML.replace("<br>", "")
           this.renderEmbed(url, this.embedElm)
@@ -58,11 +57,8 @@
         if(bliVid.startsWith('AV')||bliVid.startsWith('av')){
           embedUrlParam=`aid=${bliVid.substring(2,bliVid.length)}`
         }
-
         elm.innerHTML = `
             <iframe data-role="iframe"
-                  class="lake-embed-content-frame
-                         lake-embed-content-frame-loaded"
                          frameborder="0"
                          allowfullscreen="true"
                          style="height: 500px; transition: all 0.3s linear"
