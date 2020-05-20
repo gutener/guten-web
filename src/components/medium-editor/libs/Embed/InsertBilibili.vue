@@ -12,9 +12,13 @@
       'editor',
       'insert'
     ],
+    data() {
+      return {
+        placeholder: '复制B站视频地址，然后回车',
+      };
+    },
     mounted() {
       this.subscribe()
-      this.initializeExisting()
     },
     methods: {
       subscribe() {
@@ -49,22 +53,33 @@
       },
       renderEmbed(url, elm) {
         let path = this.parseURL(url).path.split('/')
-        let bliVid=path[2]
+        let bliVid = path[2]
         let embedUrlParam
-        if(bliVid.startsWith('BV')||bliVid.startsWith('bv')){
-          embedUrlParam=`bvid=${bliVid}`
+        if (bliVid.startsWith('BV') || bliVid.startsWith('bv')) {
+          embedUrlParam = `bvid=${bliVid}`
         }
-        if(bliVid.startsWith('AV')||bliVid.startsWith('av')){
-          embedUrlParam=`aid=${bliVid.substring(2,bliVid.length)}`
+        if (bliVid.startsWith('AV') || bliVid.startsWith('av')) {
+          embedUrlParam = `aid=${bliVid.substring(2, bliVid.length)}`
         }
         elm.innerHTML = `
-            <iframe data-role="iframe"
-                         frameborder="0"
-                         allowfullscreen="true"
-                         style="height: 500px; transition: all 0.3s linear"
-                         src="https://player.bilibili.com/player.html?${embedUrlParam}">
-            </iframe>
-            `
+            <div class="bilibili-embed-iframe"></div>
+            `;
+        const iframe = document.createElement('iframe');
+        const iframeContainer = elm.getElementsByClassName('bilibili-embed-iframe')[0]
+        iframeContainer.appendChild(iframe);
+        // iframe.id = id;
+        iframe.src = `https://player.bilibili.com/player.html?${embedUrlParam}`;
+        iframe.frameborder = 0;
+        iframe.allowfullscreen = true;
+        iframe.height ="500px";
+        elm.className =  elm.className.replace(/\beditor-embed medium-insert-embeds-placeholder\b/, "")
+        elm.removeAttribute('data-placeholder')
+        setTimeout(() => {
+          const focused = this.editor.getSelectedParentElement()
+          const currentPos = focused.getBoundingClientRect()
+          this.window.scrollTo(0, currentPos.top - currentPos.x)
+          this.$emit('onChange')
+        }, 100)
       },
       parseURL(url) {
         var a = document.createElement('a');
@@ -76,7 +91,7 @@
           host: a.hostname,
           port: a.port,
           query: a.search,
-          params: (function() {
+          params: (function () {
             var params = {},
                 seg = a.search.replace(/^\?/, '').split('&'),
                 len = seg.length,
@@ -95,7 +110,11 @@
       },
       addEmbed() {
         if (this.insert.isToggle) {
-          this.editor.pasteHTML(`<p class="guten-bilibili-embed"><br></p>`, {cleanAttrs: [], cleanTags: [], unwrapTags: []})
+          this.editor.pasteHTML(`<p class="editor-embed medium-insert-embeds-placeholder" data-placeholder='${this.placeholder}'><br></p>`, {
+            cleanAttrs: [],
+            cleanTags: [],
+            unwrapTags: []
+          })
           this.embedElm = this.editor.getSelectedParentElement()
           this.insert.isToggle = false
           this.insert.isShow = false
@@ -114,3 +133,16 @@
     }
   }
 </script>
+<style lang="less">
+
+  .medium-insert-embeds-placeholder {
+    position: relative;
+    &:after {
+      position: absolute;
+      top: 0;
+      left: 0;
+      content: attr(data-placeholder);
+      color: #ccc;
+    }
+  }
+</style>

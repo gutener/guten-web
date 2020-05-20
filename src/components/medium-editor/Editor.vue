@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- Editor Mode -->
-    <div class="medium-editor-container" v-if="!readOnly">
+    <div class="medium-editor-container" v-if="!readOnly" style="min-height: 360px">
       <insert-embed v-if="editor"
                     :uploadUrl="options.uploadUrl"
                     :onChange="triggerChange"
@@ -102,7 +102,6 @@
         }
       },
       uploadedCallback(url) {
-        console.log("callback")
         this.$emit("uploaded", url);
       }
     },

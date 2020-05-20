@@ -1,7 +1,7 @@
 <template>
   <div class="PostStory-main">
     <article class="PostStory-container">
-      <header class="grid PostStory-header">Post a public story</header>
+      <!--<header class="grid PostStory-header">Post a public story</header>-->
       <div class="grid">
         <section class="PostStory-mainColumn">
           <div class="">
@@ -9,6 +9,7 @@
                                                style="text-align: center; font-size: 150%; font-weight: 500;">
           </div>
           <medium-editor
+                  class="min-height=200px"
                   v-model="content"
                   :options="options"
                   :onChange="onChange"
@@ -22,7 +23,7 @@
               <div class="flex-shrink">
                 <div class="">
                   <button class="Reward-o clap">
-                    <div class="sc-eNQAEJ kBqlfj" font-size="1.25em" height="50%">G{{reward}}</div>
+                    <div class="" font-size="1.05em" height="50%">G{{reward}}</div>
                   </button>
                 </div>
               </div>
@@ -61,8 +62,7 @@
   import SlideBar from '@/components/slide-bar/SlideBar'
 
   export default {
-    name: "app",
-
+    name: "StoryPost",
     data() {
       return {
         content: ``,
@@ -92,7 +92,7 @@
     },
     methods: {
       onChange() {
-        console.log(this.content)
+        // console.log(this.content)
       },
       uploadCallback(url) {
         console.log("uploaded url", url)
@@ -107,7 +107,7 @@
 <style lang="less" scoped>
   @import "~bulma/css/bulma.css";
   @import "~medium-editor/dist/css/medium-editor.css";
-  @import "default.less";
+  @import "default.css";
   .PostStory-main{
   }
   .PostStory-container {
@@ -123,7 +123,7 @@
     display: flex;
   }
   .PostStory-header{
-    height: 130px;
+    height: 69px;
   }
   .PostStory-mainColumn{
     -ms-flex-negative: 0;
@@ -137,7 +137,6 @@
   }
   .PostStory-title{
     width: 100%;
-    font-family: Cartograph;
     box-sizing: border-box;
     font-weight: 400;
     font-size: 20px;
@@ -168,7 +167,10 @@
         margin-bottom: 0rem;
       }
       .title{
-
+        font-size: 18px;
+        margin-left: -2px;
+        margin-top: 20px;
+        color: #4c4b4b;
       }
       .flex-shrink {
         -webkit-flex: 0 1 auto;

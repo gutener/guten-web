@@ -1,12 +1,11 @@
 import Vue from 'vue'
 import VueStorage from 'vue-ls'
-import { loadStyle } from '@/utils/util'
+// import { loadStyle } from '@/utils/util'
 import * as urls from '@/config/env'
 
 // base library
 import Antd from 'ant-design-vue'
-import 'ant-design-vue/dist/antd.less'
-
+// import 'ant-design-vue/dist/antd.less'
 // ext library
 import VueClipboard from 'vue-clipboard2'
 // import PermissionHelper from '@/utils/helper/permission'

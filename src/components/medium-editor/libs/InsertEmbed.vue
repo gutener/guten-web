@@ -106,17 +106,14 @@
         if (this.insert.isShow && this.insert.isToggle) {
           this.toggle();
         }
-
         if (e.keyCode === 13) {
           const focused = this.editor.getSelectedParentElement()
           const nextElm = focused.nextElementSibling
           const prevElm = focused.previousElementSibling
-
           if (nextElm && prevElm && nextElm.className.indexOf('editor-image-description') > -1 && prevElm.className.indexOf('editor-image') > -1) {
             nextElm.parentNode.insertBefore(nextElm, focused);
           }
         }
-
         this.handler.isShow = false
         if (e.target.className.indexOf('editor-image-description') <= -1) {
           const editorImages = this.editor.getFocusedElement().getElementsByClassName('editor-image')
@@ -126,6 +123,9 @@
         }
 
         const currentLine = this.editor.getSelectedParentElement()
+        //TODO optimized
+        currentLine.className =  currentLine.className.replace(/\beditor-embed medium-insert-embeds-placeholder\b/, "")
+        currentLine.removeAttribute('data-placeholder')
         const outerHtml = currentLine.outerHTML
         const isList = outerHtml.indexOf('<li>') > -1
         const content = currentLine.innerHTML.replace(/^(<br\s*\/?>)+/, '').trim()
@@ -177,10 +177,10 @@
     },
     beforeMount() {
       this.window = window;
-      window.addEventListener('scroll', this.handleScroll);
+      window.addEventListener('scroll', this.handleScroll)
     },
     beforeDestroy() {
-      window.removeEventListener('scroll', this.handleScroll);
+      window.removeEventListener('scroll', this.handleScroll)
     }
   }
 </script>

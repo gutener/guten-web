@@ -21,5 +21,4 @@ export default {
 
 <style lang="less" scoped>
 @import url('../components/global.less');
-
 </style>
