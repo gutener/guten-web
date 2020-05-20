@@ -14,13 +14,15 @@ function isProd () {
 }
 const assetsCDN = {
   css: [
+    // '//cdn.jsdelivr.net/npm/medium-editor@latest/dist/css/medium-editor.min.css'
   ],
   // https://unpkg.com/browse/vue@2.6.10/
   js: [
     '//cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.min.js',
     '//cdn.jsdelivr.net/npm/vue-router@3.1.6/dist/vue-router.min.js',
     '//cdn.jsdelivr.net/npm/vuex@3.4.0/dist/vuex.min.js',
-    '//cdn.jsdelivr.net/npm/axios@0.19.2/dist/axios.min.js'
+    '//cdn.jsdelivr.net/npm/axios@0.19.2/dist/axios.min.js',
+    // '//cdn.jsdelivr.net/npm/medium-editor@latest/dist/js/medium-editor.min.js'
   ]
 }
 // webpack build externals
@@ -64,6 +66,7 @@ const vueConfig = {
 
     // if prod is on
     // assets require on cdn
+
     if (isProd()) {
       config.plugin('html').tap(args => {
         args[0].cdn = assetsCDN
@@ -71,7 +74,6 @@ const vueConfig = {
       })
     }
   },
-
   css: {
     loaderOptions: {
       less: {

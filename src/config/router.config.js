@@ -2,7 +2,7 @@
 import { UserLayout,Layout } from '@/layouts'
 import Home from "@/views/home/Home.vue"
 import Find from "@/views/home/Find.vue"
-import Specials from "@/views/home/Specials.vue";
+import Specials from "@/views/home/Specials.vue"
 /**
  * 基础路由
  * @type { *[] }
@@ -34,6 +34,10 @@ export const constantRouterMap = [
   {
     path: '/404',
     component: () => import(/* webpackChunkName: "fail" */ '@/views/exception/404')
+  },
+  {
+    path: '/story/post',
+    component: () => import('@/views/story/Post')
   },
   {
     path: "/",
