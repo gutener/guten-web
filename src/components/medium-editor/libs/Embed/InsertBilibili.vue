@@ -62,16 +62,13 @@
           embedUrlParam = `aid=${bliVid.substring(2, bliVid.length)}`
         }
         elm.innerHTML = `
-            <div class="bilibili-embed-iframe"></div>
-            `;
-        const iframe = document.createElement('iframe');
-        const iframeContainer = elm.getElementsByClassName('bilibili-embed-iframe')[0]
-        iframeContainer.appendChild(iframe);
-        // iframe.id = id;
-        iframe.src = `https://player.bilibili.com/player.html?${embedUrlParam}`;
-        iframe.frameborder = 0;
-        iframe.allowfullscreen = true;
-        iframe.height ="500px";
+            <iframe data-role="iframe"
+                         frameborder="0"
+                         allowfullscreen="true"
+                         style="height: 500px; transition: all 0.3s linear"
+                         src="https://player.bilibili.com/player.html?${embedUrlParam}">
+            </iframe>
+            `
         elm.className =  elm.className.replace(/\beditor-embed medium-insert-embeds-placeholder\b/, "")
         elm.removeAttribute('data-placeholder')
         setTimeout(() => {
