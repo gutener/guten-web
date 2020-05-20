@@ -87,7 +87,6 @@
       },
       triggerChange() {
         const content = this.editor.getContent();
-
         setTimeout(() => {
           if (/<[a-z][\s\S]*>/i.test(content)) {
             this.hasContent = true;

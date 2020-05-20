@@ -16,8 +16,7 @@
                 v-on:uploaded="uploadCallback"
                 v-on:imageClick="imageClickHandler"
         ></insert-image>
-        <insert-gist :editor="editor"
-                     v-on:onChange="onChange" :insert="insert"></insert-gist>
+        <insert-youtube :editor="editor" v-on:onChange="onChange" :insert="insert"></insert-youtube>
       </div>
     </div>
     <image-position
@@ -28,13 +27,13 @@
 </template>
 
 <script>
-  import InsertImage from './Embed/InsertImage';
-  import InsertGist from './Embed/InsertGist';
-  import ImagePosition from './Embed/ImagePosition';
-  import {library} from '@fortawesome/fontawesome-svg-core';
-  import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome';
-  import {faPlus} from '@fortawesome/free-solid-svg-icons';
-  import _ from 'underscore';
+  import InsertImage from './Embed/InsertImage'
+  import InsertYoutube from './Embed/InsertYoutube'
+  import ImagePosition from './Embed/ImagePosition'
+  import {library} from '@fortawesome/fontawesome-svg-core'
+  import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome'
+  import {faPlus} from '@fortawesome/free-solid-svg-icons'
+  import _ from 'underscore'
 
   library.add(faPlus)
 
@@ -42,8 +41,8 @@
     components: {
       FontAwesomeIcon,
       InsertImage,
-      InsertGist,
-      ImagePosition
+      ImagePosition,
+      InsertYoutube
     },
     data() {
       return {
@@ -96,7 +95,7 @@
         _.map(editorImages, (elm) => {
           const description = elm.innerHTML.trim()
 
-          if (!description || description == "<br>") {
+          if (!description || description === "<br>") {
             elm.className = 'editor-image-description is-empty'
           } else {
             elm.className = 'editor-image-description'
@@ -108,7 +107,7 @@
           this.toggle();
         }
 
-        if (e.keyCode == 13) {
+        if (e.keyCode === 13) {
           const focused = this.editor.getSelectedParentElement()
           const nextElm = focused.nextElementSibling
           const prevElm = focused.previousElementSibling

@@ -2,16 +2,18 @@ const path = require('path')
 const webpack = require('webpack')
 const createThemeColorReplacerPlugin = require('./config/plugin.config')
 
-function resolve (dir) {
+function resolve(dir) {
   return path.join(__dirname, dir)
 }
+
 /**
  * check production or preview(pro.loacg.com only)
  * @returns {boolean}
  */
-function isProd () {
+function isProd() {
   return process.env.NODE_ENV === 'production'
 }
+
 const assetsCDN = {
   css: [
     // '//cdn.jsdelivr.net/npm/medium-editor@latest/dist/css/medium-editor.min.css'
@@ -46,23 +48,25 @@ const vueConfig = {
 
   chainWebpack: (config) => {
     config.resolve.alias
-      .set('@$', resolve('src'))
+        .set('@$', resolve('src'))
 
-    const svgRule = config.module.rule('svg')
-    svgRule.uses.clear()
-    svgRule
-      .oneOf('inline')
-      .resourceQuery(/inline/)
-      .use('vue-svg-icon-loader')
-      .loader('vue-svg-icon-loader')
-      .end()
-      .end()
-      .oneOf('external')
-      .use('file-loader')
-      .loader('file-loader')
-      .options({
-        name: 'assets/[name].[hash:8].[ext]'
-      })
+    const svgRule = config.module.rule('svg') // 找到svg-loader
+    svgRule.uses.clear() // 清除已有的loader, 如果不这样做会添加在此loader之后
+    svgRule.exclude.add(/node_modules/) // 正则匹配排除node_modules目录
+    svgRule // 添加svg新的loader处理
+        .test(/\.svg$/)
+        .use('svg-sprite-loader')
+        .loader('svg-sprite-loader')
+        .options({
+          symbolId: 'icon-[name]'
+        })
+
+    // 修改images loader 添加svg处理
+    const imagesRule = config.module.rule('images')
+    imagesRule.exclude.add(resolve('src/icons'))
+    config.module
+        .rule('images')
+        .test(/\.(png|jpe?g|gif|svg)(\?.*)?$/)
 
     // if prod is on
     // assets require on cdn

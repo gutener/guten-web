@@ -1,0 +1,1 @@
+https://www.vuescript.com/vue2-medium-editor-plugin/

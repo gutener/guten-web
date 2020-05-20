@@ -11,6 +11,8 @@ import 'ant-design-vue/dist/antd.less'
 import VueClipboard from 'vue-clipboard2'
 // import PermissionHelper from '@/utils/helper/permission'
 
+import '@/icons' // svg 图标
+
 // 加载相关url地址
 Object.keys(urls).forEach(key => {
   Vue.prototype[key] = urls[key]

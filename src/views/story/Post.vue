@@ -1,7 +1,7 @@
 <template>
   <div class="PostStory-main">
     <article class="PostStory-container">
-      <header class="grid PostStory-header">Ask a public question</header>
+      <header class="grid PostStory-header">Post a public story</header>
       <div class="grid">
         <section class="PostStory-mainColumn">
           <div class="">
@@ -41,7 +41,7 @@
     },
     methods: {
       onChange() {
-        console.log(this.content)
+        // console.log(this.content)
       },
       uploadCallback(url) {
         console.log("uploaded url", url)
