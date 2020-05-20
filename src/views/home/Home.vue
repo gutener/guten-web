@@ -1,13 +1,17 @@
 <template>
-  <div class="HotStory-mainColumn">
-    <HotStoriesList>
-    </HotStoriesList>
+  <div class="Hotstory">
+    <article class="Hotstory-container">
+      <section class="HotStory-mainColumn">
+        <HotStoriesList/>
+      </section>
+      <HomeAsider/>
+    </article>
   </div>
 </template>
 <script>
   import loading from "@/components/PageHelper/Loading"
   import HotStoriesList from "./components/HotStoriesList"
-
+  import HomeAsider from "./components/HomeAsider"
   export default {
   name: "home",
   data() {
@@ -29,12 +33,24 @@
   },
   components: {
     "zh-loading": loading,
-    "HotStoriesList": HotStoriesList
+    "HotStoriesList": HotStoriesList,
+    "HomeAsider": HomeAsider
   }
 };
 </script>
 
 <style lang="less" scoped>
+  .Hotstory-container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    width: 1000px;
+    padding: 0 16px;
+    margin: 10px auto
+  }
   .HotStory-mainColumn {
     -ms-flex-negative: 0;
     flex-shrink: 0;

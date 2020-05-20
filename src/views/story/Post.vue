@@ -1,80 +1,64 @@
 <template>
-  <main class="PostStory-main">
+  <div class="PostStory-main">
     <article class="PostStory-container">
       <header class="grid PostStory-header">Ask a public question</header>
       <div class="grid">
         <section class="PostStory-mainColumn">
-          <div class="editable"></div>
+          <div class="">
+            <input class="PostStory-title" type="text" placeholder="title..."
+                                               style="text-align: center; font-size: 150%; font-weight: 500;">
+          </div>
+          <medium-editor
+                  v-model="content"
+                  :options="options"
+                  :onChange="onChange"
+                  v-on:uploaded="uploadCallback">
+          </medium-editor>
         </section>
         <aside class="PostStory-SideBar">
           <div>
-            <a-collapse v-model="activeKey">
-              <a-collapse-panel key="1" header="This is panel header 1">
-                <p>{{ text }}</p>
-              </a-collapse-panel>
-              <a-collapse-panel key="2" header="This is panel header 2" :disabled="false">
-                <p>{{ text }}</p>
-              </a-collapse-panel>
-              <a-collapse-panel key="3" header="This is panel header 3" disabled>
-                <p>{{ text }}</p>
-              </a-collapse-panel>
-            </a-collapse>
           </div>
         </aside>
       </div>
     </article>
-  </main>
+  </div>
 </template>
 
 <script>
+  import Editor from '@/components/medium-editor/Editor'
   export default {
-    mounted() {
-      this.render();
+    name: "app",
+    data() {
+      return {
+        content: ``,
+        options: {
+          uploadUrl: "http://localhost:3000/api/v1/upload/image"
+        }
+      };
+    },
+    components: {
+      "medium-editor": Editor
     },
     methods: {
-      render() {
-        var editor = new MediumEditor('.editable', {
-          toolbar: {
-            buttons: [
-              'bold',
-              'italic',
-              {
-                name: 'h1',
-                action: 'append-h2',
-                aria: 'header type 1',
-                tagNames: ['h2'],
-                contentDefault: '<b>H1</b>',
-                classList: ['custom-class-h1'],
-                attrs: {
-                  'data-custom-attr': 'attr-value-h1'
-                }
-              },
-              {
-                name: 'h2',
-                action: 'append-h3',
-                aria: 'header type 2',
-                tagNames: ['h3'],
-                contentDefault: '<b>H2</b>',
-                classList: ['custom-class-h2'],
-                attrs: {
-                  'data-custom-attr': 'attr-value-h2'
-                }
-              },
-              'justifyCenter',
-              'quote',
-              'anchor'
-            ]
-          }
-        });
+      onChange() {
+        console.log(this.content)
+      },
+      uploadCallback(url) {
+        console.log("uploaded url", url)
       }
     }
-  }
+  };
 </script>
 
 <style scoped>
+  @import "~bulma/css/bulma.css";
+  @import "~medium-editor/dist/css/medium-editor.css";
+  @import "default.less";
+  .PostStory-main{
+  }
   .PostStory-container {
     width: 100%;
-    max-width: 1264px;
+    max-width: 1192px;
     background-color: transparent;
     border-left: 0;
     border-right: 0;
@@ -92,7 +76,23 @@
     flex-shrink: 0;
     margin-right: 10px;
     margin-bottom: 0;
-    width: 694px;
+    -webkit-box-flex: 2;
+    -ms-flex: 2 1;
+    flex: 2 1;
+    font-size: 14px;
+  }
+  .PostStory-title{
+    width: 100%;
+    font-family: Cartograph;
+    box-sizing: border-box;
+    font-weight: 400;
+    font-size: 20px;
+    border-width: 0px;
+    border-style: initial;
+    border-color: initial;
+    border-image: initial;
+    border-radius: 12px;
+    padding: 0.8em;
   }
   .PostStory-SideBar{
     -webkit-box-flex: 1;
@@ -105,8 +105,6 @@
     position: relative;
     flex-direction: column;
     justify-content: center;
-    border: 1px solid grey;
-    border-radius: 3px;
     height: 246px;
   }
 </style>
