@@ -1,42 +1,41 @@
 <template>
-  <div class="Hotstory">
-    <article class="Hotstory-container">
-      <section class="HotStory-mainColumn">
-        <HotStoriesList/>
-      </section>
-      <HomeAsider/>
-    </article>
-  </div>
+  <main class="Hotstory">
+      <article class="Hotstory-container">
+        <section class="HotStory-mainColumn">
+          <HotStoriesList/>
+        </section>
+        <HomeAsider/>
+      </article>
+    </main>
 </template>
 <script>
   import HotStoriesList from "./components/HotStoriesList"
   import HomeAsider from "./components/HomeAsider"
+
   export default {
-  name: "home",
-  data() {
-    return {
-      recommend: [],
-      loading: true
-    };
-  },
-  created() {
-    this.render();
-  },
-  methods: {
-    zhSelect() {
-      this.hiddenBtn = this.hiddenBtn ? false : true
+    data() {
+      return {
+        recommend: [],
+        loading: true
+      };
     },
-    render(){
+    created() {
+      this.render();
+    },
+    methods: {
+      zhSelect() {
+        this.hiddenBtn = this.hiddenBtn ? false : true
+      },
+      render() {
 
+      }
+    },
+    components: {
+      "HotStoriesList": HotStoriesList,
+      "HomeAsider": HomeAsider
     }
-  },
-  components: {
-    "HotStoriesList": HotStoriesList,
-    "HomeAsider": HomeAsider
-  }
-};
+  };
 </script>
-
 <style lang="less" scoped>
   .Hotstory-container {
     display: -webkit-box;
@@ -49,6 +48,7 @@
     padding: 0 16px;
     margin: 10px auto
   }
+
   .HotStory-mainColumn {
     -ms-flex-negative: 0;
     flex-shrink: 0;
