@@ -1,8 +1,9 @@
 // eslint-disable-next-line
 import { UserLayout,Layout } from '@/layouts'
 import Home from "@/views/home/Home"
-import Specials from "@/views/home/Specials"
 import Post from "@/views/story/Post"
+import Fund from "@/views/fund/Fund"
+import Seed from "@/views/fund/Seed"
 /**
  * 基础路由
  * @type { *[] }
@@ -36,28 +37,33 @@ export const constantRouterMap = [
     component: () => import(/* webpackChunkName: "fail" */ '@/views/exception/404')
   },
   {
+    path: "/fund",
+    name: "Fund",
+    component: Layout,
+    redirect: {
+      name: "Seed"
+    },
+    children: [
+      {
+        path: "/fund/seed",
+        name: "Seed",
+        component: Seed
+      }
+    ]
+  },
+  {
     path: "/",
-    name: "Home",
     component: Layout,
     children: [
       {
         path: "/",
-        name: "Home",
-        component: Home,
-        title: "主页"
+        component: Home
       },
       {
         path: "/story/post",
         name: "Post",
-        component: Post,
-        title: "发布文章"
-      },
-      {
-        path: "/zhihu/specials",
-        name: "Specials",
-        component: Specials,
-        title: "热榜"
+        component: Post
       }
     ]
-  },
+  }
 ]

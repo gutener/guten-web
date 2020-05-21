@@ -1,0 +1,38 @@
+.Fund-container{
+  max-width: 800px;
+  margin: 0px auto;
+  padding: 1em 0px;
+}
+.Fund.flex{
+  display: flex;
+}
+.Fund-header{
+  padding: 0px 1em;
+  align-items: center;
+  text-align: center;
+
+  .Header-grow{
+    -webkit-flex: 1 0 0;
+    flex: 1 0 0;
+    padding: 1em;
+    position: relative;
+    cursor: pointer;
+    opacity: 1;
+    border-radius: 3px;
+    box-shadow: unset;
+    &.active{
+      background-color: rgb(238, 238, 238);
+    }
+  }
+}
+.Fund-grow{
+
+}
+.Fund-mainColumn{
+  margin-top: 36px;
+  .Fund-grow{
+    h2 {
+      font-size: 1.4rem;
+    }
+  }
+}

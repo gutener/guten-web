@@ -287,7 +287,7 @@ export default {
       })
     },
     loginSuccess (res) {
-      this.$router.push({ name: 'home' })
+      this.$router.push({ path: '/' })
     },
     requestFailed (err) {
       console.error(err)

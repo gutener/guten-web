@@ -1,6 +1,6 @@
 <template>
   <div>
-    <zh-header />
+    <guten-header />
     <main class="guten-main">
       <router-view></router-view>
     </main>
@@ -8,13 +8,13 @@
 </template>
 
 <script>
-import zhHeader from "./PageHeader";
+import PageHeader from "./PageHeader"
 export default {
   data() {
     return {};
   },
   components: {
-    "zh-header": zhHeader,
+    "guten-header": PageHeader,
   }
 };
 </script>

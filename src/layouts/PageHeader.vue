@@ -8,14 +8,19 @@
       </div>
       <div class="AppHeader-menu-options AppHeader-menu-options--left">
         <div class="AppHeader-menu-option">
+          <a class="CreatePost" aria-label="Create Post" href="/fund">
+            <svg-icon iconClass="fund" style="font-size:30px"></svg-icon>
+          </a>
+        </div>
+        <div class="AppHeader-menu-option">
           <span class="PostStory" id="HeaderUserActions--NewPost">
             <a class="CreatePost" aria-label="Create Post" href="/story/post">
-              <svg-icon iconClass="post" style="font-size:30px"></svg-icon>
+              <svg-icon iconClass="edit" style="font-size:30px"></svg-icon>
             </a>
           </span>
         </div>
         <div class="AppHeader-menu-option">
-          <a class="" href="//www.zhihu.com/" data-za-not-track-link="true">首页</a>
+          <!--<a class="" href="//www.zhihu.com/" data-za-not-track-link="true">首页</a>-->
         </div>
       </div>
       <div class="AppHeader-menu-options AppHeader-menu-options--right">
