@@ -23,9 +23,6 @@
       this.render();
     },
     methods: {
-      zhSelect() {
-        this.hiddenBtn = this.hiddenBtn ? false : true
-      },
       render() {
 
       }
