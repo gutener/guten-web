@@ -11,8 +11,7 @@
       </span>
     </div>
     <div ref="bmBurgerButton" class="bm-burger-button" @click="openMenu" :class="{ hidden: !burgerIcon }">
-      <span class="bm-burger-bars line-style" :style="{top:20 * (index * 2) + '%'}" v-for="(x, index) in 3"
-            :key="index"></span>
+      <svg-icon iconClass="menu" style="font-size: 32px"></svg-icon>
     </div>
   </div>
 </template>
@@ -210,7 +209,6 @@
   }
 
   .bm-burger-button {
-    position: absolute;
     width: 36px;
     height: 30px;
     left: 36px;

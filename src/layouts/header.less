@@ -1,0 +1,72 @@
+.AppHeader {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+.AppHeader--fixed{
+  background-color: rgb(255, 255, 255);
+  position: fixed;
+  width: 100%;
+  border-bottom: 1px solid rgb(221, 221, 221);
+  z-index: 4;
+  top: 0em;
+}
+.AppHeader-inner {
+  background: #fff;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  .AppHeader-brand-image {
+    padding-left: 10px;
+  }
+  .AppHeader-menu-options {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    .AppHeader-menu-option:not(:last-child) {
+      margin-right: 60px;
+    }
+  }
+  .AppHeader-menu-options--left {
+    margin-right: auto;
+    justify-content: flex-start;
+    padding-left: 150px;
+  }
+  .AppHeader-menu-options--right {
+    margin-left: auto;
+    justify-content: flex-end;
+    padding-right: 10px;
+  }
+}
+
+html[data-theme=dark] .AppHeader {
+  background: #1a1a1a;
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, .3);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .3)
+}
+@media (min-width: 1200px){
+  .AppHeader-container {
+    max-width: 1140px;
+  }
+}
+@media (min-width: 992px){
+  .AppHeader-container {
+    max-width: 960px;
+  }
+}
+
+@media (min-width: 768px){
+  .AppHeader-container {
+    max-width: 720px;
+  }
+}
+@media (min-width: 576px){
+  .AppHeader-container {
+    max-width: 540px;
+  }
+}
