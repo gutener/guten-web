@@ -16,7 +16,6 @@
             >{{ item.name }}</a-button
           >
         </div>
-        <zh-loading v-show="loading" />
         <div class="zh-main-list">
           <div
             class="zh-articles-item"
@@ -45,7 +44,6 @@
 </template>
 
 <script>
-import loading from "@/components/PageHelper/Loading"
 
 export default {
   data() {
@@ -70,7 +68,6 @@ export default {
     }
   },
   components: {
-    "zh-loading": loading
   }
 };
 </script>

@@ -1,7 +1,6 @@
 // eslint-disable-next-line
 import { UserLayout,Layout } from '@/layouts'
 import Home from "@/views/home/Home"
-import Find from "@/views/home/Find"
 import Specials from "@/views/home/Specials"
 import Post from "@/views/story/Post"
 /**

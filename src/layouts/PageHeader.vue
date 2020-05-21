@@ -1,7 +1,7 @@
 <template>
   <header
-    class="Sticky "
-    :class="[isActive ? 'AppHeader' : 'AppHeader isFiexd']"
+          class="Sticky "
+          :class="[isActive ? 'AppHeader' : 'AppHeader isFiexd']"
   >
     <div class="AppHeader-inner">
       <a href="//www.gutener.com" aria-label="Guten">
@@ -10,7 +10,7 @@
       <div class="Tabs AppHeader-tooltips">
         <span class="Tabs-item PostStory" id="HeaderUserActions--NewPost">
           <a class="CreatePost" aria-label="Create Post" href="/story/post">
-            <a-icon class="CreatePost-icon" type="plus-square" />
+            <a-icon class="CreatePost-icon" type="plus-square"/>
           </a>
         </span>
       </div>
@@ -24,85 +24,55 @@
              href="//www.zhihu.com/explore" data-za-not-track-link="true">发现</a>
         </li>
       </ul>
+      <div class="AppHeader-menu">
+        <header-menu/>
+      </div>
     </div>
   </header>
 </template>
 
 <script>
-export default {
-  data() {
-    return {
-      hiddenBtn: false,
-      selectData: [],
-      navlist: [],
-      selectValue: "",
-      placeholder: "",
-      headerHeight: 52,
-      scrollHeight: 0,
-      isActive: true
-    };
-  },
-  created() {
-    this.render();
-  },
-  mounted() {
-    window.addEventListener("scroll", this.getScroll);
-  },
-  methods: {
-    render(){
-
-    },
-    zhSelect() {
-      this.hiddenBtn = this.hiddenBtn ? false : true;
-    },
-    querySearch(queryString, cb) {
-      var selectData = this.selectData;
-      var results = queryString
-        ? selectData.filter(this.createFilter(queryString))
-        : selectData;
-      // 调用 callback 返回建议列表的数据
-      cb(results);
-    },
-    createFilter(queryString) {
-      return restaurant => {
-        return (
-          restaurant.value.toLowerCase().indexOf(queryString.toLowerCase()) ===
-          0
-        );
+  import HeaderMenu from './HeaderMenu'
+  export default {
+    data() {
+      return {
+        hiddenBtn: false,
+        selectData: [],
+        navlist: [],
+        selectValue: "",
+        placeholder: "",
+        headerHeight: 52,
+        scrollHeight: 0,
+        isActive: true
       };
     },
-    loadAll() {
-      return this.selectData;
+    created() {
     },
-    handleSelect(item) {
-      console.log(item);
+    mounted() {
+      window.addEventListener("scroll", this.getScroll);
     },
-    handleIconClick(ev) {
-      console.log(ev);
-    },
-    //监听滚动
-    getScroll() {
-      if (document.documentElement.scrollTop >= 52) {
-        this.isActive = false;
-      } else {
-        this.isActive = true;
+    methods: {
+      //监听滚动
+      getScroll() {
+        if (document.documentElement.scrollTop >= 52) {
+          this.isActive = false;
+        } else {
+          this.isActive = true;
+        }
       }
     },
-    writerArticle() {}
-  },
-  components: {}
-};
+    components: {
+      HeaderMenu
+    }
+  };
 </script>
 
 <style lang="less">
   .AppHeader {
     position: relative;
     z-index: 100;
-    min-width: 1032px;
     overflow: hidden;
     background: #fff;
-    -webkit-box-shadow: 0 1px 3px rgba(26, 26, 26, .1);
-    box-shadow: 0 1px 3px rgba(26, 26, 26, .1);
     background-clip: content-box
   }
 
@@ -121,8 +91,7 @@ export default {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    width: 1000px;
-    height: 52px;
+    height: 82px;
     padding: 0 16px;
     margin: 0 auto;
     -webkit-box-align: center;
@@ -138,8 +107,9 @@ export default {
     -webkit-transform: translateY(-100%);
     transform: translateY(-100%)
   }
+
   .Tabs {
-    border-bottom: 1px solid #f6f6f6
+    margin-left: 82px;
   }
 
   html[data-theme=dark] .Tabs {
@@ -166,7 +136,8 @@ export default {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    margin: 0 23px
+    margin: 0 23px;
+    margin-left: 82px;
   }
 
   .AppHeader-Tab {
@@ -197,6 +168,7 @@ export default {
   html[data-theme=dark] .AppHeader-TabsLink:hover {
     color: grey
   }
+
   button {
     background: transparent;
     border: none;
@@ -204,10 +176,12 @@ export default {
     cursor: pointer;
     padding: initial;
   }
+
   .AppHeader-tooltips {
     .PostStory {
       margin-left: 8px;
-      .CreatePost{
+
+      .CreatePost {
         -ms-flex-align: center;
         align-items: center;
         display: -ms-flexbox;
@@ -216,7 +190,8 @@ export default {
         flex-direction: row;
         position: relative;
         border: 0;
-        .CreatePost-icon{
+
+        .CreatePost-icon {
           border-radius: 2px;
           -ms-flex-align: center;
           align-items: center;

@@ -4,8 +4,9 @@ import VueStorage from 'vue-ls'
 import * as urls from '@/config/env'
 
 // base library
+// TODO antv目前只有登录页面用到，以后删除掉
 import Antd from 'ant-design-vue'
-// import 'ant-design-vue/dist/antd.less'
+import 'ant-design-vue/dist/antd.less'
 // ext library
 import VueClipboard from 'vue-clipboard2'
 // import PermissionHelper from '@/utils/helper/permission'

@@ -9,7 +9,6 @@
   </div>
 </template>
 <script>
-  import loading from "@/components/PageHelper/Loading"
   import HotStoriesList from "./components/HotStoriesList"
   import HomeAsider from "./components/HomeAsider"
   export default {
@@ -32,7 +31,6 @@
     }
   },
   components: {
-    "zh-loading": loading,
     "HotStoriesList": HotStoriesList,
     "HomeAsider": HomeAsider
   }
