@@ -40,7 +40,7 @@
             text: "Write something great!!"
           },
           toolbar: {
-            buttons: ["bold", "italic", "quote", "h1", "h2", "h3", "h4", "h5"]
+            buttons: ['bold', 'italic', 'quote', 'h1', 'h2', 'h3', 'h4','orderedlist']
           }
         },
         hasContent: false
