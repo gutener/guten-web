@@ -15,7 +15,7 @@ export function postStory(obj) {
 }
 export function cdsHp() {
   return axios({
-    url: `/story/v1/cds`,
+    url: `/story/cds/v1/hp`,
     method: 'get'
   })
 }
