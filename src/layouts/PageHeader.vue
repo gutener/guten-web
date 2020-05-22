@@ -14,7 +14,7 @@
         </div>
         <div class="AppHeader-menu-option">
           <span class="PostStory" id="HeaderUserActions--NewPost">
-            <a class="CreatePost" aria-label="Create Post" href="/story/post">
+            <a class="CreatePost" aria-label="Create Post" href="/stories/post">
               <svg-icon iconClass="edit" style="font-size:30px"></svg-icon>
             </a>
           </span>
