@@ -5,8 +5,10 @@
       <div class="grid">
         <section class="PostStory-mainColumn">
           <div class="">
-            <input class="PostStory-title" type="text" placeholder="title..."
-                                               style="text-align: center; font-size: 150%; font-weight: 500;">
+            <input class="PostStory-title"
+               v-model="story.title"
+               type="text" placeholder="title..."
+               style="text-align: center; font-size: 150%; font-weight: 500;">
           </div>
           <medium-editor
                   class="min-height=200px"
@@ -49,6 +51,9 @@
               </div>
             </div>
           </div>
+          <div style="text-align: center; padding-top: 1em; padding-bottom: 5em;">
+            <button @click="saveStory" class="GutenButton GutenButton--light">发布</button>
+          </div>
         </section>
         <aside class="PostStory-SideBar">
         </aside>
@@ -61,18 +66,24 @@
   import Editor from '@/components/medium-editor/Editor'
   import SlideBar from '@/components/slide-bar/SlideBar'
 
+  import {postStory} from '@/api/biz'
+
   export default {
     name: "StoryPost",
     data() {
       return {
         content: ``,
-        options: {
-          uploadUrl: "http://localhost:3000/api/v1/upload/image"
+        story:{
+          title:'',
+          body:''
         },
-        reward:0,
-        rewardMax:100,
+        options: {
+          uploadUrl: `${process.env.VUE_APP_API_BASE_URL}/story/v1/uploadimg`,
+        },
+        reward: 0,
+        rewardMax: 100,
         rewardCustomzie: {
-          speed:0,
+          speed: 0,
           val: 4,
           lineHeight: 4,
           processStyle: {
@@ -83,22 +94,41 @@
             borderColor: '#42b883'
           }
         },
-        showPlus:false
+        showPlus: false
       };
     },
     components: {
       "medium-editor": Editor,
-      "slide-bar":SlideBar
+      "slide-bar": SlideBar
     },
     methods: {
       onChange() {
-        console.log(this.content)
+        this.story.body = this.content
       },
       uploadCallback(url) {
-        console.log("uploaded url", url)
+        // console.log("uploaded url", url)
       },
-      rewardplus(){
-        this.rewardMax = this.rewardMax+Math.ceil(this.rewardMax/2)
+      rewardplus() {
+        this.rewardMax = this.rewardMax + Math.ceil(this.rewardMax / 2)
+      },
+      saveStory(){
+        console.log(this.story)
+        postStory(this.story)
+            .then(response => {
+              console.log(response)
+              // if (response.code === 200) {
+              //   let artNo = response.data
+              //   this.submitForm.artNo = artNo
+              //   this.saveTips = `文章已保存`;
+              // } else {
+              //   this.$message.error(`文章保存失败`)
+              // }
+            })
+            .catch(error => {
+              // console.error(error)
+              // this.loading = false
+              // this.$message.error(`文章异常，请联系客服`)
+            })
       }
     }
   };
@@ -108,8 +138,10 @@
   @import "~bulma/css/bulma.css";
   @import "~medium-editor/dist/css/medium-editor.css";
   @import "default.css";
-  .PostStory-main{
+
+  .PostStory-main {
   }
+
   .PostStory-container {
     width: 100%;
     max-width: 1192px;
@@ -119,13 +151,16 @@
     padding: 0 16px;
     margin: 10px auto;
   }
-  .grid{
+
+  .grid {
     display: flex;
   }
-  .PostStory-header{
+
+  .PostStory-header {
     height: 69px;
   }
-  .PostStory-mainColumn{
+
+  .PostStory-mainColumn {
     -ms-flex-negative: 0;
     flex-shrink: 0;
     margin-right: 10px;
@@ -135,7 +170,8 @@
     flex: 2 1;
     font-size: 14px;
   }
-  .PostStory-title{
+
+  .PostStory-title {
     width: 100%;
     box-sizing: border-box;
     font-weight: 400;
@@ -147,18 +183,21 @@
     border-radius: 12px;
     padding: 0.8em;
   }
-  .PostStory-SideBar{
+
+  .PostStory-SideBar {
     -webkit-box-flex: 1;
     -ms-flex: 1 1;
     flex: 1 1;
     font-size: 14px
   }
+
   .StoryReward-Card {
-    .flex{
+    .flex {
       display: -webkit-flex;
       display: flex;
     }
-    .Reward-Header{
+
+    .Reward-Header {
       .flex-grow {
         -webkit-flex: 1 0 0;
         flex: 1 0 0;
@@ -166,16 +205,19 @@
         margin-right: 0rem;
         margin-bottom: 0rem;
       }
-      .title{
+
+      .title {
         font-size: 18px;
         margin-left: -2px;
         margin-top: 20px;
         color: #4c4b4b;
       }
+
       .flex-shrink {
         -webkit-flex: 0 1 auto;
         flex: 0 1 auto;
-        .Reward-o{
+
+        .Reward-o {
           position: relative;
           width: 40px;
           height: 40px;
@@ -190,12 +232,14 @@
         }
       }
     }
-    .Reward-Slide{
-      .flex-siderbar{
+
+    .Reward-Slide {
+      .flex-siderbar {
         -webkit-flex: 1 0 0;
         flex: 1 0 0;
       }
-      .flex-plus{
+
+      .flex-plus {
         padding-top: 29px;
         width: 2.5em;
         cursor: pointer;
@@ -204,4 +248,32 @@
       }
     }
   }
+  .GutenButton{
+    padding-left: 43px;
+    padding-right: 41px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    letter-spacing: 3px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-family: Cartograph;
+    border-width: 1px;
+    border-style: solid;
+    border-image: initial;
+    border-radius: 50px;
+    outline: none;
+    transition: all 0.3s ease 0s;
+    margin: 0px auto;
+  }
+  .GutenButton--light{
+    color: rgb(0, 0, 0);
+    background-color: rgb(221, 221, 221);
+    border-color: rgb(128, 128, 128);
+    &:hover{
+      background-color: #cecece;
+    }
+  }
+
 </style>

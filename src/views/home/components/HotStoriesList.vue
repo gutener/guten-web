@@ -6,7 +6,7 @@
           <div class="Feed">
             <div class="ContentItem ArticleItem">
               <h2 class="ContentItem-title">
-                <a href="" target="_blank">没有找不到的电子书系列</a>
+                <a href="/stories/AA5FFC9C-4B6C-42C4-BB60-41917E90B39A" target="_blank">没有找不到的电子书系列</a>
               </h2>
               <div class="RichContent is-collapsed">
                 <div class="RichContent-inner">
