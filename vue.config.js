@@ -116,7 +116,14 @@ const vueConfig = {
         pathRewrite: {
           '^/code': '/code'
         }
-      }
+      },
+      '/story': {
+        target: process.env.VUE_APP_API_BASE_URL,
+        ws: true,
+        pathRewrite: {
+          '^/story': '/story'
+        }
+      },
     }
   },
   // disable source map in production

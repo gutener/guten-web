@@ -9,7 +9,7 @@
       <div class="AppHeader-menu-options AppHeader-menu-options--left">
         <div class="AppHeader-menu-option">
           <a class="CreatePost" aria-label="Create Post" href="/fund">
-            <svg-icon iconClass="fund" style="font-size:30px"></svg-icon>
+            <svg-icon iconClass="bank" style="font-size:30px"></svg-icon>
           </a>
         </div>
         <div class="AppHeader-menu-option">

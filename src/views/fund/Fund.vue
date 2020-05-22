@@ -5,7 +5,7 @@
         <div style="color: rgb(170, 170, 170);">SEED</div>
         <div style="font-size: 150%; color: rgb(71, 102, 65);">
           <span style="font-family: Cartograph-Mono;">
-            <svg-icon iconClass="coin-dark" style="margin-right: 4px;"></svg-icon>0
+            0.00₲
           </span>
         </div>
       </router-link>
@@ -13,7 +13,7 @@
         <div style="color: rgb(170, 170, 170);font-size: 20px;font-weight: 500;">充值</div>
         <div style="font-size: 150%;">
           <span style="font-family: Cartograph-Mono;">
-            <svg-icon iconClass="coin" style="margin-right: 4px;"></svg-icon>0
+            0.00₲
           </span>
         </div>
       </a>
@@ -21,7 +21,7 @@
         <div style="color: rgb(170, 170, 170);">SPOT</div>
         <div style="font-size: 150%;">
           <span style="font-family: Cartograph-Mono;">
-            <svg-icon iconClass="coin" style="margin-right: 4px;"></svg-icon>0
+            0.00₲
           </span>
         </div>
       </a>

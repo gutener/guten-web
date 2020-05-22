@@ -23,10 +23,10 @@
 </template>
 
 <script>
-  import MediumEditor from 'medium-editor';
-  import InsertEmbed from './libs/InsertEmbed';
-  import ListHandler from './libs/ListHandler';
-  import ReadMode from './libs/ReadMode';
+  import MediumEditor from 'medium-editor'
+  import InsertEmbed from './libs/InsertEmbed'
+  import ListHandler from './libs/ListHandler'
+  import ReadMode from './libs/ReadMode'
   import _ from 'underscore';
 
   export default {

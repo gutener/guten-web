@@ -25,7 +25,7 @@
           <div class="Feed">
             <div class="ContentItem ArticleItem">
               <h2 class="ContentItem-title">
-                <a href="//pic3.zhimg.com/50/v2-e9db02ae7bf8462c1d3ed25f41fe0a67_400x224.jpg" target="_blank">50万人打分9.2，这片子空前绝后</a>
+                <a href="/stories/11111" target="_blank">50万人打分9.2，这片子空前绝后</a>
               </h2>
               <div class="RichContent is-collapsed">
                 <div class="RichContent-cover">

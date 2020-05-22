@@ -1,0 +1,135 @@
+.markdown-body {
+  font-family: 'Cartograph';
+  font-weight: 400;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  overflow: hidden;
+}
+
+.markdown-body ::selection {
+  background: #a8a8a8;
+}
+
+.markdown-body > *:first-child {
+  margin-top: 0;
+}
+/* FIXME: image size hack */
+.markdown-body img {
+  max-width: 100%;
+}
+.markdown-body iframe {
+  max-width: 100%;
+  /*max-height: 100%;*/
+  display: block;
+  /* width: auto; */
+  /* height: auto; */
+  margin: 0 auto;
+  text-align: center;
+}
+/* FIXME: code overflow hack */
+.markdown-body pre code {
+  overflow-x: auto;
+}
+
+.comment .simple.markdown-body p:last-child {
+  margin-bottom: 0;
+}
+
+.markdown-body {
+  overflow-y: visible;
+}
+
+.markdown-body a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+.simple.markdown-body {
+  line-height: 1.4em;
+}
+
+.simple.markdown-body h1,
+.simple.markdown-body h2,
+.simple.markdown-body h3,
+.simple.markdown-body h4,
+.simple.markdown-body h5,
+.simple.markdown-body h6 {
+  font-size: 1.25em;
+  font-weight: 500;
+}
+
+.markdown-body h1, h2 {
+  font-size: 1.25em;
+}
+
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+  font-size: 1em;
+  font-weight: bold;
+}
+.markdown-body hr {
+  display: none;
+}
+
+.markdown-body blockquote {
+  font-style: italic;
+  margin: 0;
+  border-left: 2px solid #000;
+  padding: .25em 0 .25em .5em;
+}
+
+.markdown-body blockquote > *:first-child {
+  margin-top: 0;
+}
+.markdown-body blockquote > *:last-child {
+  margin-bottom: 0;
+}
+
+.markdown-body li a {
+  /* prevent overflow case within list-items */
+  word-break: break-word;
+}
+
+/*.markdown-body pre {
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: .5em;
+    overflow-x: scroll;
+}
+*/
+.markdown-body pre p {
+  margin: 0;
+}
+
+.markdown-body ol > ol > ol > ol > ol, .markdown-body ul > ul > ul > ul > ul {
+  margin: 0;
+  -webkit-padding-start: 0;
+  padding-start: 0;
+}
+
+.markdown-body img {
+  display: block;
+  margin: 0 auto;
+}
+
+.markdown-body.read-only b, .markdown-body.read-only strong {
+  font-weight: 500;
+}
+
+.markdown-body > .embed-spacing-collapsible {
+  display: none;
+}
+
+.markdown-body.medium-editor-element > .embed-spacing-collapsible {
+  display: block;
+}
+
+.markdown-body.medium-editor-element > .embed-spacing-collapsible + p:empty + p:empty + .embed-spacing-collapsible {
+  display: none;
+}
+
+.comment .markdown-body {
+  font-family: 'Cartograph';
+}

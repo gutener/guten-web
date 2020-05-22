@@ -23,7 +23,7 @@
               <div class="flex-shrink">
                 <div class="">
                   <button class="Reward-o clap">
-                    <div class="" font-size="1.05em" height="50%">G{{reward}}</div>
+                    <div class="" font-size="1.05em" height="50%">₲{{reward}}</div>
                   </button>
                 </div>
               </div>
