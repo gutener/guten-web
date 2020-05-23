@@ -11,24 +11,42 @@
   color: #0a0a0a;
   font-size: 1.2rem;
 }
+.RichText {
+  color: #000;
+  font-size: 16px;
+}
 
 .RichText @{whatever} p {
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
+  line-height: 1.8rem;
 }
 .RichText @{whatever} p {
   iframe{
     width: 100%;
   }
 }
-
+.RichText @{whatever} blockquote {
+  margin: 1.4em 0;
+  padding-left: 1em;
+  color: #646464;
+  border-left: 3px solid #d3d3d3;
+}
 .ContentItem-more{
   padding: 0;
   margin-left: 4px;
   color: #175199;
+  &.Button--plain{
+    height: auto;
+    padding: 0;
+    line-height: inherit;
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
+  }
 }
 .RichContent.is-collapsed {
   .RichContent-inner {
-    max-height: 480px;
+    max-height: 520px;
   }
   .RichText @{whatever} .editor-image {
     position: relative;
