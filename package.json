@@ -6,7 +6,7 @@
     "serve": "vue-cli-service serve",
     "dev": "vue-cli-service serve --mode development",
     "daily": "vue-cli-service serve --mode daily",
-    "build": "vue-cli-service build",
+    "build:daily": "vue-cli-service build --mode daily",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
