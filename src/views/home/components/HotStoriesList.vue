@@ -2,14 +2,14 @@
   <div class="HotStory-mainColumnCard">
     <div class="HotStory-content">
       <div class="HotStory-recommend">
-        <div class="Card HotstoryItem HotstoryItem-isRecommend" v-for="item in stories" :key="item.id">
+        <div class="Card HotstoryItem HotstoryItem-isRecommend" v-for="story in stories" :key="story.id">
           <hp-card
-            :id=item.id
-            :title=item.title
-            :body=item.body>
+            :url=story.url
+            :title=story.target.title
+            :excerpt=story.target.excerpt
+            :body=story.target.body>
           </hp-card>
         </div>
-
       </div>
     </div>
   </div>
@@ -34,6 +34,9 @@
         cdsHp()
             .then(response => {
               this.stories=response
+              this.stories.forEach((val) => {
+                val.url=`/stories/${val.target.id}`
+              })
             })
             .catch(error => {
               console.error(error)

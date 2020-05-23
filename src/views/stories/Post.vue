@@ -78,7 +78,7 @@
           body:''
         },
         options: {
-          uploadUrl: `${process.env.VUE_APP_API_BASE_URL}/story/v1/uploadimg`,
+          uploadUrl: `${process.env.VUE_APP_API_BASE_URL}/story/v1/uploadimg`
         },
         reward: 0,
         rewardMax: 100,

@@ -1,0 +1,50 @@
+@whatever: ~">>>";
+
+.RichContent-inner {
+  margin-top: 9px;
+  margin-bottom: -4px;
+  overflow: hidden;
+}
+
+
+.ContentItem-title a{
+  color: #0a0a0a;
+  font-size: 1.2rem;
+}
+
+.RichText @{whatever} p {
+  margin-bottom: 0.5rem;
+}
+.RichText @{whatever} p {
+  iframe{
+    width: 100%;
+  }
+}
+
+.ContentItem-more{
+  padding: 0;
+  margin-left: 4px;
+  color: #175199;
+}
+.RichContent.is-collapsed {
+  .RichContent-inner {
+    max-height: 480px;
+  }
+  .RichText @{whatever} .editor-image {
+    position: relative;
+    height: 380px;
+    float: left;
+    overflow: hidden;
+    background-position: 50%;
+    background-size: cover;
+    border-radius: 4px;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+  }
+  .RichText @{whatever} p {
+    iframe{
+      height: auto !important;
+      width: auto;
+    }
+  }
+}
