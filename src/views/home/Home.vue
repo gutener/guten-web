@@ -1,12 +1,10 @@
 <template>
-  <main class="Hotstory">
-      <article class="Hotstory-container">
-        <section class="HotStory-mainColumn">
-          <HotStoriesList/>
-        </section>
-        <HomeAsider/>
-      </article>
-    </main>
+  <article class="Hotstory-container">
+    <section class="HotStory-mainColumn">
+      <HotStoriesList/>
+    </section>
+    <HomeAsider/>
+  </article>
 </template>
 <script>
   import HotStoriesList from "./components/HotStoriesList"

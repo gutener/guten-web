@@ -13,10 +13,16 @@
   export default {
     data () {
       return {
-        locale: zhCN
+        locale: zhCN,
+        mobile:false,
       }
     },
     mounted () {
+      let mobile= navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)
+      mobile
+          ?document.body.classList.add('mobile')
+          :document.body.classList.remove('mobile')
+
       const { $store } = this
       deviceEnquire(deviceType => {
         switch (deviceType) {
@@ -35,7 +41,7 @@
             break
         }
       })
-    }
+    },
   }
 </script>
 

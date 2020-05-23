@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="story-container">
     <div class="enlargeable">
       <div class="enlargeable-header">
         <div class="enlargeable-header-title">

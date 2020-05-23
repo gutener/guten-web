@@ -15,5 +15,3 @@ export const setDocumentTitle = function (title) {
     document.body.appendChild(i)
   }
 }
-
-export const domTitle = '创作者中心'
