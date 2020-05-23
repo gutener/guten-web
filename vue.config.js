@@ -70,7 +70,6 @@ const vueConfig = {
 
     // if prod is on
     // assets require on cdn
-    console.log('--------'+isProd())
     if (isProd()) {
       config.plugin('html').tap(args => {
         args[0].cdn = assetsCDN
