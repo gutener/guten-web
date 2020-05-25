@@ -7,11 +7,11 @@
           <div class="">
             <input class="PostStory-title"
                v-model="story.title"
-               type="text" placeholder="title..."
+               type="text" placeholder="写下你的问题,或者一个想法的题目"
                style="text-align: center; font-size: 150%; font-weight: 500;">
           </div>
           <medium-editor
-                  class="min-height=200px"
+                  style="min-height:350px"
                   v-model="content"
                   :options="options"
                   :onChange="onChange"
@@ -78,7 +78,10 @@
           body:''
         },
         options: {
-          uploadUrl: `${process.env.VUE_APP_API_BASE_URL}/story/v1/uploadimg`
+          uploadUrl: `${process.env.VUE_APP_API_BASE_URL}/story/rich_text/v1/uploadimg`,
+          placeholder:{
+            text:'问题描述或者文章正文'
+          }
         },
         reward: 0,
         rewardMax: 100,
@@ -112,7 +115,6 @@
         this.rewardMax = this.rewardMax + Math.ceil(this.rewardMax / 2)
       },
       saveStory(){
-        console.log(this.story)
         postStory(this.story)
             .then(response => {
               console.log(response)

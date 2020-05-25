@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- Editor Mode -->
-    <div class="medium-editor-container" v-if="!readOnly" style="min-height: 360px">
+    <div class="medium-editor-container" v-if="!readOnly">
       <insert-embed v-if="editor"
                     :uploadUrl="options.uploadUrl"
                     :onChange="triggerChange"
