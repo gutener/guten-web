@@ -7,19 +7,20 @@
           <span style="color: rgb(170, 170, 170);">2019年4月.&nbsp;21&nbsp;</span>&nbsp;
           <span style="color: rgb(170, 170, 170); cursor: pointer; position: relative;">
               <span style="position: relative; top: 1px;">
-                <i class="far fa-ellipsis-h" aria-hidden="true"></i>
+
               </span>
             </span>
         </div>
         <div style="position: absolute; right: 0px; bottom: -0.3em;">
-          <div class="sc-jKJlTe kfmJxr">
-            <div class="sc-bwzfXH dugtJJ">
-              <div class="sc-htpNat kFThih">
-                <button class="sc-ifAKCX gGXPT clap" style="transform: scale(1, 1);">
-                  <div class="sc-eNQAEJ bWPcPd" font-size="1em" height="40%">342<i>₲</i></div>
-                  <span class="sc-EHOje dFbwpZ clap--count" style="opacity: 0; transform: scale(0);">0</span></button>
+          <div class="">
+            <div class="">
+              <div class="">
+                <button class="">
+                  <svg-icon iconClass="seeding" style="font-size:22px"></svg-icon>
+                  <div class="" font-size="1em" height="40%">342<i>₲</i></div>
+                  <span class="" style="opacity: 0; transform: scale(0);">0</span></button>
               </div>
-              <button class="sc-bdVaJa QmGNf"></button>
+              <button class=""></button>
             </div>
           </div>
         </div>

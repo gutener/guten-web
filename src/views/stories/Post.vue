@@ -137,10 +137,6 @@
 </script>
 
 <style lang="less" scoped>
-  @import "~bulma/css/bulma.css";
-  @import "~medium-editor/dist/css/medium-editor.css";
-  @import "default.css";
-
   .PostStory-main {
   }
 

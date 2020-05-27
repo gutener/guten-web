@@ -18,13 +18,13 @@ export default {
             this.renderEmbed()
         },
         renderEmbed() {
-            const editorEmbeds = this.$refs.content.getElementsByClassName("editor-embed");
+            const editorEmbeds = this.$refs.content.getElementsByClassName("editor-embed")
             _.map(editorEmbeds, (elm) => {
                 const link = elm.getElementsByTagName('a')[0]
                 const nextElm = elm.nextElementSibling
 
                 if(nextElm.className.indexOf("gist-embed-iframe") > -1) {
-                    nextElm.outerHTML = '';
+                    nextElm.outerHTML = ''
                 }
 
                 if(link) {

@@ -43,13 +43,9 @@
         }
 
         const key = e.keyCode || e.charCode;
-        if (key == 8 || key == 46) {
+        if (key === 8 || key === 46) {
 
-          if (this.currentLine.outerHTML == '<li><br></li>') {
-            this.isLastBeforeLi = true
-          } else {
-            this.isLastBeforeLi = false
-          }
+          this.isLastBeforeLi = this.currentLine.outerHTML === '<li><br></li>'
 
           if (this.isLastBeforeLi) {
             this.currentLine.outerHTML = ""

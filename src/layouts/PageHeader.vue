@@ -3,7 +3,7 @@
     <nav class="AppHeader-inner">
       <div class="AppHeader-brand-image">
         <a href="/" aria-label="Guten">
-          <svg-icon iconClass="gutenberg" style="font-size: 42px;"></svg-icon>
+          <svg-icon iconClass="g-logo" style="font-size: 38px;"></svg-icon>
         </a>
       </div>
       <div class="AppHeader-menu-options AppHeader-menu-options--left">
@@ -14,7 +14,7 @@
         </div>
         <div class="AppHeader-menu-option">
           <span class="PostStory" id="HeaderUserActions--NewPost">
-            <a class="CreatePost" aria-label="Create Post" href="/stories/post">
+            <a class="CreatePost" aria-label="Create Post" href="/new-story">
               <svg-icon iconClass="edit" style="font-size:30px"></svg-icon>
             </a>
           </span>

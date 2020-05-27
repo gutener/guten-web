@@ -66,25 +66,27 @@
       },
       addImage(url) {
         this.$emit('uploaded', url);
-
         if (this.insert.isToggle) {
           const handlerVm = this
           this.editorRef.focus()
           this.editor.selectElement(this.insert.focusLine)
-          this.editor.pasteHTML(`<div class="editor-image">
+          this.editor.pasteHTML(`
+                    <figure class="editor-image">
+                      <div>
                         <img src="${url}" />
-                    </div>
-                    <div class="editor-image-description"><br></div>
-                    <br />`, {cleanAttrs: [], cleanTags: [], unwrapTags: []})
+                      </div>
+                      <figcaption class="editor-image-description is-empty"><br></figcaption>
+                    </figure><br/>`, {cleanAttrs: [], cleanTags: [], unwrapTags: []})
 
-          this.currentLine = this.editor.getSelectedParentElement().previousElementSibling.previousElementSibling
+          this.currentLine = this.editor.getSelectedParentElement().previousElementSibling
           this.currentImg = this.currentLine.querySelector('img')
           const currentPos = this.currentImg.getBoundingClientRect();
 
           this.window.scrollTo(0, currentPos.top - currentPos.x);
+          self = this
           this.currentLine.onclick = function () {
             setTimeout(() => {
-              handlerVm.sizingHandler(this)
+              handlerVm.sizingHandler(self.currentLine)
             })
           }
           this.insert.isShow = false;

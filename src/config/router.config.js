@@ -40,10 +40,11 @@ export const constantRouterMap = [
   {
     path: "/stories",
     name: "Story",
+    redirect: '/new-story',
     component: Layout,
     children: [
       {
-        path: "/stories/post",
+        path: "/new-story",
         component: Post
       }
     ]

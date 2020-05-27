@@ -104,7 +104,7 @@
       },
       detectShowToggle(e) {
         if (this.insert.isShow && this.insert.isToggle) {
-          this.toggle();
+          this.toggle()
         }
         if (e.keyCode === 13) {
           const focused = this.editor.getSelectedParentElement()
@@ -123,9 +123,6 @@
         }
 
         const currentLine = this.editor.getSelectedParentElement()
-        //TODO optimized
-        currentLine.className =  currentLine.className.replace(/\beditor-embed medium-insert-embeds-placeholder\b/, "")
-        currentLine.removeAttribute('data-placeholder')
         const outerHtml = currentLine.outerHTML
         const isList = outerHtml.indexOf('<li>') > -1
         const content = currentLine.innerHTML.replace(/^(<br\s*\/?>)+/, '').trim()
@@ -143,7 +140,7 @@
         }
       },
       toggle() {
-        this.insert.isToggle = !this.insert.isToggle;
+        this.insert.isToggle = !this.insert.isToggle
       },
       imageClickHandler(value) {
         this.handler = value

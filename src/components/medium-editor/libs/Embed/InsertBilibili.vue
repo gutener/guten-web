@@ -27,28 +27,15 @@
       unsubscribe() {
         this.editor.unsubscribe('editableKeyup', this.detectEmbed)
       },
-      initializeExisting() {
-        setTimeout(() => {
-          const focused = this.editor.getFocusedElement()
-          if (!focused) return false;
-          const editorEmbeds = focused.getElementsByClassName('editor-embed')
-          _.map(editorEmbeds, (elm) => {
-            const nextElm = elm.nextElementSibling
-            const link = elm.getElementsByTagName('a')[0]
-            if (!link) return;
-
-            const url = link.getAttribute('href')
-            nextElm.outerHTML = ''
-            this.renderEmbed(url, elm)
-          })
-        })
-      },
       detectEmbed(e) {
         if (e.keyCode === 13 && this.embedElm) {
+          const selectElement = this.editor.getSelectedParentElement()
+          selectElement.className =  selectElement.className.replace(/\beditor-embed medium-insert-embeds-placeholder\b/, "")
+          selectElement.removeAttribute('data-placeholder')
           const url = this.embedElm.innerHTML.replace("<br>", "")
           this.renderEmbed(url, this.embedElm)
-          this.embedElm = null
           this.insert.isShow = false
+          this.embedElm = null
         }
       },
       renderEmbed(url, elm) {
@@ -61,7 +48,7 @@
         if (bliVid.startsWith('AV') || bliVid.startsWith('av')) {
           embedUrlParam = `aid=${bliVid.substring(2, bliVid.length)}`
         }
-        elm.innerHTML = `
+        elm.outerHTML = `
             <iframe data-role="iframe"
                          frameborder="0"
                          allowfullscreen="true"
@@ -69,8 +56,6 @@
                          src="https://player.bilibili.com/player.html?${embedUrlParam}">
             </iframe>
             `
-        elm.className =  elm.className.replace(/\beditor-embed medium-insert-embeds-placeholder\b/, "")
-        elm.removeAttribute('data-placeholder')
         setTimeout(() => {
           const focused = this.editor.getSelectedParentElement()
           const currentPos = focused.getBoundingClientRect()

@@ -64,52 +64,47 @@
     },
     mounted() {
       if (!this.readOnly) {
-        this.createElm();
+        this.createElm()
       }
     },
     methods: {
       createElm() {
-        this.editor = new MediumEditor(this.$refs.editor, this.editorOptions);
+        this.editor = new MediumEditor(this.$refs.editor, this.editorOptions)
 
         if (this.prefill) {
-          if (/<[a-z][\s\S]*>/i.test(this.prefill)) {
-            this.hasContent = true;
-          } else {
-            this.hasContent = false;
-          }
-          this.$refs.editor.focus();
+          this.hasContent = /<[a-z][\s\S]*>/i.test(this.prefill)
+          this.$refs.editor.focus()
         }
 
-        this.editor.subscribe("editableInput", this.triggerChange);
+        this.editor.subscribe("editableInput", this.triggerChange)
       },
       destroyElm() {
-        this.editor.destroy();
+        this.editor.destroy()
       },
       triggerChange() {
-        const content = this.editor.getContent();
+        const content = this.editor.getContent()
         setTimeout(() => {
-          if (/<[a-z][\s\S]*>/i.test(content)) {
-            this.hasContent = true;
-          } else {
-            this.hasContent = false;
-          }
-        }, 0);
+          this.hasContent = /<[a-z][\s\S]*>/i.test(content)
+        }, 0)
 
-        this.$emit("input", content);
+        this.$emit("input", content)
 
         if (this.onChange) {
-          this.onChange(content);
+          this.onChange(content)
         }
       },
       uploadedCallback(url) {
-        this.$emit("uploaded", url);
+        this.$emit("uploaded", url)
       }
     },
     destroyed() {
-      this.destroyElm();
+      console.log('destroy medium editor')
+      this.destroyElm()
     }
   };
 </script>
-<style lang="less" scoped>
-
+<style lang="less">
+  @import "~bulma/css/bulma.css";
+  @import "~medium-editor/dist/css/medium-editor.css";
+  @import "themes/default.less";
 </style>
