@@ -25,7 +25,7 @@
           </div>
         </div>
       </div>
-      <div class="story-body-main">
+      <div class="story-body-main medium-editor-container">
         <div class="medium-editor" v-html="story.body"></div>
       </div>
     </section>
@@ -159,5 +159,6 @@
   }
 </script>
 <style lang="less" scoped>
+  @import "../../components/medium-editor/themes/default";
   @import "detail-content.less";
 </style>

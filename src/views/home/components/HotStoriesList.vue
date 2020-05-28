@@ -6,7 +6,7 @@
           <hp-card
             :url=story.url
             :title=story.target.title
-            :excerpt=story.target.excerpt
+            :excerpt=story.excerpt
             :body=story.target.body>
           </hp-card>
         </div>
