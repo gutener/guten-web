@@ -79,10 +79,32 @@
           body:''
         },
         options: {
+          delay: 500,
           uploadUrl: `${process.env.VUE_APP_API_BASE_URL}/story/rich_text/v1/uploadimg`,
           placeholder:{
             text:'问题描述或者文章正文'
-          }
+          },
+          toolbar: {
+            buttons: [
+              'bold',
+              'italic',
+              'h1',
+              'h2',
+              'h3',
+              'quote',
+              'anchor',
+              'orderedlist',
+              'justifyLeft',
+              'justifyCenter',
+              'justifyRight',
+            ]
+          },
+          paste: {
+            cleanPastedHTML: true,
+            cleanAttrs: ['style', 'dir'],
+            cleanTags: ['label', 'meta'],
+            unwrapTags: ['sub', 'sup']
+          },
         },
         reward: 0,
         rewardMax: 100,
