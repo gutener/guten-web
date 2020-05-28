@@ -10,13 +10,15 @@
                type="text" placeholder="写下你的问题,或者一个想法的题目"
                style="text-align: center; font-size: 150%; font-weight: 500;">
           </div>
-          <medium-editor
-                  style="min-height:350px; display: flex"
-                  v-model="content"
-                  :options="options"
-                  :onChange="onChange"
-                  v-on:uploaded="uploadCallback">
-          </medium-editor>
+          <div style="">
+            <medium-editor
+                    style="min-height:350px;"
+                    v-model="content"
+                    :options="options"
+                    :onChange="onChange"
+                    v-on:uploaded="uploadCallback">
+            </medium-editor>
+          </div>
           <div class="StoryReward-Card">
             <div class="Reward-Header flex">
               <div class="flex-grow title">
@@ -55,8 +57,7 @@
             <button @click="saveStory" class="GutenButton GutenButton--light">发布</button>
           </div>
         </section>
-        <aside class="PostStory-SideBar">
-        </aside>
+        <aside class="PostStory-SideBar"></aside>
       </div>
     </article>
   </div>

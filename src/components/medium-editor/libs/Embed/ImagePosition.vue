@@ -24,7 +24,6 @@
     ],
     methods: {
       imageSizing(sizing) {
-        console.log(sizing)
         this.handler.currentSize = sizing
         this.handler.currentLine.className = 'editor-image ' + sizing
 
