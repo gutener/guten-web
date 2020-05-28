@@ -11,7 +11,7 @@
                style="text-align: center; font-size: 150%; font-weight: 500;">
           </div>
           <medium-editor
-                  style="min-height:350px"
+                  style="min-height:350px; display: flex"
                   v-model="content"
                   :options="options"
                   :onChange="onChange"
