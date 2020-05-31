@@ -4,21 +4,17 @@
       <!--<header class="grid PostStory-header">Post a public story</header>-->
       <div class="grid">
         <section class="PostStory-mainColumn">
-          <div class="">
-            <input class="PostStory-title"
-               v-model="story.title"
-               type="text" placeholder="写下你的问题,或者一个想法的题目"
-               style="text-align: center; font-size: 150%; font-weight: 500;">
-          </div>
-          <div style="">
-            <medium-editor
-                    style="min-height:350px;"
-                    v-model="content"
-                    :options="options"
-                    :onChange="onChange"
-                    v-on:uploaded="uploadCallback">
-            </medium-editor>
-          </div>
+          <input class="PostStory-title"
+                 v-model="story.title"
+                 type="text" placeholder="写下你的问题,或者一个想法的题目"
+                 style="text-align: center; font-size: 150%; font-weight: 500;">
+          <medium-editor
+                  style="min-height:350px;"
+                  v-model="content"
+                  :options="options"
+                  :onChange="onChange"
+                  v-on:uploaded="uploadCallback">
+          </medium-editor>
           <div class="StoryReward-Card">
             <div class="Reward-Header flex">
               <div class="flex-grow title">
@@ -76,7 +72,8 @@
         content: ``,
         story:{
           title:'',
-          body:''
+          body:'',
+          init_reward:0
         },
         options: {
           delay: 500,
@@ -100,6 +97,9 @@
             ]
           },
           paste: {
+            /* This example includes the default options for paste,
+               if nothing is passed this is what it used */
+            forcePlainText: true,
             cleanPastedHTML: true,
             cleanAttrs: ['style', 'dir'],
             cleanTags: ['label', 'meta'],
@@ -138,6 +138,7 @@
         this.rewardMax = this.rewardMax + Math.ceil(this.rewardMax / 2)
       },
       saveStory(){
+        this.story.init_reward = this.reward
         postStory(this.story)
             .then(response => {
               console.log(response)

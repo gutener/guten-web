@@ -32,3 +32,9 @@ export function listReliesByStory(storyId) {
     method: 'get'
   })
 }
+export function seedStory(storyId) {
+  return axios({
+    url: `/story/seed/v1/story/${storyId}`,
+    method: 'post'
+  })
+}

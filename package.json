@@ -17,11 +17,11 @@
     "@fortawesome/vue-fontawesome": "^0.1.9",
     "ant-design-vue": "^1.6.0",
     "axios": "^0.19.2",
-
     "bulma": "^0.8.2",
     "core-js": "^2.6.5",
     "embed-js": "^5.0.4",
     "medium-editor": "^5.23.3",
+    "moment": "^2.26.0",
     "nprogress": "^0.2.0",
     "pure-gist-embed": "^1.0.3",
     "underscore": "^1.10.2",

@@ -4,7 +4,7 @@
       <div class="story-body-header">
         <h1><a href="javascript:;">{{story.title}}</a></h1>
         <div style="padding-top: 0.5em;">
-          <span style="color: rgb(170, 170, 170);">2019年4月.&nbsp;21&nbsp;</span>&nbsp;
+          <span style="color: rgb(170, 170, 170);">{{story.create_time}}&nbsp;</span>&nbsp;
           <span style="color: rgb(170, 170, 170); cursor: pointer; position: relative;">
               <span style="position: relative; top: 1px;">
 
@@ -15,9 +15,9 @@
           <div class="">
             <div class="">
               <div class="">
-                <button class="">
+                <button class="" @click="seed">
                   <svg-icon iconClass="seeding" style="font-size:22px"></svg-icon>
-                  <div class="" font-size="1em" height="40%">342<i>₲</i></div>
+                  <div class="" font-size="1em" height="40%">{{story.seed}}<i>₲</i></div>
                   <span class="" style="opacity: 0; transform: scale(0);">0</span></button>
               </div>
               <button class=""></button>
@@ -34,7 +34,7 @@
         <div class="post-sidebar__body">
           <div class="post-sidebar__actions">
             <h4>
-              <button class="">342<i>₲</i></button>
+              <button class="" @click="seed">{{story.seed}}<i>₲</i></button>
             </h4>
           </div>
         </div>
@@ -51,7 +51,8 @@
                   :onChange="onChange"
                   v-on:uploaded="uploadCallback">
           </medium-editor>
-          <div style="position: absolute; bottom: 0px; right: 0px;" v-show="reply.reply_body!==''&&reply.reply_body!=='<p><br></p>'">
+          <div style="position: absolute; bottom: 0px; right: 0px;"
+               v-show="reply.reply_body!==''&&reply.reply_body!=='<p><br></p>'">
             <button @click="saveReply">
               <svg-icon iconClass="upload" style="font-size:26px"></svg-icon>
             </button>
@@ -72,8 +73,9 @@
   </article>
 </template>
 <script>
-  import {getStory, postReply,listReliesByStory} from '@/api/biz'
+  import {getStory, listReliesByStory, postReply,seedStory} from '@/api/biz'
   import Editor from '@/components/medium-editor/Editor'
+  import moment from 'moment'
 
   export default {
     beforeRouteEnter(to, from, next) {
@@ -86,23 +88,25 @@
     data() {
       return {
         story: {
-          id:'',
+          id: '',
           body: '',
-          title: ''
+          title: '',
+          seed: 0,
+          create_time: ''
         },
-        postSidebar:false,
+        postSidebar: false,
         options: {
           uploadUrl: `${process.env.VUE_APP_API_BASE_URL}/story/rich_text/v1/uploadimg`,
-          placeholder:{
-            text:'回复'
+          placeholder: {
+            text: '回复'
           }
         },
-        reply:{
-          reply_body:'',
-          story_id:''
+        reply: {
+          reply_body: '',
+          story_id: ''
         },
-        reply_button:false,
-        replies:[]
+        reply_button: false,
+        replies: []
       }
     },
     components: {
@@ -112,40 +116,55 @@
       window.addEventListener("scroll", this.getScroll)
     },
     methods: {
+      moment: function (date) {
+        return moment(date)
+      },
       getStoryInfo(id) {
         getStory(id)
             .then(response => {
               this.story.body = response.body
               this.story.title = response.title
+              this.story.seed = response.seed
+              this.story.create_time = moment(response.create_time).fromNow()
             })
             .catch(error => {
               console.error(error)
             })
       },
-      onLoad() {
-
+      /**
+       * seed to story
+       */
+      seed() {
+        const storyId=this.story.id
+        seedStory(storyId)
+            .then(response => {
+              console.log(response)
+            })
+            .catch(error => {
+              console.error(error)
+            })
       },
       uploadCallback(url) {
         // console.log("uploaded url", url)
       },
-      onChange(){
+      onChange() {
         console.log(this.reply.reply_body)
       },
-      saveReply(){
+      saveReply() {
         this.reply.story_id = this.story.id
         postReply(this.reply)
             .then(response => {
               this.listRelies(this.story.id)
-              this.reply.reply_body=null
+              this.reply.reply_body = null
             })
             .catch(error => {
 
             })
       },
-      listRelies(storyId){
+      listRelies(storyId) {
         listReliesByStory(storyId)
             .then(replyRep => {
-              this.replies=replyRep
+              this.replies = replyRep
             })
             .catch(error => {
               console.error(error)
@@ -153,7 +172,7 @@
       },
       //监听滚动
       getScroll() {
-        document.documentElement.scrollTop >= 152?this.postSidebar = true:this.postSidebar = false
+        document.documentElement.scrollTop >= 152 ? this.postSidebar = true : this.postSidebar = false
       }
     }
   }
