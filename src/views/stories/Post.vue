@@ -9,7 +9,6 @@
                  type="text" placeholder="写下你的问题,或者一个想法的题目"
                  style="text-align: center; font-size: 150%; font-weight: 500;">
           <medium-editor
-                  v-model="content"
                   style="min-height:350px;"
                   :options="options"
                   :onChange="onChange"
@@ -69,7 +68,6 @@
     name: "StoryPost",
     data() {
       return {
-        content: ``,
         story:{
           title:'',
           body:'',
@@ -128,8 +126,8 @@
       "slide-bar": SlideBar
     },
     methods: {
-      onChange() {
-        this.story.body = this.content
+      onChange(content) {
+        this.story.body = content
       },
       uploadCallback(url) {
         // console.log("uploaded url", url)

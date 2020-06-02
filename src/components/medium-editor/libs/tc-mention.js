@@ -62,6 +62,12 @@ export const TCMention = MediumEditor.Extension.extend({
    */
   tagName: `strong`,
 
+  /**
+   * handle Chinese input
+   */
+  handlerInput: true,
+  isChineseInput:false,
+
   /* renderPanelContent: [
    *    function (panelEl: dom, currentMentionText: string, selectMentionCallback: function)
    * ]
@@ -109,8 +115,8 @@ export const TCMention = MediumEditor.Extension.extend({
   hideOnBlurDelay: 300,
 
   init() {
-    this.initMentionPanel();
-    this.attachEventHandlers();
+    this.initMentionPanel()
+    this.attachEventHandlers()
   },
 
   destroy() {
@@ -119,16 +125,16 @@ export const TCMention = MediumEditor.Extension.extend({
   },
 
   initMentionPanel() {
-    const el = this.document.createElement(`div`);
+    const el = this.document.createElement(`div`)
 
-    el.classList.add(`medium-editor-mention-panel`);
+    el.classList.add(`medium-editor-mention-panel`)
     if (this.extraPanelClassName || this.extraClassName) {
-      el.classList.add(this.extraPanelClassName || this.extraClassName);
+      el.classList.add(this.extraPanelClassName || this.extraClassName)
     }
 
-    this.getEditorOption(`elementsContainer`).appendChild(el);
+    this.getEditorOption(`elementsContainer`).appendChild(el)
 
-    this.mentionPanel = el;
+    this.mentionPanel = el
   },
 
   destroyMentionPanel() {
@@ -142,8 +148,7 @@ export const TCMention = MediumEditor.Extension.extend({
   },
 
   attachEventHandlers() {
-    this.unsubscribeCallbacks = [];
-
+    this.unsubscribeCallbacks = []
     const subscribeCallbackName = (eventName, callbackName) => {
       const boundCallback = this[callbackName].bind(this)
       this.subscribe(eventName, boundCallback)
@@ -156,14 +161,26 @@ export const TCMention = MediumEditor.Extension.extend({
 
     if (this.hideOnBlurDelay !== null && this.hideOnBlurDelay !== undefined) {
       // for hideOnBlurDelay, the panel should hide after blur event
-      subscribeCallbackName(`blur`, `handleBlur`);
+      subscribeCallbackName(`blur`, `handleBlur`)
       // and clear out hide timeout if focus again
-      subscribeCallbackName(`focus`, `handleFocus`);
+      subscribeCallbackName(`focus`, `handleFocus`)
     }
     // if the editor changes its content, we have to show or hide the panel
-    subscribeCallbackName(`editableKeyup`, `handleKeyup`);
+    subscribeCallbackName(`editableKeyup`, `handleKeyup`)
+    this.detachInputHandler()
   },
-
+  detachInputHandler(){
+    const self = this
+    this.base.elements[0].addEventListener('compositionstart',function(e){
+      self.handlerInput = false
+      self.isChineseInput = true
+    },false)
+    this.base.elements[0].addEventListener('input',function(e){
+    },false)
+    this.base.elements[0].addEventListener('compositionend',function(e){
+      self.handlerInput=true
+    },false)
+  },
   detachEventHandlers() {
     if (this.hideOnBlurDelayId) {
       clearTimeout(this.hideOnBlurDelayId);
@@ -190,71 +207,76 @@ export const TCMention = MediumEditor.Extension.extend({
   },
 
   handleKeyup(event) {
-    const keyCode = MediumEditor.util.getKeyCode(event);
-    const isSpace = keyCode === MediumEditor.util.keyCode.SPACE;
-    this.getWordFromSelection(event.target, isSpace ? -1 : 0);
+    if(this.handlerInput){
+      const keyCode = MediumEditor.util.getKeyCode(event);
+      const isSpace = keyCode === MediumEditor.util.keyCode.SPACE;
+      this.getWordFromSelection(event.target, isSpace ? -1 : 0);
 
-    if (!isSpace && this.activeTriggerList.indexOf(this.trigger) !== -1 && this.word.length > 1) {
-      this.showPanel();
-    } else {
-      this.hidePanel(keyCode === LEFT_ARROW_KEYCODE);
+      if ((this.isChineseInput||!isSpace)
+          && this.activeTriggerList.indexOf(this.trigger) !== -1
+          && this.word.length > 1) {
+        this.isChineseInput = false
+        this.showPanel();
+      } else {
+        this.hidePanel(keyCode === LEFT_ARROW_KEYCODE);
+      }
     }
   },
 
   hidePanel(isArrowTowardsLeft) {
-    this.mentionPanel.classList.remove(`medium-editor-mention-panel-active`);
-    const extraActivePanelClassName = this.extraActivePanelClassName || this.extraActiveClassName;
+    this.mentionPanel.classList.remove(`medium-editor-mention-panel-active`)
+    const extraActivePanelClassName = this.extraActivePanelClassName || this.extraActiveClassName
 
     if (extraActivePanelClassName) {
-      this.mentionPanel.classList.remove(extraActivePanelClassName);
+      this.mentionPanel.classList.remove(extraActivePanelClassName)
     }
     if (this.activeMentionAt) {
-      this.activeMentionAt.classList.remove(this.activeTriggerClassName);
+      this.activeMentionAt.classList.remove(this.activeTriggerClassName)
       if (this.extraActiveTriggerClassName) {
-        this.activeMentionAt.classList.remove(this.extraActiveTriggerClassName);
+        this.activeMentionAt.classList.remove(this.extraActiveTriggerClassName)
       }
     }
     if (this.activeMentionAt) {
-      // http://stackoverflow.com/a/27004526/1458162
 
-      const {parentNode, previousSibling, nextSibling, firstChild} = this.activeMentionAt;
-      const siblingNode = isArrowTowardsLeft ? previousSibling : nextSibling;
-      let textNode;
+      // http://stackoverflow.com/a/27004526/1458162
+      const {parentNode, previousSibling, nextSibling, firstChild} = this.activeMentionAt
+      const siblingNode = isArrowTowardsLeft ? previousSibling : nextSibling
+      let textNode
       if (!siblingNode) {
-        textNode = this.document.createTextNode(``);
-        parentNode.appendChild(textNode);
+        textNode = this.document.createTextNode(``)
+        parentNode.appendChild(textNode)
       } else if (siblingNode.nodeType !== 3) {
-        textNode = this.document.createTextNode(``);
-        parentNode.insertBefore(textNode, siblingNode);
+        textNode = this.document.createTextNode(``)
+        parentNode.insertBefore(textNode, siblingNode)
       } else {
-        textNode = siblingNode;
+        textNode = siblingNode
       }
-      const lastEmptyWord = last(firstChild.textContent);
-      const hasLastEmptyWord = lastEmptyWord.trim().length === 0;
+      const lastEmptyWord = last(firstChild.textContent)
+      const hasLastEmptyWord = lastEmptyWord.trim().length === 0
       if (hasLastEmptyWord) {
-        const {textContent} = firstChild;
-        firstChild.textContent = textContent.substr(0, textContent.length - 1);
-        textNode.textContent = `${lastEmptyWord}${textNode.textContent}`;
+        const {textContent} = firstChild
+        firstChild.textContent = textContent.substr(0, textContent.length - 1)
+        textNode.textContent = `${lastEmptyWord}${textNode.textContent}`
       } else {
         if (textNode.textContent.length === 0 && firstChild.textContent.length > 1) {
-          textNode.textContent = `\u00A0`;
+          textNode.textContent = `\u00A0`
         }
       }
       this.wrapMentionUrl(textNode.previousElementSibling)
       if (isArrowTowardsLeft) {
-        MediumEditor.selection.select(this.document, textNode, textNode.length);
+        MediumEditor.selection.select(this.document, textNode, textNode.length)
       } else {
-        MediumEditor.selection.select(this.document, textNode, Math.min(textNode.length, 1));
+        MediumEditor.selection.select(this.document, textNode, Math.min(textNode.length, 1))
       }
       if (firstChild.textContent.length <= 1) {
         // LIKE core#execAction
-        this.base.saveSelection();
-        unwrapForTextNode(this.activeMentionAt, this.document);
-        this.base.restoreSelection();
+        this.base.saveSelection()
+        unwrapForTextNode(this.activeMentionAt, this.document)
+        this.base.restoreSelection()
       }
       //
 
-      this.activeMentionAt = null;
+      this.activeMentionAt = null
     }
   },
 

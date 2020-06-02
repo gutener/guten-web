@@ -56,12 +56,12 @@
                     mentionText: currentMentionText,
                   }
                 }).$mount()
+
                 SearchComp.$watch('mentionText', function (value) {
                   SearchComp.query(value)
                 },{immediate: true})
 
                 SearchComp.$on('selectMentionCallback', function (mention) {
-                  mention.tag_name = currentMentionText.substring(0, 1) + mention.tag_name
                   selectMentionCallback(mention)
                 })
 

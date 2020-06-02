@@ -110,7 +110,8 @@
           const focused = this.editor.getSelectedParentElement()
           const nextElm = focused.nextElementSibling
           const prevElm = focused.previousElementSibling
-          if (nextElm && prevElm && nextElm.className.indexOf('editor-image-description') > -1 && prevElm.className.indexOf('editor-image') > -1) {
+          if (nextElm && prevElm && nextElm.className.indexOf('editor-image-description') > -1
+              && prevElm.className.indexOf('editor-image') > -1) {
             nextElm.parentNode.insertBefore(nextElm, focused);
           }
         }

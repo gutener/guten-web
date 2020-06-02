@@ -29,23 +29,26 @@
         this.$emit('selectMentionCallback', selectedMention)
       },
       query(mentionText) {
-        const query = mentionText.substring(1, mentionText.length)
-        const params = {
-          'q': query,
-        }
-        querytags(params)
-            .then(response => {
-              this.mentions = response
-              const trigger = this.mentionText.substring(0, 1)
-              this.mentions.forEach((val) => {
-                if(trigger==='#'){
-                  val.url=`/hashtag/${val.tag_name}?src=hashtag_click`
-                }
+        setTimeout(() => {
+          const query = mentionText.substring(1, mentionText.length)
+          const params = {
+            'q': query,
+          }
+          querytags(params)
+              .then(response => {
+                this.mentions = response
+                const trigger = this.mentionText.substring(0, 1)
+                this.mentions.forEach((val) => {
+                  if(trigger==='#'){
+                    val.text=val.tag_name.substring(1, val.tag_name.length)
+                    val.url=`/hashtag/${val.text}?src=hashtag_click`
+                  }
+                })
               })
-            })
-            .catch(error => {
-              console.error(error)
-            })
+              .catch(error => {
+                console.error(error)
+              })
+        }, 800)
       }
     }
   }
