@@ -142,7 +142,7 @@
     border-bottom-right-radius: 5px;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
-    background-color: rgba(0, 209, 178, 0.01);
+    background-color: #fbfffe;
     font-size: 16px;
     left: 0;
     line-height: 1.4;
