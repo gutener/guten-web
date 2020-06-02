@@ -1,4 +1,4 @@
-import {default as MediumEditor,} from "medium-editor";
+import {default as MediumEditor} from "medium-editor";
 
 function last(text) {
   return text[text.length - 1];
@@ -82,7 +82,6 @@ export const TCMention = MediumEditor.Extension.extend({
    *        e.g. selectMentionCallback("@mediumrocks")
    */
   renderPanelContent() {
-
   },
 
   /* destroyPanelContent: [function (panelEl: dom)]
@@ -217,6 +216,7 @@ export const TCMention = MediumEditor.Extension.extend({
     }
     if (this.activeMentionAt) {
       // http://stackoverflow.com/a/27004526/1458162
+
       const {parentNode, previousSibling, nextSibling, firstChild} = this.activeMentionAt;
       const siblingNode = isArrowTowardsLeft ? previousSibling : nextSibling;
       let textNode;
@@ -240,6 +240,7 @@ export const TCMention = MediumEditor.Extension.extend({
           textNode.textContent = `\u00A0`;
         }
       }
+      this.wrapMentionUrl(textNode.previousElementSibling)
       if (isArrowTowardsLeft) {
         MediumEditor.selection.select(this.document, textNode, textNode.length);
       } else {
@@ -252,6 +253,7 @@ export const TCMention = MediumEditor.Extension.extend({
         this.base.restoreSelection();
       }
       //
+
       this.activeMentionAt = null;
     }
   },
@@ -304,6 +306,18 @@ export const TCMention = MediumEditor.Extension.extend({
       this.mentionPanel.classList.add(this.extraActivePanelClassName || this.extraActiveClassName);
     }
   },
+  wrapMentionUrl(element){
+    if(element.href!=='') return
+
+    if(this.trigger==='#') {
+      const hastTag= this.word.replace('#','')
+      element.href=`/hashtag/${hastTag}?src=hashtag_click`
+    }else{
+      const user= this.word.replace('@','')
+      this.activeMentionAt.href=`/${user}`
+    }
+    element.target = '_blank'
+  },
 
   wrapWordInMentionAt() {
     const selection = this.document.getSelection();
@@ -322,15 +336,6 @@ export const TCMention = MediumEditor.Extension.extend({
       // TODO: Not sure why, but using <span> tag doens't work here
       const element = this.document.createElement(this.tagName);
 
-      if(this.trigger==='#') {
-        const hastTag= this.word.replace('#','')
-        element.url=`/hashtag/${hastTag}?src=hashtag_click`
-      }else{
-        const user= this.word.replace('@','')
-        element.url=`/${user}`
-      }
-      element.target = '_blank'
-
       element.classList.add(this.triggerClassName);
       if (this.extraTriggerClassName) {
         element.classList.add(this.extraTriggerClassName);
@@ -347,6 +352,7 @@ export const TCMention = MediumEditor.Extension.extend({
           this.word.length
       );
     }
+
     this.activeMentionAt.classList.add(this.activeTriggerClassName);
     if (this.extraActiveTriggerClassName) {
       this.activeMentionAt.classList.add(this.extraActiveTriggerClassName);

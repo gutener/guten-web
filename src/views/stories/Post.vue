@@ -9,8 +9,8 @@
                  type="text" placeholder="写下你的问题,或者一个想法的题目"
                  style="text-align: center; font-size: 150%; font-weight: 500;">
           <medium-editor
-                  style="min-height:350px;"
                   v-model="content"
+                  style="min-height:350px;"
                   :options="options"
                   :onChange="onChange"
                   v-on:uploaded="uploadCallback">
@@ -130,6 +130,7 @@
     methods: {
       onChange() {
         this.story.body = this.content
+        console.log(this.content)
       },
       uploadCallback(url) {
         // console.log("uploaded url", url)
