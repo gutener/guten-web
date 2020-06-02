@@ -1,7 +1,11 @@
 <template>
   <div>
     <div class="mention-search__col" v-for="(mention, index) in mentions" :key="mention.id">
-      <button @click="mentionCallback(index)">{{mention.tag_name}}</button>
+      <div class="mention-search__item" @click="mentionCallback(index)">
+        <div class="item_body">
+          <span>{{mention.tag_name}}</span>
+        </div>
+      </div>
     </div>
   </div>
 </template>

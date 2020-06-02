@@ -138,10 +138,16 @@
   @import "themes/default.less";
 
   .medium-editor-mention-panel {
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    background-color: rgba(0, 209, 178, 0.01);
     font-size: 16px;
     left: 0;
     line-height: 1.4;
-    min-width: 100px;
+    min-height: 100px;
+    min-width: 260px;
     position: absolute;
     text-align: center;
     top: 0;
@@ -152,43 +158,30 @@
     z-index: 1000;
     border: 1px solid rgba(0, 0, 0, 0.15);
     box-shadow: rgba(101, 119, 134, 0.2) 0px 0px 15px, rgba(101, 119, 134, 0.15) 0px 0px 3px 1px;
-    background-color: white;
-
     .mention-search__col {
-      -ms-flex-align: stretch;
-      -ms-flex-direction: column;
-      -ms-flex-negative: 0;
-      -ms-flex-preferred-size: auto;
-      -webkit-align-items: stretch;
-      -webkit-box-align: stretch;
-      -webkit-box-direction: normal;
-      -webkit-box-orient: vertical;
-      -webkit-flex-basis: auto;
-      -webkit-flex-direction: column;
-      -webkit-flex-shrink: 0;
-      align-items: stretch;
-      border: 0 solid black;
-      box-sizing: border-box;
-      display: -webkit-box;
-      display: -moz-box;
-      display: -ms-flexbox;
-      display: -webkit-flex;
-      display: flex;
-      flex-basis: auto;
-      flex-direction: column;
-      flex-shrink: 0;
-      margin-bottom: 0px;
-      margin-left: 0px;
-      margin-right: 0px;
-      margin-top: 0px;
-      min-height: 0px;
-      min-width: 0px;
-      padding-bottom: 0px;
-      padding-left: 0px;
-      padding-right: 0px;
-      padding-top: 0px;
-      position: relative;
-      z-index: 0;
+      border-bottom-width: 1px;
+      border-bottom-style: solid;
+      border-bottom-color: rgb(230, 236, 240);
+      &:hover{
+        background-color: rgba(0, 209, 178, 0.03);
+      }
+      .mention-search__item{
+        transition-property: background-color, box-shadow;
+        transition-duration: 0.2s;
+        padding: 15px;
+        cursor: pointer;
+        text-align: left;
+        .item_body{
+          span{
+            color: rgb(20, 23, 26);
+            -webkit-box-direction: normal;
+            -webkit-box-orient: horizontal;
+            flex-direction: row;
+            font-weight: bold;
+            font-size: 15px;
+          }
+        }
+      }
     }
   }
 
