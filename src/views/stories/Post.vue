@@ -130,7 +130,6 @@
     methods: {
       onChange() {
         this.story.body = this.content
-        console.log(this.content)
       },
       uploadCallback(url) {
         // console.log("uploaded url", url)

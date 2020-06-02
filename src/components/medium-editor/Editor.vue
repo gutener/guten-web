@@ -53,16 +53,18 @@
                 const Search = Vue.extend(MentionSearch)
                 const SearchComp = new Search({
                   propsData: {
-                    mentionText: currentMentionText
-                  },
-                  methods: {}
+                    mentionText: currentMentionText,
+                  }
                 }).$mount()
+                SearchComp.$watch('mentionText', function (value) {
+                  SearchComp.query(value)
+                },{immediate: true})
 
-                const trigger = currentMentionText.substring(0, 1)
                 SearchComp.$on('selectMentionCallback', function (mention) {
-                  mention.text = trigger + mention.text
+                  mention.tag_name = currentMentionText.substring(0, 1) + mention.tag_name
                   selectMentionCallback(mention)
                 })
+
                 panelEl.appendChild(SearchComp.$el)
               },
               activeTriggerList: ["#", "@"]

@@ -38,3 +38,10 @@ export function seedStory(storyId) {
     method: 'post'
   })
 }
+export function querytags(tagName) {
+  return axios({
+    url: `/story/hash_tag/v1/query`,
+    params: tagName,
+    method: 'get'
+  })
+}

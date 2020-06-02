@@ -373,7 +373,7 @@ export const TCMention = MediumEditor.Extension.extend({
 
   handleSelectMention(seleted) {
     if (seleted) {
-      const seletedText = seleted.text
+      const seletedText = seleted.tag_name
       const textNode = this.activeMentionAt.firstChild
       textNode.textContent = seletedText
       this.activeMentionAt.href = seleted.url
