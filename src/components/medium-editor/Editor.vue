@@ -158,6 +158,16 @@
     z-index: 1000;
     border: 1px solid rgba(0, 0, 0, 0.15);
     box-shadow: rgba(101, 119, 134, 0.2) 0px 0px 15px, rgba(101, 119, 134, 0.15) 0px 0px 3px 1px;
+    .progressbar{
+      padding: 0 2px;
+      .progressbar_line{
+        height: 0.2rem;
+        background: linear-gradient(90deg, #00d1b2 25%, #5ef7e0 37%, #00d1b2 63%);
+        background-size: 400% 100%;
+        -webkit-animation: ant-skeleton-loading 1.4s ease infinite;
+        animation: skeleton-loading 1.4s ease infinite;
+      }
+    }
     .mention-search__col {
       border-bottom-width: 1px;
       border-bottom-style: solid;
@@ -184,7 +194,23 @@
       }
     }
   }
+  @-webkit-keyframes skeleton-loading {
+    0% {
+      background-position: 100% 50%
+    }
+    to {
+      background-position: 0 50%
+    }
+  }
 
+  @keyframes skeleton-loading {
+    0% {
+      background-position: 100% 50%
+    }
+    to {
+      background-position: 0 50%
+    }
+  }
   .medium-editor-mention-panel-active {
     visibility: visible;
     overflow: visible;

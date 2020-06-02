@@ -1,5 +1,8 @@
 <template>
   <div>
+    <div class="progressbar">
+      <div v-show='!closeBar' class="progressbar_line" style="width: 100%;"></div>
+    </div>
     <div class="mention-search__col" v-for="(mention, index) in mentions" :key="mention.id">
       <div class="mention-search__item" @click="mentionCallback(index)">
         <div class="item_body">
@@ -18,7 +21,8 @@
     data() {
       return {
         trigger: '',
-        mentions: []
+        mentions: [],
+        closeBar:false
       }
     },
     props: {
@@ -40,6 +44,7 @@
           }
           querytags(params)
               .then(response => {
+                this.closeBar=true
                 this.mentions = response
                 const trigger = this.mentionText.substring(0, 1)
                 this.mentions.forEach((val) => {
@@ -48,6 +53,7 @@
                     val.url=`/hashtag/${val.text}?src=hashtag_click`
                   }
                 })
+                this.closeBar = true
               })
               .catch(error => {
                 console.error(error)
