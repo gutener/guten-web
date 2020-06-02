@@ -4,6 +4,7 @@ import Home from "@/views/home/Home"
 import Post from "@/views/stories/Post"
 import StoryDetail from "@/views/stories/Detail"
 import Seed from "@/views/fund/Seed"
+import Tags from "@/views/tags/Tags"
 
 /**
  * 基础路由
@@ -46,6 +47,18 @@ export const constantRouterMap = [
       {
         path: "/new-story",
         component: Post
+      }
+    ]
+  },
+  {
+    path: "/hashtag",
+    name: "Hashtag",
+    redirect: '/hashtag',
+    component: Layout,
+    children: [
+      {
+        path: "/hashtag/:tagName",
+        component: Tags
       }
     ]
   },
