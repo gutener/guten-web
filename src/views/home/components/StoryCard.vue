@@ -1,32 +1,25 @@
 <template>
-  <div class="Feed">
-    <div class="ContentItem ArticleItem">
-      <h2 class="ContentItem-title">
-        <a :href="source.url" target="_blank">{{source.target.title}}</a>
-      </h2>
-      <div :class="[readMoreActivated ? 'RichContent' : 'RichContent is-collapsed']">
-        <div class="RichContent-inner">
-            <div v-if="!readMoreActivated" class="RichText" v-html="source.excerpt"></div>
-            <div v-if="readMoreActivated" class="RichText" v-html="source.target.body"></div>
-          <a @click="readMoreActivate" class="Button ContentItem-more Button--plain">阅读全文</a>
+  <div class="ContentItem">
+    <h2 class="ContentItem-title">
+      <a :href="source.url" target="_blank">{{source.target.title}}</a>
+    </h2>
+    <div :class="[readMoreActivated ? 'RichContent' : 'RichContent is-collapsed']">
+      <div class="RichContent-inner">
+        <div v-if="!readMoreActivated" class="RichText" v-html="source.excerpt"></div>
+        <div v-if="readMoreActivated" class="RichText" v-html="source.target.body"></div>
+        <a @click="readMoreActivate" class="Button ContentItem-more Button--plain">阅读全文</a>
+      </div>
+      <div class="RichContent-bar">
+        <div class="ui-caption">
+          <time class="u-inlineBlock u-lineHeightBase">{{moment(source.target.create_time).fromNow()}}</time>
         </div>
-<!--        <div class="ContentItem-actions">-->
-<!--          <button type="button"-->
-<!--                  class="Button ContentItem-action Button&#45;&#45;plain Button&#45;&#45;withIcon Button&#45;&#45;withLabel">-->
-<!--                    <span style="display: inline-flex; align-items: center;">-->
-<!--                      <svg-icon iconClass="reply" style="font-size: 20px;"></svg-icon>-->
-<!--                    </span>-->
-<!--            <span>305 条回复</span>-->
-<!--          </button>-->
-<!--          <button type="button" class="Button ContentItem-action Button&#45;&#45;plain Button&#45;&#45;withIcon Button&#45;&#45;withLabel">-->
-<!--            <span style="display: inline-flex; align-items: center;"></span><span>收藏</span>-->
-<!--          </button>-->
-<!--        </div>-->
+        <button></button>
       </div>
     </div>
   </div>
 </template>
 <script>
+  import moment from 'moment'
   export default {
     name:"hp-card",
     props: {
@@ -43,6 +36,9 @@
       }
     },
     methods: {
+      moment: function (date) {
+        return moment(date)
+      },
       readMoreActivate(){
         this.readMoreActivated = !this.readMoreActivated
 

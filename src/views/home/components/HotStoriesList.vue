@@ -1,31 +1,16 @@
 <template>
-  <div class="HotStory-mainColumnCard">
-    <div class="HotStory-content">
-      <!--      <div class="HotStory-recommend">-->
-      <!--        <div class="Card HotstoryItem HotstoryItem-isRecommend" v-for="story in stories" :key="story.id">-->
-      <!--          <hp-card-->
-      <!--            :url=story.url-->
-      <!--            :title=story.target.title-->
-      <!--            :excerpt=story.excerpt-->
-      <!--            :body=story.target.body>-->
-      <!--          </hp-card>-->
-      <!--        </div>-->
-      <!--      </div>-->
-      <virtual-list class="list-infinite scroll-touch"
-                    ref="list"
-                    :data-key="'id'"
-                    :data-sources="items"
-                    :data-component="itemComponent"
-
-                    :estimate-size="70"
-                    :item-class="'list-item-infinite'"
-                    :footer-class="'loader-wrapper'"
-                    :scrollToBottom="onScrollToBottom"
-      >
-        <div v-show='hasMore' slot="footer" class="loader"></div>
-      </virtual-list>
-    </div>
-  </div>
+  <virtual-list class="HomeStream-mainColumn"
+                ref="list"
+                :data-key="'id'"
+                :data-sources="items"
+                :data-component="itemComponent"
+                :estimate-size="70"
+                :item-class="'streamItem'"
+                :footer-class="'loader-wrapper'"
+                :scrollToBottom="onScrollToBottom"
+  >
+    <div v-show='hasMore' slot="footer" class="loader"></div>
+  </virtual-list>
 </template>
 <script>
   import {homeFeed} from '@/api/biz'
@@ -82,9 +67,7 @@
         console.log('at top')
       },
       getScroll() {
-        console.log('offsetTop '+this.$el.offsetTop)
-        console.log('offsetHeight '+this.$el.offsetHeight)
-        if(this.$el.offsetTop<=10){
+        if(this.$el.offsetTop<=10&&this.hasMore){
           this.onScrollToBottom()
         }
       },
@@ -105,7 +88,4 @@
 </script>
 <style lang="less" scoped>
   @import url('Story.less');
-  .result {
-    margin-bottom: 1em;
-  }
 </style>
