@@ -15,10 +15,58 @@
     fill: rgba(0,0,0,.84);
   }
 }
-.RichContent-bar{
+.RichText{
+  color: rgba(0,0,0,.54);
+  fill: rgba(0,0,0,.54);
+}
+.RichContent-flex{
   margin-top: 12px;
-  .ui-caption{
-    color: rgba(0,0,0,.54);
-    fill: rgba(0,0,0,.54);
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+
+}
+.u-flex{
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  .u-flexCenter{
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
   }
+  .u-flex1 {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 1 auto;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+  }
+}
+.RichContent-button{
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  margin-left: 12px;
+}
+.ui-caption,.ui-captionUser{
+  color: rgba(0,0,0,.54);
+  fill: rgba(0,0,0,.54);    --x-height-multiplier: 0.342!important;
+  --baseline-multiplier: 0.22!important;
+  font-family: medium-content-sans-serif-font,"Lucida Grande","Lucida Sans Unicode","Lucida Sans",Geneva,Arial,sans-serif!important;
+  letter-spacing: -.02em!important;
+  font-weight: 400!important;
+  font-style: normal!important;
+  letter-spacing: 0!important;
+  font-size: 15px!important;
+  line-height: 20px!important;
+  -webkit-transform: translateY(1.8px);
+  transform: translateY(1.8px);
+
 }

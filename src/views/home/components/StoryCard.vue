@@ -3,17 +3,27 @@
     <h2 class="ContentItem-title">
       <a :href="source.url" target="_blank">{{source.target.title}}</a>
     </h2>
-    <div :class="[readMoreActivated ? 'RichContent' : 'RichContent is-collapsed']">
+    <div class="RichContent">
       <div class="RichContent-inner">
-        <div v-if="!readMoreActivated" class="RichText" v-html="source.excerpt"></div>
-        <div v-if="readMoreActivated" class="RichText" v-html="source.target.body"></div>
-        <a @click="readMoreActivate" class="Button ContentItem-more Button--plain">阅读全文</a>
+        <div class="RichText" v-html="source.excerpt"></div>
       </div>
-      <div class="RichContent-bar">
-        <div class="ui-caption">
-          <time class="u-inlineBlock u-lineHeightBase">{{moment(source.target.create_time).fromNow()}}</time>
+      <div class="RichContent-flex u-flex">
+        <div class="u-flexCenter u-flex1">
+          <div class="ui-captionUser">
+            <div class="postMetaInline">
+              <a>wyp</a>
+            </div>
+          </div>
+          <div class="ui-caption">
+            <time class="u-inlineBlock u-lineHeightBase">{{moment(source.target.create_time).fromNow()}}</time>
+          </div>
         </div>
-        <button></button>
+        <button class="RichContent-button">
+          <div style="font-weight: bold;color: #898a89;">{{source.target.seed}}<i>₲</i></div>
+        </button>
+        <button class="RichContent-button">
+          <svg-icon iconClass="more" style="font-size:26px"></svg-icon>
+        </button>
       </div>
     </div>
   </div>
@@ -32,16 +42,11 @@
     },
     data() {
       return {
-        readMoreActivated:false
       }
     },
     methods: {
       moment: function (date) {
         return moment(date)
-      },
-      readMoreActivate(){
-        this.readMoreActivated = !this.readMoreActivated
-
       }
     }
   }

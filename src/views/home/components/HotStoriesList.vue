@@ -72,7 +72,6 @@
         }
       },
       onScrollToBottom() {
-        console.log('at bottom')
         if (this.isLoading) {
           return
         }
