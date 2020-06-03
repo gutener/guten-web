@@ -13,9 +13,10 @@ export function postStory(obj) {
     data: obj
   })
 }
-export function cdsHp() {
+export function homeFeed(page) {
   return axios({
-    url: `/story/recommend/v1/hot-story`,
+    url: `/story/v1/home-feed`,
+    params: page,
     method: 'get'
   })
 }

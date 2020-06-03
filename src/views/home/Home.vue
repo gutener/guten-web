@@ -5,6 +5,7 @@
     </section>
     <HomeAsider/>
   </article>
+
 </template>
 <script>
   import HotStoriesList from "./components/HotStoriesList"

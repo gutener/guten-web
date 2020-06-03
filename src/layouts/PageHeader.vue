@@ -54,11 +54,7 @@
     methods: {
       //监听滚动
       getScroll() {
-        if (document.documentElement.scrollTop >= 52) {
-          this.isActive = false;
-        } else {
-          this.isActive = true;
-        }
+        this.isActive = document.documentElement.scrollTop < 52;
       }
     },
     components: {

@@ -2,12 +2,12 @@
   <div class="Feed">
     <div class="ContentItem ArticleItem">
       <h2 class="ContentItem-title">
-        <a :href="url" target="_blank">{{title}}</a>
+        <a :href="source.url" target="_blank">{{source.target.title}}</a>
       </h2>
       <div :class="[readMoreActivated ? 'RichContent' : 'RichContent is-collapsed']">
         <div class="RichContent-inner">
-            <div v-if="!readMoreActivated" class="RichText" v-html="excerpt"></div>
-            <div v-if="readMoreActivated" class="RichText" v-html="body"></div>
+            <div v-if="!readMoreActivated" class="RichText" v-html="source.excerpt"></div>
+            <div v-if="readMoreActivated" class="RichText" v-html="source.target.body"></div>
           <a @click="readMoreActivate" class="Button ContentItem-more Button--plain">阅读全文</a>
         </div>
 <!--        <div class="ContentItem-actions">-->
@@ -29,12 +29,14 @@
 <script>
   export default {
     name:"hp-card",
-    props: [
-      'url',
-      'title',
-      'body',
-      'excerpt',
-    ],
+    props: {
+      source: {
+        type: Object,
+        default () {
+          return {}
+        }
+      }
+    },
     data() {
       return {
         readMoreActivated:false
