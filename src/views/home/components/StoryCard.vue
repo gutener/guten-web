@@ -9,9 +9,9 @@
       </div>
       <div class="RichContent-flex u-flex">
         <div class="u-flexCenter u-flex1">
-          <div class="ui-captionUser">
+          <div v-if="source.haveSeed" class="ui-captionUser">
             <div class="postMetaInline">
-              <a>wyp</a>
+              <a>{{source.author.user_name}}</a>
             </div>
           </div>
           <div class="ui-caption">

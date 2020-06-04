@@ -7,7 +7,6 @@
           <span style="color: rgb(170, 170, 170);">{{story.create_time}}&nbsp;</span>&nbsp;
           <span style="color: rgb(170, 170, 170); cursor: pointer; position: relative;">
               <span style="position: relative; top: 1px;">
-
               </span>
             </span>
         </div>
@@ -18,7 +17,8 @@
                 <button class="" @click="seed">
                   <svg-icon iconClass="seeding" style="font-size:22px"></svg-icon>
                   <div class="" font-size="1em" height="40%">{{story.seed}}<i>₲</i></div>
-                  <span class="" style="opacity: 0; transform: scale(0);">0</span></button>
+                  <span class="" style="opacity: 0; transform: scale(0);">0</span>
+                </button>
               </div>
               <button class=""></button>
             </div>
@@ -172,7 +172,7 @@
       },
       //监听滚动
       getScroll() {
-        document.documentElement.scrollTop >= 152 ? this.postSidebar = true : this.postSidebar = false
+        document.documentElement.scrollTop >= 252 ? this.postSidebar = true : this.postSidebar = false
       }
     }
   }

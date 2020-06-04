@@ -56,8 +56,9 @@
               DataItems.forEach((val) => {
                 val.url = `/stories/${val.target.id}`
                 val.id = val.target.id
+                val.haveSeed = !!val.author
               })
-
+              console.log(DataItems)
               if(DataItems.length<this.pageSize)
                 this.hasMore=false
 
