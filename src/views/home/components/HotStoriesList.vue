@@ -58,7 +58,6 @@
                 val.id = val.target.id
                 val.haveSeed = !!val.author
               })
-              console.log(DataItems)
               if(DataItems.length<this.pageSize)
                 this.hasMore=false
 

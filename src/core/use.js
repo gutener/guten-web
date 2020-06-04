@@ -12,6 +12,7 @@ import VueClipboard from 'vue-clipboard2'
 
 import '@/icons' // svg 图标
 
+import 'ant-design-vue/dist/antd.css';
 import { Popover,ConfigProvider,Skeleton,Form,Button,Input,Tabs,Row,Col,Icon,Checkbox } from 'ant-design-vue';
 
 Vue.use(Popover);

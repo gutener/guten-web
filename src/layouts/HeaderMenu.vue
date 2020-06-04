@@ -1,8 +1,8 @@
 <template>
   <SlideMenu>
-    <a href="/rexwong626">
+    <a :href="user.url">
       <svg-icon iconClass="avtar-blue"></svg-icon>
-      <span>wyp</span>
+      <span>{{user.username}}</span>
     </a>
     <a href="/channels">
       <svg-icon iconClass="channel"></svg-icon>
@@ -30,18 +30,34 @@
 
 <script>
   import SlideMenu from '@/components/g-menu/SlideMenu'
-  import {mapActions} from 'vuex'
+  import { mapActions,mapGetters } from 'vuex'
 
   export default {
     name: 'silder-menu',
     data() {
-      return {}
+      return {
+        user:{
+          usename:'',
+          avatar:'',
+          url:''
+        }
+      }
     },
     components: {
       SlideMenu
     },
+    created() {
+      this.init()
+    },
     methods: {
       ...mapActions(['Logout']),
+      ...mapGetters(['userInfo']),
+      init(){
+        this.user={
+          username:this.userInfo().username,
+          url:`/u/${this.userInfo().username}`
+        }
+      },
       handleLogout() {
         const that = this
         return that.Logout({}).then(() => {
