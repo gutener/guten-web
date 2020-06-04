@@ -22,14 +22,31 @@
           <div style="font-weight: bold;color: #898a89;">{{source.target.seed}}<i>₲</i></div>
         </button>
         <button class="RichContent-button">
-          <svg-icon iconClass="more" style="font-size:26px"></svg-icon>
+          <a-popover trigger="click">
+            <template slot="content">
+              <ul class="tooltip-content">
+                <li class="">
+                  <button class="u-normalWrap">Dismiss this story</button>
+                </li>
+                <li class="">
+                  <button class="u-normalWrap">Mute this author</button>
+                </li>
+                <li class="">
+                  <button class="u-normalWrap">Mute this publication</button>
+                </li>
+              </ul>
+            </template>
+            <svg-icon iconClass="more" style="font-size:26px"></svg-icon>
+          </a-popover>
         </button>
       </div>
     </div>
+
   </div>
 </template>
 <script>
   import moment from 'moment'
+
   export default {
     name:"hp-card",
     props: {
@@ -39,6 +56,8 @@
           return {}
         }
       }
+    },
+    components: {
     },
     data() {
       return {

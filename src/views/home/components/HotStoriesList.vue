@@ -9,14 +9,22 @@
                 :footer-class="'loader-wrapper'"
                 :scrollToBottom="onScrollToBottom"
   >
-    <div v-show='hasMore' slot="footer" class="loader"></div>
+    <div v-show='hasMore' slot="footer" class="loader">
+      <div class="ant-skeleton-content">
+        <h3 class="ant-skeleton-title" style="width: 38%;"></h3>
+        <ul class="ant-skeleton-paragraph">
+          <li></li>
+          <li></li>
+          <li style="width: 61%;"></li>
+        </ul>
+      </div>
+    </div>
   </virtual-list>
 </template>
 <script>
   import {homeFeed} from '@/api/biz'
   import StoryCard from './StoryCard'
   import VirtualList from '@/components/VirtualScrollList'
-
 
   export default {
     data() {

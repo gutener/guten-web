@@ -40,7 +40,7 @@
     -ms-flex-align: start;
     align-items: flex-start;
     max-width: 1032px;
-    padding: 0 16px;
-    margin: 10px auto
+    width: 100%;
+    margin: 0 auto;
   }
 </style>

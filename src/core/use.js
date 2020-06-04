@@ -5,22 +5,34 @@ import * as urls from '@/config/env'
 
 // base library
 // TODO antv目前只有登录页面用到，以后删除掉
-import Antd from 'ant-design-vue'
-import 'ant-design-vue/dist/antd.less'
+import '@/components/global.less'
 // ext library
 import VueClipboard from 'vue-clipboard2'
 // import PermissionHelper from '@/utils/helper/permission'
 
 import '@/icons' // svg 图标
 
+import { Popover,ConfigProvider,Skeleton,Form,Button,Input,Tabs,Row,Col,Icon,Checkbox } from 'ant-design-vue';
+
+Vue.use(Popover);
+Vue.use(ConfigProvider);
+Vue.use(Skeleton);
+//login page
+Vue.use(Form);
+Vue.use(Button);
+Vue.use(Input);
+Vue.use(Tabs);
+Vue.use(Row);
+Vue.use(Col);
+Vue.use(Icon);
+Vue.use(Checkbox);
+//---end
+
 // 加载相关url地址
 Object.keys(urls).forEach(key => {
   Vue.prototype[key] = urls[key]
 })
 
-Vue.use(Antd)
 Vue.use(VueStorage)
 Vue.use(VueClipboard)
 // Vue.use(PermissionHelper)
-// Vue.use(VueCropper)
-// Vue.use(Popover)
