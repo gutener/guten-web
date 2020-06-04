@@ -45,8 +45,8 @@
       <div class="reply-column reply-input" style="height: 100%;margin-bottom: 2rem;">
         <div class="reply-grow" style="position: relative">
           <medium-editor
+                  ref="replyContainer"
                   style="background-color:#f5f5f5;min-height: 64px;"
-                  v-model="reply.reply_body"
                   :options="options"
                   :onChange="onChange"
                   v-on:uploaded="uploadCallback">
@@ -147,15 +147,16 @@
       uploadCallback(url) {
         // console.log("uploaded url", url)
       },
-      onChange() {
-        console.log(this.reply.reply_body)
+      onChange(content) {
+        this.reply.reply_body = content
       },
       saveReply() {
         this.reply.story_id = this.story.id
+        const self = this
         postReply(this.reply)
             .then(response => {
               this.listRelies(this.story.id)
-              this.reply.reply_body = null
+              self.$refs.replyContainer.$refs.editor.innerHTML=''
             })
             .catch(error => {
 
