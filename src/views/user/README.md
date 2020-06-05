@@ -1,1 +1,1 @@
-[Vue.js JWT Authentication with Vuex and Vue Router]:https://bezkoder.com/jwt-vue-vuex-authentication/#Demo
+[1]: https://bezkoder.com/jwt-vue-vuex-authentication/#Demo "Vue.js JWT Authentication with Vuex and Vue Router"

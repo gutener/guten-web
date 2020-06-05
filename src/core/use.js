@@ -13,7 +13,7 @@ import VueClipboard from 'vue-clipboard2'
 import '@/icons' // svg 图标
 
 import 'ant-design-vue/dist/antd.css';
-import { Popover,ConfigProvider,Skeleton,Form,Button,Input,Tabs,Row,Col,Icon,Checkbox } from 'ant-design-vue';
+import { Popover,ConfigProvider,Skeleton,Form,Button,Input,Tabs,Row,Col,Icon,Checkbox,Select,Progress } from 'ant-design-vue';
 
 Vue.use(Popover);
 Vue.use(ConfigProvider);
@@ -27,6 +27,8 @@ Vue.use(Row);
 Vue.use(Col);
 Vue.use(Icon);
 Vue.use(Checkbox);
+Vue.use(Select);
+Vue.use(Progress);
 //---end
 
 // 加载相关url地址

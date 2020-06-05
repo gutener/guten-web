@@ -59,9 +59,14 @@
           </div>
         </div>
       </div>
-      <section v-for="reply in replies" :key="reply.id">
+      <section class="streamItem " v-for="reply in replies" :key="reply.id">
         <div style="border-radius: 3px; border: 1px solid rgb(221, 221, 221); margin-bottom: 1em; padding-right: 1em;">
-          <div style="padding: 1rem 1.25em;" v-html="reply.reply_body"></div>
+          <div class="gu-clearfix reply-header">
+            <div class="gu-floatLeft">
+              {{reply.create_time}}
+            </div>
+          </div>
+          <div v-html="reply.reply_body"></div>
           <div style="color: rgb(170, 170, 170); padding-left: 1.5em; padding-bottom: 0.5em; cursor: pointer;">
             <div class="sc-fAjcbJ cfvcJF">
               <svg-icon iconClass="share" style="font-size:23px"></svg-icon>
@@ -73,7 +78,7 @@
   </article>
 </template>
 <script>
-  import {getStory, listReliesByStory, postReply,seedStory} from '@/api/biz'
+  import {getStory, listReliesByStory, postReply, seedStory} from '@/api/biz'
   import Editor from '@/components/medium-editor/Editor'
   import moment from 'moment'
 
@@ -166,6 +171,9 @@
         listReliesByStory(storyId)
             .then(replyRep => {
               this.replies = replyRep
+              this.replies.forEach((val) => {
+                val.create_time = moment(val.create_time).fromNow()
+              })
             })
             .catch(error => {
               console.error(error)

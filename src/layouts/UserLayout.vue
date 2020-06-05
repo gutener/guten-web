@@ -4,12 +4,12 @@
       <div class="top">
         <div class="header">
           <a href="/">
-            <img src="~@/assets/logo.svg" class="logo" alt="logo">
-            <span class="title">LUK CREATOR</span>
+            <svg-icon iconClass="g-logo" style="font-size: 38px;position: relative;top: 5px;margin-right: 1rem;"></svg-icon>
+            <span class="title">GUTEN 觅知</span>
           </a>
         </div>
         <div class="desc">
-          LUK CREATOR SYSTEM
+          让每个人通过创作和传播有价值的内容而获利
         </div>
       </div>
 
@@ -22,7 +22,7 @@
           <a href="_self">条款</a>
         </div>
         <div class="copyright">
-          Copyright &copy; 2019 北京乐拜科技有限公司
+          Copyright &copy; 2019 北京谷腾思有限公司
         </div>
       </div>
     </div>

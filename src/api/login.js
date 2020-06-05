@@ -16,7 +16,7 @@ const scope = 'server'
 export function login (username, password, code, randomStr) {
   const grant_type = 'password'
   return axios({
-    url: '/auth/oauth/token',
+    url: api.Login,//'/auth/oauth/token',
     method: 'post',
     headers: {
       isToken: false,
@@ -24,6 +24,13 @@ export function login (username, password, code, randomStr) {
       'Authorization': 'Basic bHVrYnV5Omx1a2J1eQ=='
     },
     params: { username, password, randomStr, code, grant_type, scope }
+  })
+}
+export function register (parameter) {
+  return axios({
+    url: api.Register,
+    method: 'post',
+    data: parameter
   })
 }
 
@@ -37,14 +44,14 @@ export function getSmsCaptcha (parameter) {
 
 export function getInfo () {
   return axios({
-    url: '/admin/user/v1/info',
+    url: api.UserInfo,//'/admin/user/v1/info',
     method: 'get'
   })
 }
 
 export function logout () {
   return axios({
-    url: '/auth/token/logout',
+    url: api.Logout,//'/auth/token/logout',
     method: 'delete',
     headers: {
       'Content-Type': 'application/json;charset=UTF-8'
@@ -63,6 +70,7 @@ export function get2step (parameter) {
     data: parameter
   })
 }
+
 export const refreshToken = (refresh_token) => {
   const grant_type = 'refresh_token'
   return axios({

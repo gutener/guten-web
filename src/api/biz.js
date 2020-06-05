@@ -46,3 +46,10 @@ export function querytags(tagName) {
     method: 'get'
   })
 }
+export function postUser(obj) {
+  return axios({
+    url: '/story/user/v1',
+    method: 'post',
+    data: obj
+  })
+}

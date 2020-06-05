@@ -1,7 +1,7 @@
 import Vue from 'vue'
-import { login, refreshToken, getInfo, logout } from '@/api/login'
-import { ACCESS_TOKEN, REFRESH_TOKEN, EXPIRES_IN } from '@/store/mutation-types'
-import { encryption } from '@/utils/util'
+import {getInfo, login, logout, refreshToken, register} from '@/api/login'
+import {ACCESS_TOKEN, EXPIRES_IN, REFRESH_TOKEN} from '@/store/mutation-types'
+import {encryption} from '@/utils/util'
 
 const user = {
   state: {
@@ -16,7 +16,7 @@ const user = {
     SET_TOKEN: (state, token) => {
       state.token = token
     },
-    SET_NAME: (state, { name }) => {
+    SET_NAME: (state, {name}) => {
       state.name = name
     },
     SET_AVATAR: (state, avatar) => {
@@ -32,7 +32,7 @@ const user = {
 
   actions: {
     // 登录
-    Login ({ commit }, userInfo) {
+    Login({commit}, userInfo) {
       return new Promise((resolve, reject) => {
         const user = encryption({
           data: userInfo,
@@ -52,10 +52,10 @@ const user = {
       })
     },
     // 刷新token
-    RefreshToken ({ commit, state }) {
+    RefreshToken({commit, state}) {
       return new Promise((resolve, reject) => {
-        let refreshToken = Vue.ls.get(REFRESH_TOKEN)
-        refreshToken(refreshToken).then(response => {
+        let currentToken = Vue.ls.get(REFRESH_TOKEN)
+        refreshToken(currentToken).then(response => {
           const data = response
           Vue.ls.set(ACCESS_TOKEN, data.access_token)
           Vue.ls.set(REFRESH_TOKEN, data.refresh_token)
@@ -68,7 +68,7 @@ const user = {
       })
     },
     // 获取用户信息
-    GetInfo ({ commit }) {
+    GetInfo({commit}) {
       return new Promise((resolve, reject) => {
         getInfo().then(response => {
           const result = response.data
@@ -77,7 +77,9 @@ const user = {
             role.permissions = result.permissions
             role.permissions.map(per => {
               if (typeof per === Object && per.actionEntitySet !== null && per.actionEntitySet.length > 0) {
-                let action = per.actionEntitySet.map(action => { return action.action })
+                let action = per.actionEntitySet.map(action => {
+                  return action.action
+                })
                 per.actionList = action
               }
             })
@@ -89,7 +91,7 @@ const user = {
             reject(new Error('getInfo: roles must be a non-null array !'))
           }
 
-          commit('SET_NAME', { name: result.sysUser.username })
+          commit('SET_NAME', {name: result.sysUser.username})
           commit('SET_AVATAR', result.avatar)
 
           resolve(response)
@@ -101,7 +103,7 @@ const user = {
     },
 
     // 登出
-    Logout ({ commit, state }) {
+    Logout({commit, state}) {
       return new Promise((resolve) => {
         commit('SET_TOKEN', '')
         commit('SET_ROLES', [])
@@ -114,8 +116,19 @@ const user = {
           resolve()
         })
       })
-    }
+    },
 
+    Register({commit}, userInfo) {
+      userInfo.role=[17]
+      return new Promise((resolve, reject) => {
+        register(userInfo).then(response => {
+          const data = response
+          resolve()
+        }).catch(error => {
+          reject(error)
+        })
+      })
+    }
   }
 }
 

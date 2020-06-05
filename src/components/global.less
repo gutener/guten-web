@@ -18,12 +18,21 @@ a, area, button, [role='button'], input:not([type='range']), label, select, summ
   -ms-touch-action: none;
   touch-action: none;
 }
-
+.gu-clearfix:after, .gu-clearfix:before {
+  display: table;
+  content: " ";
+}
+.gu-clearfix:after {
+  clear: both;
+}
 .gu-flex {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+}
+.gu-floatLeft {
+  float: left;
 }
 .gu-padding32 {
   padding: 32px;
