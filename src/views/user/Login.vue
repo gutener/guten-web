@@ -17,7 +17,7 @@
             <a-input
               size="large"
               type="text"
-              placeholder="帐户名或邮箱地址 / wyp"
+              placeholder="帐户名或邮箱地址"
               v-decorator="[
                 'username',
                 {rules: [{ required: true, message: '请输入帐户名或邮箱地址' }, { validator: handleUsernameOrEmail }], validateTrigger: 'change'}
@@ -32,7 +32,7 @@
               size="large"
               type="password"
               autocomplete="false"
-              placeholder="密码 / 123456"
+              placeholder="密码"
               v-decorator="[
                 'password',
                 {rules: [{ required: true, message: '请输入密码' }], validateTrigger: 'blur'}
