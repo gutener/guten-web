@@ -49,7 +49,7 @@
             </div>
           </div>
           <div style="text-align: center; padding-top: 1em; padding-bottom: 5em;">
-            <button @click="saveStory" class="GutenButton GutenButton--light">发布</button>
+            <button @click="saveStory" class="GuButton GuButton--light">发布</button>
           </div>
         </section>
         <aside class="PostStory-SideBar"></aside>
@@ -268,32 +268,6 @@
       }
     }
   }
-  .GutenButton{
-    padding-left: 43px;
-    padding-right: 41px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    letter-spacing: 3px;
-    cursor: pointer;
-    font-size: 1em;
-    font-weight: 800;
-    text-transform: uppercase;
-    font-family: Cartograph;
-    border-width: 1px;
-    border-style: solid;
-    border-image: initial;
-    border-radius: 50px;
-    outline: none;
-    transition: all 0.3s ease 0s;
-    margin: 0px auto;
-  }
-  .GutenButton--light{
-    color: rgb(0, 0, 0);
-    background-color: rgb(221, 221, 221);
-    border-color: rgb(128, 128, 128);
-    &:hover{
-      background-color: #cecece;
-    }
-  }
+
 
 </style>

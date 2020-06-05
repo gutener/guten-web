@@ -50,3 +50,37 @@ a, area, button, [role='button'], input:not([type='range']), label, select, summ
   color: rgba(0,0,0,.15);
   fill: rgba(0,0,0,.15);
 }
+.GuButton{
+  padding-left: 43px;
+  padding-right: 41px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  letter-spacing: 3px;
+  cursor: pointer;
+  font-size: 1em;
+  font-weight: 800;
+  font-family: Cartograph;
+  border-width: 1px;
+  border-style: solid;
+  border-image: initial;
+  border-radius: 50px;
+  outline: none;
+  transition: all 0.3s ease 0s;
+  margin: 0px auto;
+}
+.GuButton--light{
+  color: rgb(0, 0, 0);
+  background-color: rgb(221, 221, 221);
+  border-color: rgb(128, 128, 128);
+  &:hover{
+    background-color: #cecece;
+  }
+}
+.GuButton--small{
+  padding-left: 12px;
+  padding-right: 12px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  letter-spacing: 1px;
+  border-radius: 5px;
+}

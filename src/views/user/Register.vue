@@ -103,6 +103,7 @@
   import {mixinDevice} from '@/utils/mixin.js'
   import {getSmsCaptcha} from '@/api/login'
   import {mapActions} from 'vuex'
+  import {postStory, postUser} from '@/api/biz'
 
   const levelNames = {
     0: '低',
@@ -222,11 +223,21 @@
           if (!err) {
             const userParams = {...values}
             Register(userParams)
-                .then((res) => this.$router.push({name: 'registerResult', params: {...values}})
-                    .catch(err => this.requestFailed(err))
-                    .finally(() => {
-                      state.loginBtn = false
-                    }))
+                .then((res) => {
+                  console.log(res)
+                  const user={
+                  }
+                  postUser()
+                      .then(response => {
+                        console.log(response)
+                      })
+                      .catch(error => {
+                      })
+                  this.$router.push({name: 'registerResult', params: {...values}})
+                }).catch(err => {
+                  this.requestFailed(err)
+                }).finally(() => {
+                })
           }
         })
         this.form.get
