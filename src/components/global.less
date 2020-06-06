@@ -70,10 +70,20 @@ a, area, button, [role='button'], input:not([type='range']), label, select, summ
 }
 .GuButton--light{
   color: rgb(0, 0, 0);
-  background-color: rgb(221, 221, 221);
   border-color: rgb(128, 128, 128);
+  font-weight: 400;
   &:hover{
-    background-color: #cecece;
+    background-color: #fff;
+    color:#1a1a1a;
+  }
+}
+.GuButton--color{
+  fill: rgba(3, 168, 124, 1);
+  color: rgba(2, 158, 116, 1);
+  font-weight: 400;
+  &:hover{
+    background-color: #fff;
+    color: rgba(2, 158, 116, 1);
   }
 }
 .GuButton--small{

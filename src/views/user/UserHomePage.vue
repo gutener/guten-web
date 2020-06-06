@@ -11,8 +11,11 @@
           </div>
           <div class="gu-flex user_nickName">
             <h1>{{user.nick_name}}</h1>
-            <div class="user_edit">
-              <a :href="user.editUrl" class="GuButton GuButton--light GuButton--small" rel="noopener">Edit profile</a>
+            <div v-if="isMyPage" class="user_edit">
+              <a :href="user.editUrl" class="GuButton GuButton--light GuButton--small" rel="noopener">编辑</a>
+            </div>
+            <div v-if="!isMyPage" class="user_edit">
+              <a :href="user.editUrl" class="GuButton GuButton--color GuButton--small" rel="noopener">关注</a>
             </div>
           </div>
           <div style="margin-top:24px">
@@ -39,15 +42,17 @@
 </template>
 <script>
   import {getUser} from '@/api/biz'
+  import {mapGetters} from 'vuex'
   import moment from "moment"
-  import {
-    Tabs,
-    Tab
-  } from '@/components/Tabs'
+  import {Tab, Tabs} from '@/components/Tabs'
 
   export default {
     beforeRouteEnter(to, from, next) {
       next(vm => {
+        vm.userName = to.params.username
+        if (vm.userName === vm.userInfo().username) {
+          vm.isMyPage = true
+        }
         vm.getUserInfo(to.params.username)
       })
     },
@@ -55,6 +60,7 @@
       return {
         loading: true,
         userName: '',
+        isMyPage:false,
         user: {}
       }
     },
@@ -63,6 +69,7 @@
       Tab,
     },
     methods: {
+      ...mapGetters(['userInfo']),
       getUserInfo(id) {
         getUser(id)
             .then(response => {
@@ -80,7 +87,7 @@
             .catch(error => {
               console.error(error)
             })
-      },
+      }
     }
   }
 </script>
