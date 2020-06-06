@@ -7,14 +7,14 @@
               :fieldDecoratorOptions="{rules: [{ required: true, message: '请输入用户名' }], validateTrigger: ['change', 'blur']}">
         <a-input size="large" type="text" placeholder="用户名"></a-input>
       </a-form-item>
-<!--      <a-form-item>-->
-<!--        <a-input-->
-<!--           size="large"-->
-<!--           v-decorator="['username',{ rules: [{ required: true, message: 'Please input your username!' }] },]"-->
-<!--           placeholder="username"-->
-<!--        >-->
-<!--        </a-input>-->
-<!--      </a-form-item>-->
+      <!--      <a-form-item>-->
+      <!--        <a-input-->
+      <!--           size="large"-->
+      <!--           v-decorator="['username',{ rules: [{ required: true, message: 'Please input your username!' }] },]"-->
+      <!--           placeholder="username"-->
+      <!--        >-->
+      <!--        </a-input>-->
+      <!--      </a-form-item>-->
       <a-form-item
               fieldDecoratorId="email"
               :fieldDecoratorOptions="{rules: [{ required: false, type: 'email', message: '请输入邮箱地址' }], validateTrigger: ['change', 'blur']}">
@@ -102,8 +102,8 @@
 <script>
   import {mixinDevice} from '@/utils/mixin.js'
   import {getSmsCaptcha} from '@/api/login'
-  import {mapActions} from 'vuex'
-  import {postStory, postUser} from '@/api/biz'
+  import {mapActions, mapGetters} from 'vuex'
+  import {postUser} from "@/api/biz"
 
   const levelNames = {
     0: '低',
@@ -154,7 +154,8 @@
       }
     },
     methods: {
-      ...mapActions(['Register']),
+      ...mapActions(['Register', 'GetInfo']),
+      ...mapGetters(['userInfo']),
 
       handlePasswordLevel(rule, value, callback) {
         let level = 0
@@ -218,23 +219,18 @@
         const {
           Register
         } = this
-
+        const self = this
         this.form.validateFields((err, values) => {
           if (!err) {
             const userParams = {...values}
             Register(userParams)
-                .then((res) => {
-                  console.log(res)
-                  const user={
+                .then(res => {
+                  if(res.code===200){
+                    self.saveUser(res.data)
                   }
-                  postUser()
-                      .then(response => {
-                        console.log(response)
-                      })
-                      .catch(error => {
-                      })
-                  this.$router.push({name: 'registerResult', params: {...values}})
-                }).catch(err => {
+                })
+                .catch(err => {
+                  console.error(err)
                   this.requestFailed(err)
                 }).finally(() => {
                 })
@@ -242,7 +238,20 @@
         })
         this.form.get
       },
-
+      saveUser(user){
+        const userParams = {
+          user_id:user.userId,
+          user_name:user.username
+        }
+        postUser(userParams)
+            .then(response => {
+              console.log(response)
+              this.$router.push({name: 'registerResult', params: user})
+            })
+            .catch(error => {
+              console.error(error)
+            })
+      },
       getCaptcha(e) {
         e.preventDefault()
         const that = this

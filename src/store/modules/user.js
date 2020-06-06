@@ -77,10 +77,9 @@ const user = {
             role.permissions = result.permissions
             role.permissions.map(per => {
               if (typeof per === Object && per.actionEntitySet !== null && per.actionEntitySet.length > 0) {
-                let action = per.actionEntitySet.map(action => {
+                per.actionList = per.actionEntitySet.map(action => {
                   return action.action
                 })
-                per.actionList = action
               }
             })
             // role.permissionList = role.permissions.map(permission => { return permission.permissionId })
@@ -122,8 +121,7 @@ const user = {
       userInfo.role=[17]
       return new Promise((resolve, reject) => {
         register(userInfo).then(response => {
-          const data = response
-          resolve()
+          resolve(response)
         }).catch(error => {
           reject(error)
         })
