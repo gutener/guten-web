@@ -2,34 +2,48 @@
   <a-skeleton class="user-container" :loading="loading" active>
     <section class="gu-flex user-container">
       <div class="user_mainColum">
-        <div class="user_avatar">
-          <div class="user_avatar_body">
-            <img alt="ypwang" class=""
-                 src="https://miro.medium.com/fit/c/256/256/0*tH7Qnw5ZErk6R2ON." width="128" height="128">
+        <div style="margin-bottom: 5rem;">
+          <div class="user_avatar">
+            <div class="user_avatar_body">
+              <img alt="ypwang" class=""
+                   src="https://miro.medium.com/fit/c/256/256/0*tH7Qnw5ZErk6R2ON." width="128" height="128">
+            </div>
+          </div>
+          <div class="gu-flex user_nickName">
+            <h1>{{user.nick_name}}</h1>
+            <div class="user_edit">
+              <a :href="user.editUrl" class="GuButton GuButton--light GuButton--small" rel="noopener">Edit profile</a>
+            </div>
+          </div>
+          <div style="margin-top:24px">
+            <div v-if="user.biography" class="gu-flex margintop12">
+              <span>{{user.biography}}</span>
+            </div>
+            <div class="gu-flex user_location margintop12">
+              <svg-icon iconClass="location" style="font-size: 20px;margin-left:-4px"></svg-icon>
+              <span style="margin-left: 4px;">{{user.location}}</span>
+            </div>
           </div>
         </div>
-        <div class="gu-flex user_nickName">
-          <h1>{{user.nick_name}}</h1>
-          <div class="user_edit">
-            <a :href="user.editUrl" class="GuButton GuButton--light GuButton--small" rel="noopener">Edit profile</a>
-          </div>
-        </div>
-        <div style="margin-top:24px">
-          <div v-if="user.biography" class="gu-flex margintop12">
-            <span>{{user.biography}}</span>
-          </div>
-          <div class="gu-flex user_location margintop12">
-            <svg-icon iconClass="location" style="font-size: 20px;margin-left:-4px"></svg-icon>
-            <span style="margin-left: 4px;">{{user.location}}</span>
-          </div>
-        </div>
+        <tabs class="user_mainColum-tabs">
+          <tab title="动态">
+            <div>asdfdsf</div>
+          </tab>
+          <tab title="回复">
+            ddddfffdf
+          </tab>
+        </tabs>
       </div>
     </section>
   </a-skeleton>
 </template>
 <script>
   import {getUser} from '@/api/biz'
-  import moment from "moment";
+  import moment from "moment"
+  import {
+    Tabs,
+    Tab
+  } from '@/components/Tabs'
 
   export default {
     beforeRouteEnter(to, from, next) {
@@ -43,6 +57,10 @@
         userName: '',
         user: {}
       }
+    },
+    components: {
+      Tabs,
+      Tab,
     },
     methods: {
       getUserInfo(id) {

@@ -1,40 +1,86 @@
-.user-container{
+@whatever: ~">>>";
+.user-container {
   max-width: 728px;
   padding: 1em;
   margin: 0px auto;
 }
-.user_mainColum{
+
+.user_mainColum {
   width: 100%;
 }
-.user_avatar{
+
+.user_avatar {
   float: right;
   margin-top: 10px;
   margin-left: 40px;
   margin-bottom: 10px;
-  .user_avatar_body{
+
+  .user_avatar_body {
     position: relative;
     height: 128px;
     width: 128px;
-    img{
+
+    img {
       border-radius: 50%;
     }
   }
 }
-.user_nickName{
-  h1{
+
+.user_nickName {
+  h1 {
     font-size: 2.4rem;
     margin-bottom: 0rem;
   }
-  .user_edit{
+
+  .user_edit {
     margin-left: 20px;
     flex: 0 0 auto;
     align-items: center;
     display: flex;
   }
 }
-.margintop12{
+
+.margintop12 {
   margin-top: 12px;
 }
-.user_location{
+
+.user_location {
   margin-top: 12px;
+}
+
+.user_mainColum-tabs {
+  margin-top: 12px;
+  @{whatever} .vue-tablist {
+    list-style: none;
+    display: flex;
+    padding-left: 0;
+    border-bottom: 1px solid #e2e2e2;
+  }
+  @{whatever} .vue-tablist {
+    list-style: none;
+    display: flex;
+    padding-left: 0;
+    border-bottom: 1px solid #e2e2e2;
+  }
+  @{whatever} .vue-tab {
+    padding: 5px 12px;
+    cursor: pointer;
+    user-select: none;
+    border: 1px solid transparent;
+    border-bottom-color: #e2e2e2;
+    border-radius: 3px 3px 0 0;
+    background-color: white;
+    position: relative;
+    bottom: -1px;
+  }
+
+  @{whatever} .vue-tab[aria-selected="true"] {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.54);
+    font-weight: 600;
+  }
+
+  @{whatever} .vue-tab[aria-disabled="true"] {
+    cursor: not-allowed;
+    color: #999;
+  }
 }

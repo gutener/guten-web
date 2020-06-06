@@ -6,6 +6,7 @@ import StoryDetail from "@/views/stories/Detail"
 import Seed from "@/views/fund/Seed"
 import Tags from "@/views/tags/Tags"
 import UserHomePage from "@/views/user/UserHomePage"
+import UserHomeEdit from "@/views/user/UserHomeEdit"
 
 /**
  * 基础路由
@@ -72,6 +73,10 @@ export const constantRouterMap = [
       {
         path: "/u/:username",
         component: UserHomePage
+      },
+      {
+        path: "/u/:username/edit",
+        component: UserHomeEdit
       }
     ]
   },
