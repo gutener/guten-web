@@ -11,11 +11,18 @@
         <div class="u-flexCenter u-flex1">
           <div v-if="source.haveSeed" class="ui-captionUser">
             <div class="postMetaInline">
-              <a>{{source.author.user_name}}</a>
+              <a-popover trigger="hover">
+                <a :href="source.author.url">{{source.author.user_name}}</a>
+                <template slot="content">
+                  {{source.author.user_name}}
+                </template>
+              </a-popover>
             </div>
           </div>
           <div class="ui-caption">
-            <time class="u-inlineBlock u-lineHeightBase">{{moment(source.target.create_time).fromNow()}}</time>
+            <time class="u-inlineBlock u-lineHeightBase">{{source.target.create_time}}</time>
+            <span class="middotDivider"></span>
+            <span class="readingTime" :title="source.target.seed_count"></span>
           </div>
         </div>
         <button class="RichContent-button">
@@ -45,7 +52,6 @@
   </div>
 </template>
 <script>
-  import moment from 'moment'
 
   export default {
     name:"hp-card",
@@ -64,9 +70,7 @@
       }
     },
     methods: {
-      moment: function (date) {
-        return moment(date)
-      }
+
     }
   }
 </script>

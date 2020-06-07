@@ -46,7 +46,7 @@
         <div class="reply-grow" style="position: relative">
           <medium-editor
                   ref="replyContainer"
-                  style="background-color:#f5f5f5;min-height: 64px;"
+                  style="background-color:#f5f5f5"
                   :options="options"
                   :onChange="onChange"
                   v-on:uploaded="uploadCallback">
@@ -144,6 +144,7 @@
         seedStory(storyId)
             .then(response => {
               console.log(response)
+              this.story.seed = response
             })
             .catch(error => {
               console.error(error)
