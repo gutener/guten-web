@@ -18,10 +18,10 @@ import '@/components/global.less'
 Vue.use(Popover);
 Vue.use(ConfigProvider);
 Vue.use(Skeleton);
+Vue.use(Input);
 //login page
 Vue.use(Form);
 Vue.use(Button);
-Vue.use(Input);
 Vue.use(Tabs);
 Vue.use(Row);
 Vue.use(Col);

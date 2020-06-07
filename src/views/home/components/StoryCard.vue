@@ -15,6 +15,7 @@
                 <a :href="source.author.url">{{source.author.user_name}}</a>
                 <template slot="content">
                   {{source.author.user_name}}
+                  {{source.author.nick_name}}
                 </template>
               </a-popover>
             </div>

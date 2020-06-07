@@ -1,3 +1,4 @@
+
 body {
   &.colorWeak {
     filter: invert(80%);
@@ -13,7 +14,7 @@ body {
   -webkit-tap-highlight-color: rgba(26, 26, 26, 0);
 }
 
-div {
+div, p, h1 {
   outline: 0;
 }
 
@@ -72,22 +73,21 @@ a, area, button, [role='button'], input:not([type='range']), label, select, summ
 }
 
 .GuButton {
-  padding-left: 43px;
-  padding-right: 41px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  letter-spacing: 3px;
+  padding: 6px 6px;
+  letter-spacing: 2px;
   cursor: pointer;
   font-size: 1em;
   font-weight: 800;
-  font-family: Cartograph;
   border-width: 1px;
   border-style: solid;
+  -o-border-image: initial;
   border-image: initial;
-  border-radius: 50px;
+  border-radius: 8px;
   outline: none;
+  -webkit-transition: all 0.3s ease 0s;
   transition: all 0.3s ease 0s;
   margin: 0px auto;
+  background-color: #fff;
 }
 
 .GuButton--light {
@@ -102,13 +102,13 @@ a, area, button, [role='button'], input:not([type='range']), label, select, summ
 }
 
 .GuButton--color {
-  fill: rgba(3, 168, 124, 1);
-  color: rgba(2, 158, 116, 1);
+  fill: #029e74;
+  color: #029e74;
   font-weight: 400;
-
+  border-color: #029e74;
   &:hover {
     background-color: #fff;
-    color: rgba(2, 158, 116, 1);
+    color: rgb(1, 105, 77);
   }
 }
 

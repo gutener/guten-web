@@ -3,10 +3,10 @@
     <section class="gu-flex user-container">
       <div class="user_mainColum">
         <div style="margin-bottom: 5rem;">
-          <div class="user_avatar">
+          <div class="hero-avatar">
             <div class="user_avatar_body">
-              <img alt="ypwang" class=""
-                   src="https://miro.medium.com/fit/c/256/256/0*tH7Qnw5ZErk6R2ON." width="128" height="128">
+              <img :alt="user.nick_name" class=""
+                   :src="user.avatar" width="128" height="128">
             </div>
           </div>
           <div class="gu-flex user_nickName">

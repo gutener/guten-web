@@ -53,6 +53,13 @@ export function postUser(obj) {
     data: obj
   })
 }
+export function updateUser(obj) {
+  return axios({
+    url: '/story/user/v1/update',
+    method: 'post',
+    data: obj
+  })
+}
 export function getUser(userName) {
   return axios({
     url: `/story/user/v1/${userName}`,
