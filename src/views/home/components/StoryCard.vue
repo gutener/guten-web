@@ -28,7 +28,7 @@
         <button class="RichContent-button">
           <div style="font-weight: bold;color: #898a89;">{{source.target.seed}}<i>₲</i></div>
         </button>
-        <button class="RichContent-button">
+        <button class="RichContent-button" style="cursor: pointer;">
           <a-popover trigger="click">
             <template slot="content">
               <ul class="tooltip-content">
