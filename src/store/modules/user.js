@@ -2,6 +2,7 @@ import Vue from 'vue'
 import {getInfo, login, logout, refreshToken, register} from '@/api/login'
 import {ACCESS_TOKEN, EXPIRES_IN, REFRESH_TOKEN} from '@/store/mutation-types'
 import {encryption} from '@/utils/util'
+import {getUser} from "@/api/biz";
 
 const user = {
   state: {
@@ -9,7 +10,7 @@ const user = {
     name: '',
     avatar: '',
     roles: [],
-    info: {}
+    info:{}
   },
 
   mutations: {
@@ -44,6 +45,7 @@ const user = {
           Vue.ls.set(ACCESS_TOKEN, data.access_token)
           Vue.ls.set(REFRESH_TOKEN, data.refresh_token)
           Vue.ls.set(EXPIRES_IN, data.expires_in)
+          Vue.ls.set('USER_NAME', user.username)
           commit('SET_TOKEN', data.access_token)
           resolve()
         }).catch(error => {
@@ -70,29 +72,32 @@ const user = {
     // 获取用户信息
     GetInfo({commit}) {
       return new Promise((resolve, reject) => {
-        getInfo().then(response => {
-          const result = response.data
-          if (result.roles && result.roles.length > 0) {
-            const role = result.roles
-            role.permissions = result.permissions
-            role.permissions.map(per => {
-              if (typeof per === Object && per.actionEntitySet !== null && per.actionEntitySet.length > 0) {
-                per.actionList = per.actionEntitySet.map(action => {
-                  return action.action
-                })
-              }
-            })
-            // role.permissionList = role.permissions.map(permission => { return permission.permissionId })
-            role.permissionList = role.permissions
-            commit('SET_ROLES', result.roles)
-            commit('SET_INFO', result.sysUser)
-          } else {
-            reject(new Error('getInfo: roles must be a non-null array !'))
-          }
-
-          commit('SET_NAME', {name: result.sysUser.username})
+        const userName = Vue.ls.get('USER_NAME')
+        getUser(userName).then(response => {
+          const result = response
+          console.log(`current user:${result.user_name}`)
+          result.roles=[17]
+          commit('SET_INFO', result)
+          commit('SET_ROLES', result.roles)
+          // if (result.roles && result.roles.length > 0) {
+          //   const role = result.roles
+          //   role.permissions = result.permissions
+          //   role.permissions.map(per => {
+          //     if (typeof per === Object && per.actionEntitySet !== null && per.actionEntitySet.length > 0) {
+          //       per.actionList = per.actionEntitySet.map(action => {
+          //         return action.action
+          //       })
+          //     }
+          //   })
+          //   // role.permissionList = role.permissions.map(permission => { return permission.permissionId })
+          //   role.permissionList = role.permissions
+          //   commit('SET_INFO', result)
+          //   commit('SET_ROLES', result.roles)
+          // } else {
+          //   reject(new Error('getInfo: roles must be a non-null array !'))
+          // }
+          commit('SET_NAME', {name: result.user_name})
           commit('SET_AVATAR', result.avatar)
-
           resolve(response)
         }).catch(error => {
           console.error(error)
@@ -100,7 +105,6 @@ const user = {
         })
       })
     },
-
     // 登出
     Logout({commit, state}) {
       return new Promise((resolve) => {

@@ -2,6 +2,7 @@
   <SlideMenu>
     <a :href="user.url">
       <svg-icon iconClass="avtar-blue"></svg-icon>
+      <span>{{user.nickname}}</span>
       <span>{{user.username}}</span>
     </a>
     <a href="/channels">
@@ -53,9 +54,11 @@
       ...mapActions(['Logout']),
       ...mapGetters(['userInfo']),
       init(){
+        console.log(this.userInfo())
         this.user={
-          username:this.userInfo().username,
-          url:`/u/${this.userInfo().username}`
+          username:`@${this.userInfo().user_name}`,
+          nickname:this.userInfo().nick_name,
+          url:`/u/${this.userInfo().user_name}`
         }
       },
       handleLogout() {

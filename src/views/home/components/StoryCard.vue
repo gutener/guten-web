@@ -53,7 +53,6 @@
   </div>
 </template>
 <script>
-
   export default {
     name:"hp-card",
     props: {
@@ -71,7 +70,6 @@
       }
     },
     methods: {
-
     }
   }
 </script>

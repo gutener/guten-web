@@ -50,7 +50,6 @@
   import {mapGetters} from "vuex";
   import VueUploadComponent from 'vue-upload-component';
   import {getUser,updateUser} from '@/api/biz'
-  import moment from "moment";
 
   export default {
     beforeRouteEnter(to, from, next) {
@@ -108,7 +107,10 @@
         }
         updateUser(userUpdate)
             .then(response => {
-              console.log(response)
+              this.userInfo().nick_name=this.user.nick_name
+              this.userInfo().avatar=this.user.avatar
+              this.userInfo().biography=this.user.biography
+              this.userInfo().location=this.location
             })
             .catch(error => {
               console.error(error)
