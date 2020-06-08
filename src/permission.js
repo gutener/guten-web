@@ -23,6 +23,7 @@ router.beforeEach((to, from, next) => {
       NProgress.done()
     } else {
       if (store.getters.roles.length === 0) {
+        console.warn("user roles is null")
         store
             .dispatch('GetInfo')
             .then(res => {
