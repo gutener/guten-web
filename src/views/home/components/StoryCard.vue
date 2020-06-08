@@ -14,8 +14,16 @@
               <a-popover trigger="hover">
                 <a :href="source.author.url">{{source.author.user_name}}</a>
                 <template slot="content">
-                  {{source.author.user_name}}
-                  {{source.author.nick_name}}
+                  <div class="gu-flexCenter user-popover">
+                    <div style="margin-right:12px;max-width: 160px">
+                      <div style="margin-bottom: 6px;font-size:1.5rem;font-weight: bold">{{source.author.nick_name}}</div>
+                      <div style="font-size: 0.8rem;color:rgba(0, 0, 0, 0.54);">{{source.author.biography}}</div>
+                    </div>
+                    <div class="avatar">
+                      <img :src="source.author.avatar" class="avatar-image" :alt="source.author.nick_name">
+                    </div>
+                    <div style="border-bottom: 1px #eee"></div>
+                  </div>
                 </template>
               </a-popover>
             </div>
@@ -75,4 +83,10 @@
 </script>
 <style lang="less" scoped>
   @import url('storycard.less');
+  .user-popover{
+    .avatar-image{
+      width: 62px;
+      height: 62px;
+    }
+  }
 </style>

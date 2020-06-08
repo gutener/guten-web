@@ -5,9 +5,9 @@
         <img v-show="user.haveAvatar" :src="user.avatar" class="avatar-image" :alt="user.nick_name">
         <svg-icon v-show="!user.haveAvatar" iconClass="avtar-blue"></svg-icon>
       </div>
-      <div class="gu-menu-user u-flex1">
+      <div class="gu-menu-user gu-flex1">
         <div style="height: 22px;font-weight: 600;">{{user.nick_name}}</div>
-        <a class="link" :href="user.url">{{user.user_name}}</a>
+        <a class="link" :href="user.url">{{user.name}}</a>
       </div>
     </div>
     <a href="/channels">
@@ -56,8 +56,8 @@
       ...mapGetters(['userInfo']),
       init() {
         this.user = this.userInfo()
-        this.user.user_name = `@${this.user.user_name}`
         this.user.url = `/u/${this.user.user_name}`
+        this.user.name = `@${this.user.user_name}`
         this.user.haveAvatar = !!this.user.avatar
         console.log(this.user)
       },
@@ -75,7 +75,7 @@
     }
   }
 </script>
-<style lang="less">
+<style lang="less" scoped>
   .AppHeader-menu {
     a {
       display: inline-block;
@@ -108,24 +108,8 @@
     }
   }
 
-  .avatar {
-    display: block;
-    white-space: nowrap;
-    overflow: visible;
-    text-overflow: ellipsis;
-    line-height: normal;
-    position: relative;
-    .avatar-image{
-      display: inline-block;
-      vertical-align: middle;
-      -webkit-border-radius: 100%;
-      border-radius: 100%;
-      width: 40px;
-      height: 40px;
-    }
-  }
   .gu-menu-user{
-    padding-left: 15px;
+    padding-left: 16px;
     -webkit-box-flex: 1;
     -webkit-flex: 1 1 auto;
     -ms-flex: 1 1 auto;

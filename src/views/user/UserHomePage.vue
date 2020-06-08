@@ -50,7 +50,8 @@
     beforeRouteEnter(to, from, next) {
       next(vm => {
         vm.userName = to.params.username
-        if (vm.userName === vm.userInfo().username) {
+        console.log(vm.userInfo().user_name+'---'+vm.userName)
+        if (vm.user_name === vm.userInfo().username) {
           vm.isMyPage = true
         }
         vm.getUserInfo(to.params.username)

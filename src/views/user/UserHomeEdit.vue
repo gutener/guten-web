@@ -55,7 +55,8 @@
     beforeRouteEnter(to, from, next) {
       next(vm => {
         vm.user.user_name = to.params.username
-        if(vm.userInfo().username!==vm.user.user_name){
+        console.log(vm.userInfo().user_name+'---'+vm.user.user_name)
+        if(vm.userInfo().user_name!==vm.user.user_name){
           vm.$router.back(-1)
         }
         vm.getUserInfo(to.params.username)
