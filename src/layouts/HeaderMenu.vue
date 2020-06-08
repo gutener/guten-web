@@ -1,10 +1,15 @@
 <template>
   <SlideMenu>
-    <a :href="user.url">
-      <svg-icon iconClass="avtar-blue"></svg-icon>
-      <span>{{user.nickname}}</span>
-      <span>{{user.username}}</span>
-    </a>
+    <div class="gu-flexCenter" style="margin-bottom: 18px;">
+      <div class="avatar">
+        <img v-show="user.haveAvatar" :src="user.avatar" class="avatar-image" :alt="user.nick_name">
+        <svg-icon v-show="!user.haveAvatar" iconClass="avtar-blue"></svg-icon>
+      </div>
+      <div class="gu-menu-user u-flex1">
+        <div style="height: 22px;font-weight: 600;">{{user.nick_name}}</div>
+        <a class="link" :href="user.url">{{user.user_name}}</a>
+      </div>
+    </div>
     <a href="/channels">
       <svg-icon iconClass="channel"></svg-icon>
       <span>频道</span>
@@ -31,17 +36,13 @@
 
 <script>
   import SlideMenu from '@/components/g-menu/SlideMenu'
-  import { mapActions,mapGetters } from 'vuex'
+  import {mapActions, mapGetters} from 'vuex'
 
   export default {
     name: 'silder-menu',
     data() {
       return {
-        user:{
-          usename:'',
-          avatar:'',
-          url:''
-        }
+        user: {}
       }
     },
     components: {
@@ -53,13 +54,12 @@
     methods: {
       ...mapActions(['Logout']),
       ...mapGetters(['userInfo']),
-      init(){
-        console.log(this.userInfo())
-        this.user={
-          username:`@${this.userInfo().user_name}`,
-          nickname:this.userInfo().nick_name,
-          url:`/u/${this.userInfo().user_name}`
-        }
+      init() {
+        this.user = this.userInfo()
+        this.user.user_name = `@${this.user.user_name}`
+        this.user.url = `/u/${this.user.user_name}`
+        this.user.haveAvatar = !!this.user.avatar
+        console.log(this.user)
       },
       handleLogout() {
         const that = this
@@ -105,6 +105,34 @@
 
     .bottom-fixed {
 
+    }
+  }
+
+  .avatar {
+    display: block;
+    white-space: nowrap;
+    overflow: visible;
+    text-overflow: ellipsis;
+    line-height: normal;
+    position: relative;
+    .avatar-image{
+      display: inline-block;
+      vertical-align: middle;
+      -webkit-border-radius: 100%;
+      border-radius: 100%;
+      width: 40px;
+      height: 40px;
+    }
+  }
+  .gu-menu-user{
+    padding-left: 15px;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 1 auto;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    .link {
+      color: rgb(255, 255, 255);
+      font-size: 13px;
     }
   }
 </style>
