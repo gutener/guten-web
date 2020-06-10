@@ -11,20 +11,10 @@
         <div class="u-flexCenter u-flex1">
           <div v-if="source.haveSeed" class="ui-captionUser">
             <div class="postMetaInline">
-              <a-popover trigger="hover">
+              <!--TODO 没有销毁popover内容-->
+              <a-popover trigger="hover" :destroyTooltipOnHide=true>
                 <a :href="source.author.url">{{source.author.user_name}}</a>
-                <template slot="content">
-                  <div class="gu-flexCenter user-popover">
-                    <div style="margin-right:12px;max-width: 160px">
-                      <div style="margin-bottom: 6px;font-size:1.5rem;font-weight: bold">{{source.author.nick_name}}</div>
-                      <div style="font-size: 0.8rem;color:rgba(0, 0, 0, 0.54);">{{source.author.biography}}</div>
-                    </div>
-                    <div class="avatar">
-                      <img :src="source.author.avatar" class="avatar-image" :alt="source.author.nick_name">
-                    </div>
-                    <div style="border-bottom: 1px #eee"></div>
-                  </div>
-                </template>
+                <UserPopover :user="source.author" slot="content"/>
               </a-popover>
             </div>
           </div>
@@ -61,6 +51,7 @@
   </div>
 </template>
 <script>
+  import UserPopover from "@/views/user/UserPopover";
   export default {
     name:"hp-card",
     props: {
@@ -72,6 +63,7 @@
       }
     },
     components: {
+      UserPopover
     },
     data() {
       return {

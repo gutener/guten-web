@@ -51,7 +51,7 @@
       next(vm => {
         vm.userName = to.params.username
         console.log(vm.userInfo().user_name+'---'+vm.userName)
-        if (vm.user_name === vm.userInfo().username) {
+        if (vm.userName === vm.userInfo().user_name) {
           vm.isMyPage = true
         }
         vm.getUserInfo(to.params.username)
