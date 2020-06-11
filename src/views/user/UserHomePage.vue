@@ -15,7 +15,7 @@
               <a :href="user.editUrl" class="GuButton GuButton--light GuButton--small" rel="noopener">编辑</a>
             </div>
             <div v-if="!isMyPage" class="user_edit">
-              <a :href="user.editUrl" class="GuButton GuButton--color GuButton--small" rel="noopener">关注</a>
+              <a @click="handlefollow" class="GuButton GuButton--color GuButton--small" rel="noopener">{{followText}}</a>
             </div>
           </div>
           <div style="margin-top:24px">
@@ -25,6 +25,10 @@
             <div class="gu-flex user_location margintop12">
               <svg-icon iconClass="location" style="font-size: 20px;margin-left:-4px"></svg-icon>
               <span style="margin-left: 4px;">{{user.location}}</span>
+            </div>
+            <div class="gu-flex user_follow margintop24">
+              <a>{{user.following_count}} 关注</a>
+              <a v-show="user.followers_count" style="margin-left: 18px;">{{user.followers_count}} 粉丝</a>
             </div>
           </div>
         </div>
@@ -41,7 +45,7 @@
   </a-skeleton>
 </template>
 <script>
-  import {getUser} from '@/api/biz'
+  import {follow, getUser, unfollow} from '@/api/biz'
   import {mapGetters} from 'vuex'
   import moment from "moment"
   import {Tab, Tabs} from '@/components/Tabs'
@@ -50,7 +54,6 @@
     beforeRouteEnter(to, from, next) {
       next(vm => {
         vm.userName = to.params.username
-        console.log(vm.userInfo().user_name+'---'+vm.userName)
         if (vm.userName === vm.userInfo().user_name) {
           vm.isMyPage = true
         }
@@ -61,8 +64,10 @@
       return {
         loading: true,
         userName: '',
-        isMyPage:false,
-        user: {}
+        isMyPage: false,
+        user: {},
+        isFollow:0,
+        followText:''
       }
     },
     components: {
@@ -83,11 +88,44 @@
               }
               this.user.editUrl = `/u/${this.user.user_name}/edit`
               this.user.create_time = moment(this.user.create_time).fromNow()
+              this.isFollow = this.user.is_followed
+              this.changeFollowText()
               this.loading = false
             })
             .catch(error => {
               console.error(error)
             })
+      },
+      changeFollowText(){
+        if(this.user.is_followed===0){
+          this.followText="关注"
+        }else if(this.user.is_followed===1){
+          this.followText="正在关注"
+        }else if(this.user.is_followed===2){
+          this.followText="相互"
+        }
+      },
+      handlefollow() {
+        const userid = this.user.user_id
+        if(this.user.is_followed===0){
+          follow(userid)
+              .then(response => {
+                this.user.is_followed=this.isFollow
+                this.changeFollowText()
+              })
+              .catch(error => {
+                console.error(error)
+              })
+        }else{
+          unfollow(userid)
+              .then(response => {
+                this.user.is_followed=0
+                this.changeFollowText()
+              })
+              .catch(error => {
+                console.error(error)
+              })
+        }
       }
     }
   }

@@ -66,3 +66,15 @@ export function getUser(userName) {
     method: 'get'
   })
 }
+export function follow(userid) {
+  return axios({
+    url: `/story/follow/v1/${userid}/follow`,
+    method: 'post'
+  })
+}
+export function unfollow(userid) {
+  return axios({
+    url: `/story/follow/v1/${userid}/unfollow`,
+    method: 'post'
+  })
+}

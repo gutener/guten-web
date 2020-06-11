@@ -7,9 +7,9 @@
           <input class="PostStory-title"
                  v-model="story.title"
                  type="text" placeholder="写下你的问题,或者一个想法的题目"
-                 style="text-align: center; font-size: 150%; font-weight: 500;">
+                 style="text-align: center; font-size: 150%; font-weight: 500;"/>
           <medium-editor
-                  style="min-height:350px;"
+                  style="min-height:350px;background-color: #fbfbfb;"
                   :options="options"
                   :onChange="onChange"
                   v-on:uploaded="uploadCallback">
@@ -212,6 +212,7 @@
   }
 
   .StoryReward-Card {
+    margin-top: 2.5rem;
     .flex {
       display: -webkit-flex;
       display: flex;
@@ -268,6 +269,4 @@
       }
     }
   }
-
-
 </style>

@@ -8,7 +8,7 @@ body {
     overflow: auto;
   }
 
-  font-family: Georgia, -apple-system, BlinkMacSystemFont, Helvetica Neue, PingFang SC, Microsoft YaHei, Source Han Sans SC, Noto Sans CJK SC, WenQuanYi Micro Hei, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, PingFang SC, Microsoft YaHei, Source Han Sans SC, Noto Sans CJK SC, WenQuanYi Micro Hei, sans-serif;
   font-size: 15px;
   color: #1a1a1a;
   -webkit-tap-highlight-color: rgba(26, 26, 26, 0);
@@ -31,6 +31,28 @@ a, area, button, [role='button'], input:not([type='range']), label, select, summ
   touch-action: none;
 }
 
+::-webkit-input-placeholder { /* WebKit browsers */
+  color: #bfbfbf;
+}
+
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+  color: #bfbfbf;
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+  color: #bfbfbf;
+}
+input{
+  &:focus::-webkit-input-placeholder{
+    opacity: 0;
+  }
+  &:focus::-moz-placeholder{
+    opacity: 0;
+  }
+  &:focus::-ms-input-placeholder{
+    opacity: 0;
+  }
+}
 .gu-clearfix:after, .gu-clearfix:before {
   display: table;
   content: " ";

@@ -3,6 +3,11 @@
     <h2 class="ContentItem-title">
       <a :href="source.url" target="_blank">{{source.target.title}}</a>
     </h2>
+    <div v-show="!!source.target.tags" style="margin-bottom: 18px;margin-top: -6px;">
+      <a :href="tag.url" target="_blank" class="tag-node" v-for="tag in tags">
+        {{tag.name}}
+      </a>
+    </div>
     <div class="RichContent">
       <div class="RichContent-inner">
         <div class="RichText" v-html="source.excerpt"></div>
@@ -22,6 +27,11 @@
             <time class="u-inlineBlock u-lineHeightBase">{{source.target.create_time}}</time>
             <span class="middotDivider"></span>
             <span class="readingTime" :title="source.target.seed_count"></span>
+            <span class="middotDivider"></span>
+            <span>
+              <span style="margin-right: 2px">{{source.target.reply_count}}</span>
+              <svg-icon iconClass="comment-o"></svg-icon>
+            </span>
           </div>
         </div>
         <button class="RichContent-button">
@@ -47,7 +57,6 @@
         </button>
       </div>
     </div>
-
   </div>
 </template>
 <script>
@@ -67,10 +76,26 @@
     },
     data() {
       return {
+        tags:[]
       }
     },
+    created() {
+      this.init()
+    },
     methods: {
-    }
+      init(){
+        if(!!this.source.target.tags){
+          this.source.target.tags.split(';').forEach(tag=>{
+            const tagObj={
+              url:`/hashtag/${tag.replace('#','')}?src=homepage_click`,
+              name:tag
+            }
+            this.tags.push(tagObj)
+          })
+        }
+      }
+    },
+
   }
 </script>
 <style lang="less" scoped>
