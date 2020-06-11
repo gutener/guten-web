@@ -6,7 +6,7 @@
           accept="image/png,image/gif,image/jpeg,image/webp"
           :post-action="uploadUrl"
           :multiple="true"
-          :size="1024 * 1024 * 10"
+          :size="2048 * 1024 * 10"
           v-model="insert.files"
           @input-filter="inputFilter"
           @input-file="inputFile">
