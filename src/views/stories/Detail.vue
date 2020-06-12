@@ -33,9 +33,16 @@
       <div class="post-sidebar__maincol">
         <div class="post-sidebar__body">
           <div class="post-sidebar__actions">
-            <h4>
-              <button class="" @click="seed">{{story.seed}}<i>₲</i></button>
-            </h4>
+            <div class="post-sidebar__section" style="margin-bottom: 20px;width: 36px;">
+              <a-popover trigger="hover" placement="right" :destroyTooltipOnHide=true>
+                <div class="" @click="seed">{{story.seed}}<i>₲</i></div>
+                <template slot="content">
+                  <div @click="" style="cursor: pointer">seed to creator</div>
+                  <div @click="seed" style="cursor: pointer;margin-top:6px">set reward to story</div>
+                </template>
+              </a-popover>
+            </div>
+            <div class="post-sidebar__section">eee</div>
           </div>
         </div>
       </div>
@@ -140,7 +147,7 @@
        * seed to story
        */
       seed() {
-        const storyId=this.story.id
+        const storyId = this.story.id
         seedStory(storyId)
             .then(response => {
               console.log(response)
@@ -162,7 +169,7 @@
         postReply(this.reply)
             .then(response => {
               this.listRelies(this.story.id)
-              self.$refs.replyContainer.$refs.editor.innerHTML=''
+              self.$refs.replyContainer.$refs.editor.innerHTML = ''
             })
             .catch(error => {
 

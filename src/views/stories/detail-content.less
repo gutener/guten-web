@@ -1,27 +1,32 @@
 @whatever: ~">>>";
-.story-container{
+.story-container {
   padding: 1em;
   margin: 0px auto;
   font-family: Georgia, -apple-system, BlinkMacSystemFont, Helvetica Neue, PingFang SC, Microsoft YaHei, Source Han Sans SC, Noto Sans CJK SC, WenQuanYi Micro Hei, sans-serif;
 }
-.story-body{
+
+.story-body {
   background-color: rgb(255, 255, 255);
   max-width: 820px;
   margin: 2em auto;
 }
-.enlargeable{
+
+.enlargeable {
 }
-.story-body-header{
+
+.story-body-header {
   position: relative;
   text-align: left;
-  h1{
+
+  h1 {
     color: rgb(0, 0, 0);
     min-width: 0px;
     padding-right: 4em;
     text-overflow: unset;
     overflow: unset;
     white-space: unset;
-    a{
+
+    a {
       font-weight: 500;
       color: rgb(0, 0, 0);
       line-height: 1.5em;
@@ -29,52 +34,66 @@
     }
   }
 }
-.post-sidebar{
-  position: fixed;
-  top: calc(65px + 54px + 40px);
+.post-sidebar {
   transition: opacity 200ms;
   opacity: 0;
+  top: calc(65px + 54px + 40px);
+  position: fixed;
+  will-change: opacity;
   width: 100%;
-  .post-sidebar__maincol{
+  .post-sidebar__maincol {
     justify-content: center;
-    margin: 0 4rem;
-    .post-sidebar__body{
-      flex-direction: column;
+    display: flex;
+    .post-sidebar__body {
+      margin: 0 64px;
+      width: 100%;
+      max-width: 1192px;
       .post-sidebar__actions{
+        flex-direction: column;
+        width: 131px;
+        display: flex;
+        .post-sidebar__section {
+
+        }
       }
     }
   }
-
 }
-.post-sidebar.show{
+
+.post-sidebar.show {
   opacity: 1;
 }
+
 .enlargeable-header {
   font-size: 1.25em;
 }
-@media (min-width: 800px){
- .enlargeable-header {
-   font-size: 1.5em;
- }
+
+@media (min-width: 800px) {
+  .enlargeable-header {
+    font-size: 1.5em;
+  }
 }
 
-.reply-container{
+.reply-container {
   margin: 0px auto;
   max-width: 720px;
   padding: 2em 1em 1em;
+
   @{whatever} .medium-editor-container {
     margin: 0 0.5rem;
     padding: 1rem 0;
     font-size: 1rem;
   }
+
   .flex-column {
     display: -webkit-flex;
     display: flex;
     -webkit-flex-direction: column;
     flex-direction: column;
   }
-  .reply-input{
-    button{
+
+  .reply-input {
+    button {
       background-color: transparent;
       border: none;
       visibility: visible;
@@ -83,32 +102,39 @@
     }
   }
 }
-.reply-header{
+
+.reply-header {
   margin-bottom: 16px;
 }
-.medium-editor{
+
+.medium-editor {
   font-size: 1rem;
   color: #1d1d1d;
 }
 
-.medium-editor @{whatever} p{
+.medium-editor @{whatever} p {
   margin-bottom: 1.2rem;
   line-height: 2rem;;
 }
-.medium-editor @{whatever} ol{
+
+.medium-editor @{whatever} ol {
   margin-left: 1.3rem;
   margin-top: 1rem;
-  li{
+
+  li {
     margin-bottom: 0.5rem;
   }
 }
-.medium-editor @{whatever} iframe{
+
+.medium-editor @{whatever} iframe {
   height: 34rem !important;
   width: 100%;
 }
-.mobile .medium-editor @{whatever} iframe{
+
+.mobile .medium-editor @{whatever} iframe {
   height: 14rem !important;
 }
+
 .medium-editor @{whatever} blockquote {
   margin: 1.4em 0;
   padding-left: 1em;

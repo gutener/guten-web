@@ -18,7 +18,7 @@
             <div class="postMetaInline">
               <!--TODO 没有销毁popover内容-->
               <a-popover trigger="hover" :destroyTooltipOnHide=true>
-                <a :href="source.author.url">{{source.author.user_name}}</a>
+                <a :href="source.author.url">{{source.author.nick_name}}</a>
                 <UserPopover :user="source.author" slot="content"/>
               </a-popover>
             </div>
