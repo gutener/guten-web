@@ -66,16 +66,22 @@
           </div>
         </div>
       </div>
-      <section class="streamItem " v-for="reply in replies" :key="reply.id">
-        <div style="border-radius: 3px; border: 1px solid rgb(221, 221, 221); margin-bottom: 1em; padding-right: 1em;">
+      <section class="streamItem " v-for="reply in replies" :key="reply.target.id">
+        <div class="reply-section">
           <div class="gu-clearfix reply-header">
             <div class="gu-floatLeft">
-              {{reply.create_time}}
+              <a v-if="!!reply.author">{{reply.author.nick_name}}</a>
+              <div style="font-size: 0.8rem;color: rgba(0, 0, 0, 0.45);margin-top: 2px;">
+                {{reply.target.create_time}}
+              </div>
+            </div>
+            <div class="gu-floatRight">
+              <a class="" @click="seedReply(reply.target)">{{reply.target.seed}}<i>₲</i></a>
             </div>
           </div>
-          <div v-html="reply.reply_body"></div>
-          <div style="color: rgb(170, 170, 170); padding-left: 1.5em; padding-bottom: 0.5em; cursor: pointer;">
-            <div class="sc-fAjcbJ cfvcJF">
+          <div class="reply-body" v-html="reply.target.reply_body"></div>
+          <div style="color: rgb(170, 170, 170); padding-left: 1rem; padding-bottom: 0.5rem; cursor: pointer;">
+            <div class="">
               <svg-icon iconClass="share" style="font-size:23px"></svg-icon>
             </div>
           </div>
@@ -85,7 +91,7 @@
   </article>
 </template>
 <script>
-  import {getStory, listReliesByStory, postReply, seedStory} from '@/api/biz'
+  import {getStory, listReliesByStory, postReply, seedStory,seedReply} from '@/api/biz'
   import Editor from '@/components/medium-editor/Editor'
   import moment from 'moment'
 
@@ -150,10 +156,30 @@
         const storyId = this.story.id
         seedStory(storyId)
             .then(response => {
-              console.log(response)
               this.story.seed = response
             })
             .catch(error => {
+              if(!!error.response.data){
+                const errorData = error.response.data
+                if(errorData.error_code===9001){
+
+                }
+              }
+              console.error(error)
+            })
+      },
+      seedReply(reply){
+        seedReply(reply.id)
+            .then(response => {
+              reply.seed = response
+            })
+            .catch(error => {
+              if(!!error.response.data){
+                const errorData = error.response.data
+                if(errorData.error_code===9001){
+
+                }
+              }
               console.error(error)
             })
       },
@@ -176,11 +202,16 @@
             })
       },
       listRelies(storyId) {
-        listReliesByStory(storyId)
+        const params ={
+          story_id:storyId,
+          page_num:0,
+          page_size:5
+        }
+        listReliesByStory(params)
             .then(replyRep => {
               this.replies = replyRep
               this.replies.forEach((val) => {
-                val.create_time = moment(val.create_time).fromNow()
+                val.target.create_time = moment(val.target.create_time).fromNow()
               })
             })
             .catch(error => {

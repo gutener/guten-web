@@ -42,17 +42,21 @@ a, area, button, [role='button'], input:not([type='range']), label, select, summ
 :-ms-input-placeholder { /* Internet Explorer 10+ */
   color: #bfbfbf;
 }
-input{
-  &:focus::-webkit-input-placeholder{
+
+input {
+  &:focus::-webkit-input-placeholder {
     opacity: 0;
   }
-  &:focus::-moz-placeholder{
+
+  &:focus::-moz-placeholder {
     opacity: 0;
   }
-  &:focus::-ms-input-placeholder{
+
+  &:focus::-ms-input-placeholder {
     opacity: 0;
   }
 }
+
 .gu-clearfix:after, .gu-clearfix:before {
   display: table;
   content: " ";
@@ -61,6 +65,7 @@ input{
 .gu-clearfix:after {
   clear: both;
 }
+
 .gu-flexCenter {
   display: -webkit-box;
   display: -webkit-flex;
@@ -71,12 +76,14 @@ input{
   -ms-flex-align: center;
   align-items: center;
 }
+
 .gu-flex {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
+
 .gu-flex1 {
   -webkit-box-flex: 1;
   -webkit-flex: 1 1 auto;
@@ -86,6 +93,10 @@ input{
 
 .gu-floatLeft {
   float: left;
+}
+
+.gu-floatRight {
+  float: right
 }
 
 .gu-padding32 {
@@ -143,6 +154,7 @@ input{
   color: #029e74;
   font-weight: 400;
   border-color: #029e74;
+
   &:hover {
     background-color: #fff;
     color: rgb(1, 105, 77);
@@ -165,7 +177,8 @@ input{
   text-overflow: ellipsis;
   line-height: normal;
   position: relative;
-  .avatar-image{
+
+  .avatar-image {
     display: inline-block;
     vertical-align: middle;
     -webkit-border-radius: 100%;

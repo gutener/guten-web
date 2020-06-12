@@ -28,7 +28,10 @@
             </div>
             <div class="gu-flex user_follow margintop24">
               <a>{{user.following_count}} 关注</a>
-              <a v-show="user.followers_count" style="margin-left: 18px;">{{user.followers_count}} 粉丝</a>
+              <a v-if="user.followers_count" style="margin-left: 24px;">{{user.followers_count}} 粉丝</a>
+              <a style="margin-left: 24px;">{{user.income_total}}<i>₲</i> 总收益</a>
+              <a style="margin-left: 24px;">{{user.seeded_count}} 被支持</a>
+              <a style="margin-left: 24px;">{{user.seeding_count}} 支持</a>
             </div>
           </div>
         </div>
@@ -102,7 +105,7 @@
         }else if(this.user.is_followed===1){
           this.followText="正在关注"
         }else if(this.user.is_followed===2){
-          this.followText="相互"
+          this.followText="相互关注"
         }
       },
       handlefollow() {

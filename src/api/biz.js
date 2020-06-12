@@ -27,10 +27,17 @@ export function postReply(obj) {
     data: obj
   })
 }
-export function listReliesByStory(storyId) {
+export function seedReply(replyId) {
   return axios({
-    url: `/story/reply/v1/${storyId}/list-by-story`,
-    method: 'get'
+    url: `/story/seed/v1/reply/${replyId}`,
+    method: 'post'
+  })
+}
+export function listReliesByStory(params) {
+  return axios({
+    url: `/story/reply/v1/list-by-story`,
+    method: 'get',
+    params: params,
   })
 }
 export function seedStory(storyId) {
