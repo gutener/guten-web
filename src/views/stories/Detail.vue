@@ -16,11 +16,10 @@
               <div class="">
                 <button class="" @click="seed">
                   <svg-icon iconClass="seeding" style="font-size:22px"></svg-icon>
-                  <div class="" font-size="1em" height="40%">{{story.seed}}<i>₲</i></div>
+                  <div class="" font-size="1em" height="40%">{{story.reward}}<i>₲</i></div>
                   <span class="" style="opacity: 0; transform: scale(0);">0</span>
                 </button>
               </div>
-              <button class=""></button>
             </div>
           </div>
         </div>
@@ -35,7 +34,7 @@
           <div class="post-sidebar__actions">
             <div class="post-sidebar__section" style="margin-bottom: 20px;width: 36px;">
               <a-popover trigger="hover" placement="right" :destroyTooltipOnHide=true>
-                <div class="" @click="seed">{{story.seed}}<i>₲</i></div>
+                <div class="" @click="seed">{{story.reward}}<i>₲</i></div>
                 <template slot="content">
                   <div @click="" style="cursor: pointer">seed to creator</div>
                   <div @click="seed" style="cursor: pointer;margin-top:6px">set reward to story</div>
@@ -109,19 +108,20 @@
           id: '',
           body: '',
           title: '',
-          seed: 0,
+          reward: 0,
           create_time: ''
         },
         postSidebar: false,
         options: {
-          uploadUrl: `${process.env.VUE_APP_API_BASE_URL}/story/rich_text/v1/uploadimg`,
+          uploadUrl: `${process.env.VUE_APP_API_BASE_URL}/story/images/1.0/?type=g-st`,
           placeholder: {
             text: '回复'
           }
         },
         reply: {
           reply_body: '',
-          story_id: ''
+          story_id: '',
+          reward:0
         },
         reply_button: false,
         replies: []
@@ -138,11 +138,11 @@
         return moment(date)
       },
       getStoryInfo(id) {
-        getStory(id)
+        getStory(id,'app_detail')
             .then(response => {
               this.story.body = response.body
               this.story.title = response.title
-              this.story.seed = response.seed
+              this.story.reward = response.reward
               this.story.create_time = moment(response.create_time).fromNow()
             })
             .catch(error => {
@@ -156,7 +156,8 @@
         const storyId = this.story.id
         seedStory(storyId)
             .then(response => {
-              this.story.seed = response
+              console.log(response)
+              this.story.reward = response
             })
             .catch(error => {
               if(!!error.response.data){
@@ -171,7 +172,7 @@
       seedReply(reply){
         seedReply(reply.id)
             .then(response => {
-              reply.seed = response
+              reply.reward = response
             })
             .catch(error => {
               if(!!error.response.data){
@@ -191,6 +192,7 @@
       },
       saveReply() {
         this.reply.story_id = this.story.id
+        this.reply.story_title = this.story.title
         const self = this
         postReply(this.reply)
             .then(response => {

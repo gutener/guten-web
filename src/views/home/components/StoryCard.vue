@@ -10,7 +10,7 @@
     </div>
     <div class="RichContent">
       <div class="RichContent-inner">
-        <div class="RichText" v-html="source.excerpt"></div>
+        <div class="RichText" v-html="source.target.excerpt"></div>
       </div>
       <div class="RichContent-flex u-flex">
         <div class="u-flexCenter u-flex1">
@@ -35,7 +35,7 @@
           </div>
         </div>
         <button class="RichContent-button">
-          <div style="font-weight: bold;color: #898a89;">{{source.target.seed}}<i>₲</i></div>
+          <div style="font-weight: bold;color: #898a89;">{{source.target.reward}}<i>₲</i></div>
         </button>
         <button class="RichContent-button" style="cursor: pointer;">
           <a-popover trigger="click">
@@ -84,6 +84,7 @@
     },
     methods: {
       init(){
+        console.log(this.source)
         if(!!this.source.target.tags){
           this.source.target.tags.split(';').forEach(tag=>{
             const tagObj={

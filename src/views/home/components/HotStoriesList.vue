@@ -68,11 +68,10 @@
                 }else{
                   val.target.create_time = createTime.fromNow()
                 }
-                if(!!val.author){
-                  val.haveSeed = !!val.author
+                if(val.target.have_seeded){
+                  val.haveSeed = true
                   val.author.url = `/u/${val.author.user_name}`
                 }
-
               })
               if(DataItems.length<this.pageSize)
                 this.hasMore=false

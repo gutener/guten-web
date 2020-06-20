@@ -27,11 +27,20 @@
               <span style="margin-left: 4px;">{{user.location}}</span>
             </div>
             <div class="gu-flex user_follow margintop24">
-              <a>{{user.following_count}} 关注</a>
-              <a v-if="user.followers_count" style="margin-left: 24px;">{{user.followers_count}} 粉丝</a>
-              <a style="margin-left: 24px;">{{user.income_total}}<i>₲</i> 总收益</a>
-              <a style="margin-left: 24px;">{{user.seeded_count}} 被支持</a>
-              <a style="margin-left: 24px;">{{user.seeding_count}} 支持</a>
+              <a>
+                <span style="font-weight: bold;">{{user.following_count}}</span> 正在关注
+              </a>
+              <a v-if="user.followers_count" style="margin-left: 24px;">
+                <span style="font-weight: bold;">{{user.followers_count}}</span> 个关注者
+              </a>
+              <a style="margin-left: 24px;">
+                <span style="font-weight: bold;">{{user.income_total}}<i>₲</i></span> 总收益
+              </a>
+              <a style="margin-left: 24px;">
+                <span style="font-weight: bold;">{{user.seeded_count}}</span> 被支持
+              </a>
+              <a style="margin-left: 24px;"><span style="font-weight: bold;">{{user.seeding_count}}</span> 次支持过
+              </a>
             </div>
           </div>
         </div>

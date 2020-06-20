@@ -73,7 +73,7 @@
           user_name:''
         },
         files: [],
-        uploadUrl:`${process.env.VUE_APP_API_BASE_URL}/story/rich_text/v1/uploadimg`
+        uploadUrl:`${process.env.VUE_APP_API_BASE_URL}/story/images/1.0/?type=g-u`
       }
     },
     watch: {},
