@@ -25,8 +25,10 @@
           </div>
           <div class="ui-caption">
             <time class="u-inlineBlock u-lineHeightBase">{{source.target.create_time}}</time>
-            <span class="middotDivider"></span>
-            <span class="readingTime" :title="source.target.seed_count"></span>
+            <span v-if="source.target.seed_count">
+              <span class="middotDivider"></span>
+              <span class="readingTime" :title="source.target.seed_count"></span>
+            </span>
             <span class="middotDivider"></span>
             <span>
               <span style="margin-right: 2px">{{source.target.reply_count}}</span>
@@ -35,7 +37,10 @@
           </div>
         </div>
         <button class="RichContent-button">
-          <div style="font-weight: bold;color: #898a89;">{{source.target.reward}}<i>₲</i></div>
+          <span style="font-weight: bold;color: #898a89;">{{source.target.reward}}<i>₲</i></span>
+        </button>
+        <button @click="addBookmark" class="RichContent-button">
+          <svg-icon iconClass="bookmark" style="font-size: 18px;"></svg-icon>
         </button>
         <button class="RichContent-button" style="cursor: pointer;">
           <a-popover trigger="click">
@@ -60,13 +65,16 @@
   </div>
 </template>
 <script>
-  import UserPopover from "@/views/user/UserPopover";
+  import UserPopover from "@/views/user/UserPopover"
+  import {addBookmark} from '@/api/biz'
+  import moment from "moment";
+
   export default {
-    name:"hp-card",
+    name: "hp-card",
     props: {
       source: {
         type: Object,
-        default () {
+        default() {
           return {}
         }
       }
@@ -76,33 +84,63 @@
     },
     data() {
       return {
-        tags:[]
+        tags: []
       }
     },
     created() {
       this.init()
     },
     methods: {
-      init(){
-        console.log(this.source)
-        if(!!this.source.target.tags){
-          this.source.target.tags.split(';').forEach(tag=>{
-            const tagObj={
-              url:`/hashtag/${tag.replace('#','')}?src=homepage_click`,
-              name:tag
+      moment: function (date) {
+        return moment(date)
+      },
+      init() {
+        this.source.url = `/stories/${this.source.target.item_id}`
+        this.source.target.seed_count =
+            !!this.source.target.seed_count?`${this.source.target.seed_count} SEEDED`:''
+
+        const currentTime=moment()
+        let createTime = moment(this.source.target.create_time)
+        if(currentTime.diff(createTime, 'days')>7){
+          this.source.target.create_time = createTime.format('LL')
+        }else{
+          this.source.target.create_time = createTime.fromNow()
+        }
+        if(this.source.target.have_seeded){
+          this.source.haveSeed = true
+          this.source.author.url = `/u/${this.source.author.user_name}`
+        }
+        if (!!this.source.target.tags) {
+          this.source.target.tags.split(';').forEach(tag => {
+            const tagObj = {
+              url: `/hashtag/${tag.replace('#', '')}?src=homepage_click`,
+              name: tag
             }
             this.tags.push(tagObj)
           })
         }
+      },
+      addBookmark() {
+        const param = {
+          story_id:this.source.target.item_id
+        }
+        addBookmark(param)
+            .then(response => {
+
+            })
+            .catch(error => {
+              console.error(error)
+            })
       }
     },
 
   }
 </script>
 <style lang="less" scoped>
-  @import url('storycard.less');
-  .user-popover{
-    .avatar-image{
+  @import url('StreamItem.less');
+
+  .user-popover {
+    .avatar-image {
       width: 62px;
       height: 62px;
     }

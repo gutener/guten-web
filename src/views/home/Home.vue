@@ -1,12 +1,12 @@
 <template>
   <article class="HomeStream-container">
-    <HotStoriesList/>
+    <HomeStreamList/>
     <HomeAsider/>
   </article>
 </template>
 
 <script>
-  import HotStoriesList from "./components/HotStoriesList"
+  import HomeStreamList from "./components/HomeStreamList"
   import HomeAsider from "./components/HomeAsider"
 
   export default {
@@ -25,7 +25,7 @@
       }
     },
     components: {
-      "HotStoriesList": HotStoriesList,
+      "HomeStreamList": HomeStreamList,
       "HomeAsider": HomeAsider
     }
   }

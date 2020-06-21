@@ -23,15 +23,14 @@
 </template>
 <script>
   import {homeFeed} from '@/api/biz'
-  import StoryCard from './StoryCard'
+  import StreamItem from './StreamItem'
   import VirtualList from '@/components/VirtualScrollList'
-  import moment from 'moment'
 
   export default {
     data() {
       return {
         items: [],
-        itemComponent: StoryCard,
+        itemComponent: StreamItem,
         pageNum: 0,
         pageSize: 5,
         hasMore: true
@@ -42,36 +41,20 @@
       this.getPageData({page_num: this.pageNum,page_size: this.pageSize})
     },
     components: {
-      StoryCard,
+      StreamItem,
       VirtualList
     },
     mounted() {
       window.addEventListener("scroll", this.getScroll)
     },
     methods: {
-      moment: function (date) {
-        return moment(date)
-      },
       getPageData(page) {
         const self = this
         homeFeed(page)
             .then(response => {
-              const currentTime=moment()
               let DataItems = response
               DataItems.forEach((val) => {
-                val.url = `/stories/${val.target.id}`
-                val.id = val.target.id
-                val.target.seed_count = !!val.target.seed_count?`${val.target.seed_count} SEEDED`:''
-                let createTime = moment(val.target.create_time)
-                if(currentTime.diff(createTime, 'days')>7){
-                  val.target.create_time = createTime.format('LL')
-                }else{
-                  val.target.create_time = createTime.fromNow()
-                }
-                if(val.target.have_seeded){
-                  val.haveSeed = true
-                  val.author.url = `/u/${val.author.user_name}`
-                }
+                val.id=val.target.item_id
               })
               if(DataItems.length<this.pageSize)
                 this.hasMore=false

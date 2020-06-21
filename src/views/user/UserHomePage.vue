@@ -49,9 +49,9 @@
             <SeedStreamList :userId="userId"
             ></SeedStreamList>
           </tab>
-          <!--<tab title="回复">
-            ddddfffdf
-          </tab>-->
+          <tab v-if="isMyPage" title="bookmark">
+            <BookMardList></BookMardList>
+          </tab>
         </tabs>
       </div>
     </section>
@@ -63,7 +63,7 @@
   import moment from "moment"
   import {Tab, Tabs} from '@/components/Tabs'
   import SeedStreamList from "./SeedStream/SeedStreamList"
-
+  import BookMardList from "./Bookmark/BookMardList"
   export default {
     beforeRouteEnter(to, from, next) {
       next(vm => {
@@ -88,7 +88,8 @@
     components: {
       Tabs,
       Tab,
-      SeedStreamList
+      SeedStreamList,
+      BookMardList
     },
     methods: {
       ...mapGetters(['userInfo']),

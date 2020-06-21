@@ -95,3 +95,17 @@ export function unfollow(userid) {
     method: 'post'
   })
 }
+export function addBookmark(params) {
+  return axios({
+    url: `/story/1.0/bookmark`,
+    params: params,
+    method: 'put'
+  })
+}
+export function listBookmark(param) {
+  return axios({
+    url: `/story/1.0/bookmark/list`,
+    method: 'get',
+    params:param
+  })
+}
