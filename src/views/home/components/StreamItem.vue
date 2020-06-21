@@ -112,8 +112,7 @@
         } else {
           this.source.target.create_time = createTime.fromNow()
         }
-        if (this.source.target.have_seeded) {
-          this.source.haveSeed = true
+        if (this.source.have_seeded) {
           this.source.author.url = `/u/${this.source.author.user_name}`
         }
         if (!!this.source.target.tags) {
@@ -147,7 +146,6 @@
 </script>
 <style lang="less" scoped>
   @import url('StreamItem.less');
-
   .user-popover {
     .avatar-image {
       width: 62px;

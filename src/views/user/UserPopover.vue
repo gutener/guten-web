@@ -1,13 +1,17 @@
 <template slot="content">
-  <div class="gu-flexCenter user-popover">
-    <div style="margin-right:12px;max-width: 160px">
-      <div style="margin-bottom: 6px;font-size:1rem;font-weight: bold">{{user.user_name}}</div>
-      <div style="font-size: 0.8rem;color:rgba(0, 0, 0, 0.54);">{{user.biography}}</div>
+  <div>
+    <div class="gu-flexCenter user-popover">
+      <div style="margin-right:12px;max-width: 180px">
+        <div style="font-size:1rem;font-weight: bold">{{user.nick_name}}</div>
+        <div style="margin-bottom: 6px">@{{user.user_name}}</div>
+        <div style="font-size: 0.8rem;color:rgba(0, 0, 0, 0.54);">{{user.biography}}</div>
+      </div>
+      <div class="avatar">
+        <img :src="user.avatar" class="avatar-image" style="width: 52px;height: 52px;" :alt="user.nick_name">
+      </div>
     </div>
-    <div class="avatar">
-      <img :src="user.avatar" class="avatar-image" :alt="user.nick_name">
-    </div>
-    <div style="border-bottom: 1px #eee"></div>
+    <div style="border-bottom: 1px #eee;margin-top:12px"></div>
+    <a @click="handlefollow" class="GuButton GuButton--color GuButton--small" rel="noopener">关注</a>
   </div>
 </template>
 
