@@ -23,6 +23,13 @@ export function homeFeed(page) {
     method: 'get'
   })
 }
+export function userSeed(page) {
+  return axios({
+    url: `/cds/1.0/user-seeded-list`,
+    params: page,
+    method: 'get'
+  })
+}
 export function postReply(obj) {
   return axios({
     url: '/reply/1.0',

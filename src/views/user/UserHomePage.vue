@@ -46,11 +46,12 @@
         </div>
         <tabs class="user_mainColum-tabs">
           <tab title="动态">
-            <div>asdfdsf</div>
+            <SeedStreamList :userId="userId"
+            ></SeedStreamList>
           </tab>
-          <tab title="回复">
+          <!--<tab title="回复">
             ddddfffdf
-          </tab>
+          </tab>-->
         </tabs>
       </div>
     </section>
@@ -61,6 +62,7 @@
   import {mapGetters} from 'vuex'
   import moment from "moment"
   import {Tab, Tabs} from '@/components/Tabs'
+  import SeedStreamList from "./SeedStream/SeedStreamList"
 
   export default {
     beforeRouteEnter(to, from, next) {
@@ -79,18 +81,22 @@
         isMyPage: false,
         user: {},
         isFollow:0,
-        followText:''
+        followText:'',
+        userId:'',
       }
     },
     components: {
       Tabs,
       Tab,
+      SeedStreamList
     },
     methods: {
       ...mapGetters(['userInfo']),
       getUserInfo(id) {
         getUser(id)
             .then(response => {
+              this.userId=response.user_id
+
               this.user = response
               if (!this.user.nick_name) {
                 this.user.nick_name = 'GUTENer'
