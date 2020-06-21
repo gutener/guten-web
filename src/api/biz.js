@@ -63,6 +63,13 @@ export function querytags(tagName) {
     method: 'get'
   })
 }
+export function checkFollowtag(tagId) {
+  return axios({
+    url: `/tags/1.0/have_followed`,
+    params: tagId,
+    method: 'get'
+  })
+}
 export function postUser(obj) {
   return axios({
     url: '/users/1.0/save',

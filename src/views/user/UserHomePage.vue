@@ -49,7 +49,7 @@
             <SeedStreamList :userId="userId"
             ></SeedStreamList>
           </tab>
-          <tab v-if="isMyPage" title="bookmark">
+          <tab v-if="isMyPage" title="书签">
             <BookMardList></BookMardList>
           </tab>
         </tabs>
