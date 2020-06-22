@@ -14,11 +14,7 @@
           <div class="">
             <div class="">
               <div class="">
-                <button class="" @click="seed">
-                  <svg-icon iconClass="seeding" style="font-size:22px"></svg-icon>
-                  <div class="" font-size="1em" height="40%">{{story.reward}}<i>₲</i></div>
-                  <span class="" style="opacity: 0; transform: scale(0);">0</span>
-                </button>
+                <SeedButton :reward="story.reward" @seedClick="seed"></SeedButton>
               </div>
             </div>
           </div>
@@ -34,7 +30,7 @@
           <div class="post-sidebar__actions">
             <div class="post-sidebar__section" style="margin-bottom: 20px;width: 36px;">
               <a-popover trigger="hover" placement="right" :destroyTooltipOnHide=true>
-                <div class="" @click="seed">{{story.reward}}<i>₲</i></div>
+                <div class="seed" @click="seed">{{story.reward}}<i>₲</i></div>
                 <template slot="content">
                   <div @click="" style="cursor: pointer">seed to creator</div>
                   <div @click="seed" style="cursor: pointer;margin-top:6px">set reward to story</div>
@@ -90,9 +86,10 @@
   </article>
 </template>
 <script>
-  import {getStory, listReliesByStory, postReply, seedStory,seedReply} from '@/api/biz'
+  import {getStory, listReliesByStory, postReply, seedReply, seedStory} from '@/api/biz'
   import Editor from '@/components/medium-editor/Editor'
   import moment from 'moment'
+  import SeedButton from "@/components/Button/SeedButton";
 
   export default {
     beforeRouteEnter(to, from, next) {
@@ -121,13 +118,14 @@
         reply: {
           reply_body: '',
           story_id: '',
-          reward:0
+          reward: 0
         },
         reply_button: false,
         replies: []
       }
     },
     components: {
+      SeedButton,
       "medium-editor": Editor
     },
     mounted() {
@@ -138,7 +136,7 @@
         return moment(date)
       },
       getStoryInfo(id) {
-        getStory(id,'app_detail')
+        getStory(id, 'app_detail')
             .then(response => {
               this.story.body = response.body
               this.story.title = response.title
@@ -156,28 +154,27 @@
         const storyId = this.story.id
         seedStory(storyId)
             .then(response => {
-              console.log(response)
               this.story.reward = response
             })
             .catch(error => {
-              if(!!error.response.data){
+              if (!!error.response.data) {
                 const errorData = error.response.data
-                if(errorData.error_code===9001){
+                if (errorData.error_code === 9001) {
 
                 }
               }
               console.error(error)
             })
       },
-      seedReply(reply){
+      seedReply(reply) {
         seedReply(reply.id)
             .then(response => {
               reply.reward = response
             })
             .catch(error => {
-              if(!!error.response.data){
+              if (!!error.response.data) {
                 const errorData = error.response.data
-                if(errorData.error_code===9001){
+                if (errorData.error_code === 9001) {
 
                 }
               }
@@ -204,10 +201,10 @@
             })
       },
       listRelies(storyId) {
-        const params ={
-          story_id:storyId,
-          page_num:0,
-          page_size:5
+        const params = {
+          story_id: storyId,
+          page_num: 0,
+          page_size: 5
         }
         listReliesByStory(params)
             .then(replyRep => {

@@ -19,9 +19,9 @@ Vue.use(Popover);
 Vue.use(ConfigProvider);
 Vue.use(Skeleton);
 Vue.use(Input);
+Vue.use(Button);
 //login page
 Vue.use(Form);
-Vue.use(Button);
 Vue.use(Tabs);
 Vue.use(Row);
 Vue.use(Col);
