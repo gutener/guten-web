@@ -72,21 +72,21 @@ export function checkFollowtag(tagId) {
 }
 export function postUser(obj) {
   return axios({
-    url: '/users/1.0/save',
+    url: '/users/1.0/profile/save',
     method: 'put',
     data: obj
   })
 }
 export function updateUser(obj) {
   return axios({
-    url: '/users/1.0/update',
+    url: '/users/1.0/profile/update',
     method: 'post',
     data: obj
   })
 }
 export function getUser(userName) {
   return axios({
-    url: `/users/1.0/${userName}`,
+    url: `/users/1.0/profile/${userName}`,
     method: 'get'
   })
 }

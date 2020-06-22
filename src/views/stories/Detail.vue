@@ -43,7 +43,7 @@
       </div>
     </div>
     <div class="reply-container">
-      <div style="color: rgb(170, 170, 170); padding: 1em 0px;">15 replies</div>
+      <div style="color: rgb(170, 170, 170); padding: 1em 0px;">{{story.reply_count}} 回复</div>
       <div class="reply-column reply-input" style="height: 100%;margin-bottom: 2rem;">
         <div class="reply-grow" style="position: relative">
           <medium-editor
@@ -141,6 +141,7 @@
               this.story.body = response.body
               this.story.title = response.title
               this.story.reward = response.reward
+              this.story.reply_count = response.reply_count
               this.story.create_time = moment(response.create_time).fromNow()
             })
             .catch(error => {
