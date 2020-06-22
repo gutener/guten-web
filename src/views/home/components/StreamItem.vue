@@ -1,6 +1,9 @@
 <template>
   <div class="ContentItem">
     <article style="margin-right:16px;width: 100%;">
+      <div v-if="!!source.seeded_user" class="ui-caption" style="margin-bottom: 6px;">
+        你关注的 <span style="font-weight:bold">{{source.seeded_user.nick_name}}</span> seed过
+      </div>
       <h2 class="ContentItem-title">
         <a :href="source.url" target="_blank">{{source.target.title}}</a>
       </h2>
