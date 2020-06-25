@@ -1,8 +1,12 @@
 <template>
   <div class="ContentItem">
-    <article style="margin-right:16px;width: 100%;">
+    <button class="GuButton GuButton--seed main-layout" style="margin-left: 12px;margin-top: 12px;">
+      <span class="seed">{{source.target.reward}}<i>₲</i></span>
+    </button>
+    <article style="margin: 12px 6px 12px 6px;width: 100%;">
       <div v-if="!!source.seeded_user" class="ui-caption" style="margin-bottom: 6px;">
-        你关注的 <span style="font-weight:bold">{{source.seeded_user.nick_name}}</span> seed过
+        <svg-icon iconClass="seed" style="margin-right:4px" ></svg-icon>
+        <span style="font-weight:bold">{{source.seeded_user.nick_name}}</span> seed过
       </div>
       <h2 class="ContentItem-title">
         <a :href="source.url" target="_blank">{{source.target.title}}</a>
@@ -16,7 +20,10 @@
         <div class="RichContent-inner">
           <div class="RichText" v-html="source.target.excerpt"></div>
         </div>
-        <div class="RichContent-flex u-flex">
+        <div v-if="!!source.target.cover" class="ContentItem-cover">
+          <a class="backgroundCover" :style="cover"></a>
+        </div>
+        <div class="RichContent-flex u-flex" style="margin-top: 4px;">
           <div class="u-flexCenter u-flex1">
             <div v-if="source.have_seeded" class="ui-captionUser">
               <div class="postMetaInline">
@@ -40,9 +47,6 @@
             </span>
             </div>
           </div>
-          <button class="RichContent-button">
-            <span style="font-weight: bold;color: #898a89;">{{source.target.reward}}<i>₲</i></span>
-          </button>
           <button @click="addBookmark" class="RichContent-button">
             <svg-icon iconClass="bookmark" style="font-size: 18px;"></svg-icon>
           </button>
@@ -67,14 +71,13 @@
         </div>
       </div>
     </article>
-    <div v-if="!!source.target.cover" class="ContentItem-cover">
-      <a class="backgroundCover" :style="cover"></a>
-    </div>
+
   </div>
 </template>
 <script>
   import UserPopover from "@/views/user/UserPopover"
   import {addBookmark} from '@/api/biz'
+  import SeedButton from "@/components/Button/SeedButton";
   import moment from "moment";
 
   export default {
@@ -88,7 +91,8 @@
       }
     },
     components: {
-      UserPopover
+      UserPopover,
+      SeedButton
     },
     data() {
       return {
@@ -104,7 +108,7 @@
         return moment(date)
       },
       init() {
-        this.source.url = `/stories/${this.source.target.item_id}`
+        this.source.url = `/story/${this.source.target.item_id}`
         this.source.target.seed_count =
             !!this.source.target.seed_count ? `${this.source.target.seed_count} SEEDED` : ''
 
@@ -149,10 +153,32 @@
 </script>
 <style lang="less" scoped>
   @import url('StreamItem.less');
+
   .user-popover {
     .avatar-image {
       width: 62px;
       height: 62px;
     }
   }
+
+  .GuButton--seed {
+    letter-spacing: 1px;
+    position: relative;
+    width: 50px;
+    height: 50px;
+    outline: transparent solid 1px;
+    border-radius: 50%;
+    transition: border 0.1s ease-in 0s;
+    padding: 0px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(255, 255, 255);
+    border-image: initial;
+    background: rgba(0, 0, 0, 0.15);
+    .seed {
+      color: rgba(0, 0, 0, 0.65);
+      margin-top: 12px;
+    }
+  }
+
 </style>

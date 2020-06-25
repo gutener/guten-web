@@ -1,6 +1,6 @@
 <template>
   <div class="GlobalSideBar">
-    <aside class="streamItem">
+    <aside class="streamItem page-aside-width">
       <a class="gu-link">
         <div class="gu-flexCenter gu-borderBottomLighter homeAsider_title">
           <h3 class="ui-h2">Popular on GUTEN</h3>

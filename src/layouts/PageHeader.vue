@@ -31,14 +31,12 @@
                 </a>
               </nav>
             </div>
-            <div class="main-layout">
-              <div class="">
-              <span class="PostStory" id="HeaderUserActions--NewPost">
-                <a class="CreatePost" aria-label="Create Post" href="/new-story">
+            <div class="main-layout post-story-button">
+              <a class="main-layout post-story" aria-label="Create Post" href="/new-story">
+                <span class="button-span">
                   发文
-                </a>
-              </span>
-              </div>
+                </span>
+              </a>
             </div>
           </div>
         </div>
@@ -69,4 +67,34 @@
 
 <style lang="less" scoped>
   @import url('../components/global.less');
+
+  .header-action-options {
+    margin-top: 2px;
+    margin-bottom: 5px;
+    width: 100%;
+  }
+
+  .post-story {
+    margin-bottom: 5px;
+    margin-top: 5px;
+    min-height: 49px;
+    min-width: calc(78.89px);
+    padding-left: 30px;
+    padding-right: 30px;
+    border-radius: 999px;
+    background-color: rgb(23, 191, 99);
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 8px 28px;
+  }
+
+  .post-story-button {
+    width: 90%
+  }
+
+  .button-span {
+    color: #fafafa;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 49px;
+    margin: 0 auto;
+  }
 </style>

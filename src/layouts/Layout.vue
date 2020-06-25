@@ -13,13 +13,12 @@
 
 <script>
   import PageHeader from "./PageHeader"
-
   export default {
     data() {
       return {};
     },
     components: {
-      "guten-header": PageHeader,
+      "guten-header": PageHeader
     }
   };
 </script>

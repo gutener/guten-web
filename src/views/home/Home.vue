@@ -39,8 +39,5 @@
     -webkit-box-align: start;
     -ms-flex-align: start;
     align-items: flex-start;
-    max-width: 1032px;
-    width: 100%;
-    margin: 0 auto;
   }
 </style>
