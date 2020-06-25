@@ -1,8 +1,9 @@
 // eslint-disable-next-line
 import {Layout, UserLayout} from '@/layouts'
 import Home from "@/views/home/Home"
-import Post from "@/views/stories/Post"
-import StoryDetail from "@/views/stories/Detail"
+import Post from "@/views/story/Post"
+import StoryDetail from "@/views/story/Detail"
+import StoryPost from "@/views/story/Post"
 import Seed from "@/views/fund/Seed"
 import Tags from "@/views/tags/Tags"
 import UserHomePage from "@/views/user/UserHomePage"
@@ -41,7 +42,7 @@ export const constantRouterMap = [
     component: () => import(/* webpackChunkName: "fail" */ '@/views/exception/404')
   },
   {
-    path: "/stories",
+    path: "/story/new-story",
     name: "Story",
     redirect: '/new-story',
     component: Layout,
@@ -81,7 +82,7 @@ export const constantRouterMap = [
     ]
   },
   {
-    path: "/stories/:id",
+    path: "/story/:id",
     component: StoryDetail,
   },
   {

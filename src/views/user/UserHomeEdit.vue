@@ -1,5 +1,5 @@
 <template>
-  <section class="gu-flex user-container">
+  <section class="">
     <div class="user_mainColum">
       <div>
         <div class="hero-avatar">

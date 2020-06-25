@@ -61,16 +61,19 @@
 <script>
   export default {
     data() {
-      return {
-      };
+      return {};
     },
     components: {}
   };
 </script>
 
 <style lang="less">
-  .homeAsider_title{
+  @import url('../../../components/global.less');
+  @import url('../../../layouts/layouts.less');
+
+  .homeAsider_title {
     margin: 0 32px;
+
     .ui-h2 {
       font-weight: 600;
       font-size: 24px;

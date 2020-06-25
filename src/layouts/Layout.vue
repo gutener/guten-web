@@ -1,24 +1,29 @@
 <template>
-  <div>
-    <guten-header />
-    <main class="guten-main">
-      <router-view></router-view>
-    </main>
+  <div class="main-layout main-css">
+    <div class="main-layout flex-row">
+      <guten-header/>
+      <main class="main-layout align-items-start flex-grow1 gu-main-width">
+        <div class="main-layout" style="width: 100%">
+          <router-view></router-view>
+        </div>
+      </main>
+    </div>
   </div>
 </template>
 
 <script>
-import PageHeader from "./PageHeader"
-export default {
-  data() {
-    return {};
-  },
-  components: {
-    "guten-header": PageHeader,
-  }
-};
+  import PageHeader from "./PageHeader"
+
+  export default {
+    data() {
+      return {};
+    },
+    components: {
+      "guten-header": PageHeader,
+    }
+  };
 </script>
 
 <style lang="less" scoped>
-@import url('../components/global.less');
+  @import url('../components/global.less');
 </style>

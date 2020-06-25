@@ -22,7 +22,7 @@
           <a href="_self">条款</a>
         </div>
         <div class="copyright">
-          Copyright &copy; 2019 北京谷腾思有限公司
+          Copyright &copy; 2020 谷登贝格(北京)科技
         </div>
       </div>
     </div>

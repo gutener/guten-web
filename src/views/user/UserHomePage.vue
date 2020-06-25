@@ -1,6 +1,6 @@
 <template>
-  <a-skeleton class="user-container" :loading="loading" active>
-    <section class="gu-flex user-container">
+  <a-skeleton class="" :loading="loading" active>
+    <section class="">
       <div class="user_mainColum">
         <div style="margin-bottom: 5rem;">
           <div class="hero-avatar">

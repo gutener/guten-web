@@ -187,3 +187,114 @@ input {
     height: 40px;
   }
 }
+
+.main-layout {
+  -ms-flex-align: stretch;
+  -ms-flex-direction: column;
+  -ms-flex-negative: 0;
+  -ms-flex-preferred-size: auto;
+  -webkit-align-items: stretch;
+  -webkit-box-align: stretch;
+  -webkit-box-direction: normal;
+  -webkit-box-orient: vertical;
+  -webkit-flex-basis: auto;
+  -webkit-flex-direction: column;
+  -webkit-flex-shrink: 0;
+  align-items: stretch;
+  border: 0 solid black;
+  box-sizing: border-box;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  flex-basis: auto;
+  flex-direction: column;
+  flex-shrink: 0;
+  margin: 0px;
+  min-height: 0px;
+  min-width: 0px;
+  padding: 0px;
+  position: relative;
+  z-index: 0;
+}
+.main-css {
+  -webkit-box-flex: 1;
+  -webkit-flex-basis: 0%;
+  -webkit-flex-grow: 1;
+  -webkit-flex-shrink: 1;
+  flex-basis: 0%;
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+.align-items-start {
+  -webkit-box-align: start;
+  align-items: flex-start;
+}
+.align-items-end {
+  -webkit-box-align: end;
+  align-items: flex-end;
+}
+.flex-grow1 {
+  -webkit-box-flex: 1;
+  flex-grow: 1;
+}
+.flex-row {
+  -webkit-box-direction: normal;
+  -webkit-box-orient: horizontal;
+  flex-direction: row;
+}
+.position-flex {
+  position: fixed;
+}
+.height100 {
+  height: 100%;
+}
+.gu-header-width {
+  width: 252px;
+}
+.justify-between {
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+}
+.header-menu-options{
+  margin-top: 2px;
+  margin-bottom: 5px;
+  width: 100%;
+  .header-menu-option{
+    -webkit-box-direction: normal;
+    -webkit-box-orient: vertical;
+    flex-direction: column;
+    .menu-option-body{
+      padding: 10px;
+      -webkit-box-pack: center;
+      justify-content: center;
+      -webkit-box-align: center;
+      align-items: center;
+      transition-duration: 0.1s;
+      &:hover{
+        background-color: rgba(72, 199, 116, 0.12);
+        border-radius: 22px;
+        .menu-option-title {
+          color: rgba(72, 199, 116);
+        }
+      }
+      .menu-option-title {
+        font-size: 19px;
+        font-weight: bold;
+        margin-right: 15px;
+        margin-left: 20px;
+        border: 0 solid black;
+        box-sizing: border-box;
+        color: rgba(0,0,0,1.00);
+        display: inline;
+        padding: 0;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+      }
+    }
+  }
+}
+.gu-main-width {
+  width: 990px;
+}

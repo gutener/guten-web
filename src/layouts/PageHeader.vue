@@ -1,37 +1,53 @@
 <template>
-  <header :class="[isActive ? 'AppHeader' : 'AppHeader AppHeader--fixed']">
-    <nav class="AppHeader-inner">
-      <div class="AppHeader-brand-image">
-        <a href="/" aria-label="Guten">
-          <svg-icon iconClass="g-logo" style="font-size: 38px;"></svg-icon>
-        </a>
-      </div>
-      <div class="AppHeader-menu-options AppHeader-menu-options--left">
-        <div class="AppHeader-menu-option">
-          <a class="CreatePost" aria-label="Create Post" href="/fund">
-            <svg-icon iconClass="bank" style="font-size:30px"></svg-icon>
-          </a>
+  <header class="main-layout align-items-end flex-grow1">
+    <div class="main-layout gu-header-width">
+      <div class="main-layout height100 position-flex">
+        <div class="main-layout height100 justify-between gu-header-width" style="overflow-y: auto;">
+          <div class="main-layout align-items-start">
+            <div class="main-layout">
+              <a href="/" aria-label="Guten">
+                <svg-icon iconClass="g-logo" style="font-size: 38px;"></svg-icon>
+              </a>
+            </div>
+            <div class="main-layout header-menu-options">
+              <nav class="main-layout align-items-start">
+                <a class="flex-grow1 header-menu-option align-items-start" href="/">
+                  <div class="menu-option-body">
+                    <svg-icon iconClass="bank" class="" style="font-size:20px"></svg-icon>
+                    <div class="menu-option-title"><span>主页</span></div>
+                  </div>
+                </a>
+                <a class="flex-grow1 header-menu-option align-items-start" href="/channels">
+                  <div class="menu-option-body">
+                    <svg-icon iconClass="channel" class="" style="font-size:20px"></svg-icon>
+                    <div class="menu-option-title"><span>频道</span></div>
+                  </div>
+                </a>
+                <a class="flex-grow1 header-menu-option align-items-start" href="/channels">
+                  <div class="menu-option-body">
+                    <svg-icon iconClass="notification" class="" style="font-size:20px"></svg-icon>
+                    <div class="menu-option-title"><span>消息</span></div>
+                  </div>
+                </a>
+              </nav>
+            </div>
+            <div class="main-layout">
+              <div class="">
+              <span class="PostStory" id="HeaderUserActions--NewPost">
+                <a class="CreatePost" aria-label="Create Post" href="/new-story">
+                  发文
+                </a>
+              </span>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="AppHeader-menu-option">
-          <span class="PostStory" id="HeaderUserActions--NewPost">
-            <a class="CreatePost" aria-label="Create Post" href="/new-story">
-              <svg-icon iconClass="edit" style="font-size:30px"></svg-icon>
-            </a>
-          </span>
-        </div>
-        <div class="AppHeader-menu-option">
-          <!--<a class="" href="//www.zhihu.com/" data-za-not-track-link="true">首页</a>-->
-        </div>
       </div>
-      <div class="AppHeader-menu-options AppHeader-menu-options--right">
-        <header-menu/>
-      </div>
-    </nav>
+    </div>
   </header>
 </template>
 
 <script>
-  import HeaderMenu from './HeaderMenu'
 
   export default {
     data() {
@@ -48,22 +64,9 @@
     },
     created() {
     },
-    mounted() {
-      window.addEventListener("scroll", this.getScroll);
-    },
-    methods: {
-      //监听滚动
-      getScroll() {
-        this.isActive = document.documentElement.scrollTop < 52;
-      }
-    },
-    components: {
-      HeaderMenu
-    }
   };
 </script>
 
-<style lang="less">
-  @import url('header.less');
-
+<style lang="less" scoped>
+  @import url('../components/global.less');
 </style>
