@@ -9,6 +9,7 @@ import UserHomePage from "@/views/user/UserHomePage"
 import UserHomeEdit from "@/views/user/UserHomeEdit"
 
 import Notification from "@/views/notification/Notification"
+import Mention from "@/views/notification/Mention"
 import Bookmark from "@/views/bookmark/Bookmark"
 /**
  * 基础路由
@@ -111,6 +112,11 @@ export const constantRouterMap = [
         path: "/notifications",
         name: "Notification",
         component: Notification
+      },
+      {
+        path: "/notifications/mentions",
+        name: "Notification",
+        component: Mention
       }
     ]
   },

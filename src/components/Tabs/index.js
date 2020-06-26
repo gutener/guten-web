@@ -1,72 +1,51 @@
 export const Tabs = {
   name: "tabs",
-  props: {
-    defaultIndex: {
-      default: 0,
-      type: Number
-    },
-    onSelect: {
-      type: Function
-    }
-  },
-  data() {
-    return {
-      selectedIndex: this.defaultIndex
-    };
-  },
-  methods: {
-    switchTab(e, index, isDisabled) {
-      if (!isDisabled) {
-        this.selectedIndex = index;
-        this.onSelect && this.onSelect(e, index);
-      }
-    }
-  },
+
   render() {
     const tabs = this.$slots.default.filter(
-      component => component.componentOptions
+        component => component.componentOptions
     );
 
     const tabList = [];
     tabs.forEach((child, index) => {
-      const { title, titleSlot, disabled } = child.componentOptions.propsData;
+      const {title, url, titleSlot, active} = child.componentOptions.propsData;
       const content = titleSlot ? this.$slots[titleSlot] : title;
-      const isDisabled = disabled === true || disabled === "";
-
+      const isDisabled = active==='' || false;
       tabList.push(
-        <li
-          class="vue-tab"
-          role="tab"
-          onClick={e => this.switchTab(e, index, isDisabled)}
-          aria-selected={this.selectedIndex === index ? "true" : "false"}
-          aria-disabled={isDisabled ? "true" : "false"}
-        >
-          {content}
-        </li>
+          <div class="main-layout flex-grow1">
+            <router-link
+                class="flex-column justify-center gu-flexCenter"
+                role="tab"
+                to={url}
+                aria-selected={this.selectedIndex === index ? "true" : "false"}
+                aria-disabled={isDisabled ? "true" : "false"}
+            >
+              {content}
+            </router-link>
+          </div>
       );
     });
 
     return (
-      <div class="vue-tabs" role="tabs">
-        <ul class="vue-tablist" role="tablist">
-          {this.$slots.left}
-          {tabList}
-          {this.$slots.right}
-        </ul>
-        {tabs[this.selectedIndex]}
-      </div>
+        <div class="main-layout" role="tabs">
+          <nav class="main-layout gu-flex-shrink flex-row flex-grow1" role="tablist">
+            {this.$slots.left}
+            {tabList}
+            {this.$slots.right}
+          </nav>
+        </div>
     );
   }
 };
 
 export const Tab = {
-  name: "tab",
-  props: ["title", "titleSlot", "disabled"],
+  name: 'tab',
+  props: ['title', 'url', 'titleSlot','active','disabled'],
   render() {
     return (
-      <div class="vue-tabpanel" role="tabpanel">
-        {this.$slots.default}
-      </div>
+        <div class="" role="tabpanel">
+          {this.$slots.default}
+        </div>
     );
   }
 };
