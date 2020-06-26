@@ -3,12 +3,13 @@ import {Layout, UserLayout} from '@/layouts'
 import Home from "@/views/home/Home"
 import Post from "@/views/story/Post"
 import StoryDetail from "@/views/story/Detail"
-import StoryPost from "@/views/story/Post"
 import Seed from "@/views/fund/Seed"
 import Tags from "@/views/tags/Tags"
 import UserHomePage from "@/views/user/UserHomePage"
 import UserHomeEdit from "@/views/user/UserHomeEdit"
 
+import Notification from "@/views/notification/Notification"
+import Bookmark from "@/views/bookmark/Bookmark"
 /**
  * 基础路由
  * @type { *[] }
@@ -97,6 +98,31 @@ export const constantRouterMap = [
         path: "/fund/seed",
         name: "Seed",
         component: Seed
+      }
+    ]
+  },
+  {
+    path: "/notifications",
+    name: "Notifications",
+    component: Layout,
+    redirect: '/notifications',
+    children: [
+      {
+        path: "/notifications",
+        name: "Notification",
+        component: Notification
+      }
+    ]
+  },
+  {
+    path: "/bookmarks",
+    component: Layout,
+    redirect: '/bookmarks',
+    children: [
+      {
+        path: "/bookmarks",
+        name: "Bookmark",
+        component: Bookmark
       }
     ]
   },

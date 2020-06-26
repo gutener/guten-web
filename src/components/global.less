@@ -218,67 +218,101 @@ input {
   position: relative;
   z-index: 0;
 }
-.main-css {
-  -webkit-box-flex: 1;
-  -webkit-flex-basis: 0%;
-  -webkit-flex-grow: 1;
-  -webkit-flex-shrink: 1;
-  flex-basis: 0%;
-  flex-grow: 1;
-  flex-shrink: 1;
-}
+
 .align-items-start {
   -webkit-box-align: start;
   align-items: flex-start;
 }
+
 .align-items-end {
   -webkit-box-align: end;
   align-items: flex-end;
 }
+
+.align-items-stretch {
+  -webkit-box-align: stretch;
+  align-items: stretch;
+}
+
 .flex-grow1 {
   -webkit-box-flex: 1;
   flex-grow: 1;
 }
+
 .flex-row {
   -webkit-box-direction: normal;
   -webkit-box-orient: horizontal;
   flex-direction: row;
 }
+
+.flex-column {
+  -webkit-box-direction: normal;
+  -webkit-box-orient: vertical;
+  flex-direction: column;
+}
+
+.gu-flex-shrink {
+  flex-shrink: 1;
+}
+
 .position-flex {
   position: fixed;
 }
+
 .height100 {
   height: 100%;
 }
+
 .gu-header-width {
   width: 252px;
 }
+
 .justify-between {
   -webkit-box-pack: justify;
   justify-content: space-between;
 }
-.header-menu-options{
+.justify-center {
+  -webkit-box-pack: center;
+  justify-content: center;
+}
+.display-flex {
+  display: flex;
+}
+.main-css {
+  -webkit-box-flex: 1;
+  -webkit-flex-basis: 0%;
+  -webkit-flex-grow: 1;
+  -webkit-flex-shrink: 1;
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+.header-menu-options {
   margin-top: 2px;
   margin-bottom: 5px;
   width: 100%;
-  .header-menu-option{
+
+  .header-menu-option {
     -webkit-box-direction: normal;
     -webkit-box-orient: vertical;
     flex-direction: column;
-    .menu-option-body{
+
+    .menu-option-body {
       padding: 10px;
       -webkit-box-pack: center;
       justify-content: center;
       -webkit-box-align: center;
       align-items: center;
       transition-duration: 0.1s;
-      &:hover{
+
+      &:hover {
         background-color: rgba(72, 199, 116, 0.12);
         border-radius: 22px;
+
         .menu-option-title {
           color: rgba(72, 199, 116);
         }
       }
+
       .menu-option-title {
         font-size: 19px;
         font-weight: bold;
@@ -286,7 +320,7 @@ input {
         margin-left: 20px;
         border: 0 solid black;
         box-sizing: border-box;
-        color: rgba(0,0,0,1.00);
+        color: rgba(0, 0, 0, 1.00);
         display: inline;
         padding: 0;
         white-space: pre-wrap;
@@ -295,6 +329,18 @@ input {
     }
   }
 }
+
+.main-border {
+  border-left: 1px solid #e6ecf0;
+  border-right: 1px solid #e6ecf0;
+}
+
 .gu-main-width {
   width: 990px;
+}
+.gu-main-col-width {
+  max-width: 600px;
+}
+.paddingtop10 {
+  padding-top: 10px;
 }

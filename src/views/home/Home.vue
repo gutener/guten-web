@@ -1,13 +1,17 @@
 <template>
-  <article class="HomeStream-container">
-    <HomeStreamList/>
-    <HomeAsider/>
-  </article>
+  <div>
+    <headerBr/>
+    <article class="HomeStream-container">
+      <HomeStreamList/>
+      <HomeAsider/>
+    </article>
+  </div>
 </template>
 
 <script>
   import HomeStreamList from "./components/HomeStreamList"
   import HomeAsider from "./components/HomeAsider"
+  import HeaderBr from '@/components/HeaderBr'
 
   export default {
     data() {
@@ -26,7 +30,8 @@
     },
     components: {
       "HomeStreamList": HomeStreamList,
-      "HomeAsider": HomeAsider
+      "HomeAsider": HomeAsider,
+      HeaderBr
     }
   }
 </script>

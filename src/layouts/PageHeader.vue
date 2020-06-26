@@ -11,24 +11,36 @@
             </div>
             <div class="main-layout header-menu-options">
               <nav class="main-layout align-items-start">
-                <a class="flex-grow1 header-menu-option align-items-start" href="/">
+                <router-link class="flex-grow1 header-menu-option align-items-start" to="/">
                   <div class="menu-option-body">
-                    <svg-icon iconClass="bank" class="" style="font-size:20px"></svg-icon>
+                    <svg-icon iconClass="home" class="" style="font-size:22px"></svg-icon>
                     <div class="menu-option-title"><span>主页</span></div>
                   </div>
-                </a>
-                <a class="flex-grow1 header-menu-option align-items-start" href="/channels">
+                </router-link>
+                <router-link class="flex-grow1 header-menu-option align-items-start" to="/explore">
                   <div class="menu-option-body">
-                    <svg-icon iconClass="channel" class="" style="font-size:20px"></svg-icon>
+                    <svg-icon iconClass="hash" class="" style="font-size:23px"></svg-icon>
                     <div class="menu-option-title"><span>频道</span></div>
                   </div>
-                </a>
-                <a class="flex-grow1 header-menu-option align-items-start" href="/channels">
+                </router-link>
+                <router-link class="flex-grow1 header-menu-option align-items-start" to="/notifications">
                   <div class="menu-option-body">
-                    <svg-icon iconClass="notification" class="" style="font-size:20px"></svg-icon>
+                    <svg-icon iconClass="notification" class="" style="font-size:22px"></svg-icon>
                     <div class="menu-option-title"><span>消息</span></div>
                   </div>
-                </a>
+                </router-link>
+                <router-link class="flex-grow1 header-menu-option align-items-start" to="/bookmarks">
+                  <div class="menu-option-body">
+                    <svg-icon iconClass="bookmark" class="" style="font-size:22px"></svg-icon>
+                    <div class="menu-option-title"><span>书签</span></div>
+                  </div>
+                </router-link>
+                <router-link class="flex-grow1 header-menu-option align-items-start" :to="`/u/${userInfo().user_name}`">
+                  <div class="menu-option-body">
+                    <svg-icon iconClass="user" class="" style="font-size:22px"></svg-icon>
+                    <div class="menu-option-title"><span>个人资料</span></div>
+                  </div>
+                </router-link>
               </nav>
             </div>
             <div class="main-layout post-story-button">
@@ -47,21 +59,22 @@
 
 <script>
 
+  import {mapGetters} from "vuex";
+
   export default {
     data() {
       return {
-        hiddenBtn: false,
-        selectData: [],
-        navlist: [],
-        selectValue: "",
-        placeholder: "",
-        headerHeight: 52,
-        scrollHeight: 0,
-        isActive: true
+        userUrl: ''
       };
     },
     created() {
+      this.render()
     },
+    methods:{
+      ...mapGetters(['userInfo']),
+      render(){
+      }
+    }
   };
 </script>
 

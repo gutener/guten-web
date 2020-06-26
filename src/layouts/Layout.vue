@@ -2,8 +2,8 @@
   <div class="main-layout main-css">
     <div class="main-layout flex-row">
       <guten-header/>
-      <main class="main-layout align-items-start flex-grow1 gu-main-width">
-        <div class="main-layout" style="width: 100%">
+      <main class="main-layout align-items-start flex-grow1">
+        <div class="main-layout gu-main-width">
           <router-view></router-view>
         </div>
       </main>
@@ -18,7 +18,7 @@
       return {};
     },
     components: {
-      "guten-header": PageHeader
+      "guten-header": PageHeader,
     }
   };
 </script>
