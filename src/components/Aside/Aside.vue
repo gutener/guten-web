@@ -1,5 +1,5 @@
 <template>
-  <div class="main-layout flex-row aside-width paddingtop10">
+  <div class="main-layout align-items-start flex-grow1 gu-aside-width paddingtop10">
     <div class="main-layout">
       <Search
               :options="[{ id: 1, name: 'Option 1'}, { id: 2, name: 'Option 2'}]"
@@ -53,10 +53,6 @@
 </script>
 <style lang="less" scoped>
   @import url('../global.less');
-
-  .aside-width {
-    width: 350px;
-  }
 
 
 </style>

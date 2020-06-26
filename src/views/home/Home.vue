@@ -1,16 +1,14 @@
 <template>
-  <div>
+  <div class="">
     <headerBr/>
-    <article class="HomeStream-container">
+    <article class="">
       <HomeStreamList/>
-      <HomeAsider/>
     </article>
   </div>
 </template>
 
 <script>
   import HomeStreamList from "./components/HomeStreamList"
-  import HomeAsider from "./components/HomeAsider"
   import HeaderBr from '@/components/HeaderBr'
 
   export default {
@@ -30,13 +28,13 @@
     },
     components: {
       "HomeStreamList": HomeStreamList,
-      "HomeAsider": HomeAsider,
       HeaderBr
     }
   }
 </script>
 
 <style lang="less" scoped>
+
   .HomeStream-container {
     display: -webkit-box;
     display: -ms-flexbox;

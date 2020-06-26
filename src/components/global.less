@@ -1,3 +1,13 @@
+@gu-global-width: 990px;
+@gu-main-col-width: 620px;
+@gu-aside-width: 350px;
+@gu-display-flex: {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
 
 body {
   &.colorWeak {
@@ -7,7 +17,6 @@ body {
   &.userLayout {
     overflow: auto;
   }
-
   font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, PingFang SC, Microsoft YaHei, Source Han Sans SC, Noto Sans CJK SC, WenQuanYi Micro Hei, sans-serif;
   font-size: 15px;
   color: #1a1a1a;
@@ -67,10 +76,7 @@ input {
 }
 
 .gu-flexCenter {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
+  @gu-display-flex();
   -webkit-box-align: center;
   -webkit-align-items: center;
   -ms-flex-align: center;
@@ -78,10 +84,7 @@ input {
 }
 
 .gu-flex {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
+  @gu-display-flex();
 }
 
 .gu-flex1 {
@@ -203,11 +206,7 @@ input {
   align-items: stretch;
   border: 0 solid black;
   box-sizing: border-box;
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
+  @gu-display-flex();
   flex-basis: auto;
   flex-direction: column;
   flex-shrink: 0;
@@ -271,13 +270,16 @@ input {
   -webkit-box-pack: justify;
   justify-content: space-between;
 }
+
 .justify-center {
   -webkit-box-pack: center;
   justify-content: center;
 }
+
 .display-flex {
   display: flex;
 }
+
 .main-css {
   -webkit-box-flex: 1;
   -webkit-flex-basis: 0%;
@@ -286,6 +288,7 @@ input {
   flex-grow: 1;
   flex-shrink: 1;
 }
+
 .header-menu-options {
   margin-top: 2px;
   margin-bottom: 5px;
@@ -336,11 +339,17 @@ input {
 }
 
 .gu-main-width {
-  width: 990px;
+  width: @gu-global-width;
 }
+
 .gu-main-col-width {
-  max-width: 600px;
+  max-width: @gu-main-col-width;
 }
+
+.gu-aside-width {
+  width: @gu-aside-width;
+}
+
 .paddingtop10 {
   padding-top: 10px;
 }

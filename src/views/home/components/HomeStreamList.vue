@@ -1,5 +1,5 @@
 <template>
-  <virtual-list class="HomeStream-mainColumn main-border"
+  <virtual-list class="HomeStream-mainColumn"
                 ref="list"
                 :data-key="'id'"
                 :data-sources="items"
@@ -92,5 +92,6 @@
   }
 </script>
 <style lang="less" scoped>
+  @import url('../../../components/global.less');
   @import url('Story.less');
 </style>
