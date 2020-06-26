@@ -1,30 +1,34 @@
 <template>
-  <virtual-list class="HomeStream-mainColumn"
-                ref="list"
-                :data-key="'id'"
-                :data-sources="items"
-                :data-component="itemComponent"
-                :estimate-size="70"
-                :item-class="'streamItem'"
-                :footer-class="'loader-wrapper'"
-                :scrollToBottom="onScrollToBottom"
-  >
-    <div v-show='hasMore' slot="footer" class="loader">
-      <div class="ant-skeleton-content">
-        <h3 class="ant-skeleton-title" style="width: 38%;"></h3>
-        <ul class="ant-skeleton-paragraph">
-          <li></li>
-          <li></li>
-          <li style="width: 61%;"></li>
-        </ul>
+  <bottom-scroll @on-bottom="onScrollToBottom" :debounce="200" :offset="0">
+    <virtual-list class="HomeStream-mainColumn"
+                  ref="list"
+                  :data-key="'id'"
+                  :data-sources="items"
+                  :data-component="itemComponent"
+                  :estimate-size="70"
+                  :item-class="'streamItem'"
+                  :footer-class="'loader-wrapper'"
+                  :scrollToBottom="onScrollToBottom"
+    >
+      <div v-show='hasMore' slot="footer" class="loader">
+        <div class="ant-skeleton-content">
+          <h3 class="ant-skeleton-title" style="width: 38%;"></h3>
+          <ul class="ant-skeleton-paragraph">
+            <li></li>
+            <li></li>
+            <li style="width: 61%;"></li>
+          </ul>
+        </div>
       </div>
-    </div>
-  </virtual-list>
+    </virtual-list>
+  </bottom-scroll>
+
 </template>
 <script>
-  import {listBookmark} from '@/api/biz'
+  import {notifications} from '@/api/biz'
   import VirtualList from '@/components/VirtualScrollList'
   import NotificationItem from "./NotificationItem"
+  import Scroll from '@/components/Scroll'
 
   export default {
     data() {
@@ -43,21 +47,23 @@
     },
     components: {
       VirtualList,
-      NotificationItem
-    },
-    mounted() {
-      window.addEventListener("scroll", this.getScroll)
+      NotificationItem,
+      'bottom-scroll':Scroll
     },
     created() {
       this.getPageData({page_num: this.pageNum, page_size: this.pageSize})
     },
     methods: {
       getPageData(param) {
-        listBookmark(param)
+        notifications(param)
             .then(response => {
               let DataItems = response
-              if(DataItems.length<this.pageSize)
+              if(DataItems.length<this.pageSize){
                 this.hasMore=false
+              }
+              DataItems.forEach((val) => {
+                val.id=val.target.id
+              })
               this.items =
                   this.items.length === 0
                       ? this.items = DataItems
@@ -67,11 +73,6 @@
             .catch(error => {
               console.error(error)
             })
-      },
-      getScroll() {
-        if (this.$el.offsetTop <= 10 && this.hasMore) {
-          this.onScrollToBottom()
-        }
       },
       onScrollToBottom() {
         if (this.isLoading) {

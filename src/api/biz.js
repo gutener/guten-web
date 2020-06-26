@@ -116,3 +116,9 @@ export function listBookmark(param) {
     params:param
   })
 }
+export function notifications() {
+  return axios({
+    url: `/notification/1.0/notifs`,
+    method: 'get',
+  })
+}

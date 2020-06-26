@@ -1,30 +1,33 @@
 <template>
-  <virtual-list class="HomeStream-mainColumn"
-                ref="list"
-                :data-key="'id'"
-                :data-sources="items"
-                :data-component="itemComponent"
-                :estimate-size="70"
-                :item-class="'streamItem'"
-                :footer-class="'loader-wrapper'"
-                :scrollToBottom="onScrollToBottom"
-  >
-    <div v-if='hasMore' slot="footer" class="loader">
-      <div class="ant-skeleton-content">
-        <h3 class="ant-skeleton-title" style="width: 38%;"></h3>
-        <ul class="ant-skeleton-paragraph">
-          <li></li>
-          <li></li>
-          <li style="width: 61%;"></li>
-        </ul>
+  <bottom-scroll @on-bottom="onScrollToBottom" :debounce="200" :offset="0">
+    <virtual-list class="HomeStream-mainColumn"
+                  ref="list"
+                  :data-key="'id'"
+                  :data-sources="items"
+                  :data-component="itemComponent"
+                  :estimate-size="70"
+                  :item-class="'streamItem'"
+                  :footer-class="'loader-wrapper'"
+                  :scrollToBottom="onScrollToBottom"
+    >
+      <div v-if='hasMore' slot="footer" class="loader">
+        <div class="ant-skeleton-content">
+          <h3 class="ant-skeleton-title" style="width: 38%;"></h3>
+          <ul class="ant-skeleton-paragraph">
+            <li></li>
+            <li></li>
+            <li style="width: 61%;"></li>
+          </ul>
+        </div>
       </div>
-    </div>
-  </virtual-list>
+    </virtual-list>
+  </bottom-scroll>
 </template>
 <script>
   import {homeFeed} from '@/api/biz'
   import StreamItem from './StreamItem'
   import VirtualList from '@/components/VirtualScrollList'
+  import Scroll from '@/components/Scroll'
 
   export default {
     data() {
@@ -33,7 +36,7 @@
         itemComponent: StreamItem,
         pageNum: 0,
         pageSize: 5,
-        hasMore: true
+        hasMore: true,
       }
     },
     created() {
@@ -42,10 +45,8 @@
     },
     components: {
       StreamItem,
-      VirtualList
-    },
-    mounted() {
-      window.addEventListener("scroll", this.getScroll)
+      VirtualList,
+      'bottom-scroll':Scroll
     },
     methods: {
       getPageData(page) {
@@ -69,14 +70,6 @@
               console.error(error)
             })
       },
-      onScrollToTop() {
-        console.log('at top')
-      },
-      getScroll() {
-        if(this.$el.offsetTop<=10&&this.hasMore){
-          this.onScrollToBottom()
-        }
-      },
       onScrollToBottom() {
         if (this.isLoading) {
           return
@@ -88,7 +81,7 @@
         }, 1000);
 
       }
-    }
+    },
   }
 </script>
 <style lang="less" scoped>

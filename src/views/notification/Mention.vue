@@ -5,15 +5,14 @@
       <tab title="全部" url="/notifications"></tab>
       <tab title="提及" url="/notifications/mentions" active></tab>
     </tabs>
-    <div class="">
-      <div class="">
+    <div class="main-layout main-blank">
+      <div class="main-layout">
         <div class="">
-          <div dir="auto"
-               class="">
+          <div style="text-align: center;font-size: 1.3rem;font-weight: 500;margin-bottom: 12px;">
             <span class="">这里暂时没有内容</span></div>
-          <div dir="auto"
-               class="">
-            <span class="">当有人提及你时，你会在这里找到它。</span></div>
+          <div style="text-align: center;font-size: 0.9rem;color: rgba(0, 0, 0, 0.45);">
+            <span class="">当有人提及你时，你会在这里找到它。</span>
+          </div>
         </div>
       </div>
     </div>
@@ -47,3 +46,6 @@
     }
   }
 </script>
+<style lang="less" scoped>
+  @import url('../../components/global.less');
+</style>

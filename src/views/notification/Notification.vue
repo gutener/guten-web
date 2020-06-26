@@ -4,7 +4,6 @@
     <tabs>
       <tab title="全部" url="/notifications" active></tab>
       <tab title="提及" url="/notifications/mentions"></tab>
-      <tab title="提及" url="/notifications/mentions"></tab>
     </tabs>
     <NotificationList :userId="userId"
     ></NotificationList>
