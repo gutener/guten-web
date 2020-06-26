@@ -21,7 +21,7 @@
 
 </template>
 <script>
-  import {Tab, Tabs} from '@/components/Tabs'
+  import {Tab, Tabs} from '@/components/Tabs/tabs'
   import HeaderBr from '@/components/HeaderBr'
   import {mapGetters} from "vuex";
 

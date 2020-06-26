@@ -1,0 +1,24 @@
+@import '../global.less';
+
+.gu-tablist {
+  border-bottom: 2px solid rgb(230, 236, 240) !important;
+  a[aria-selected=true]{
+    margin-bottom: -2px;
+    color: rgba(23, 191, 99);
+    border-bottom: 2px solid rgba(23, 191, 99);
+  }
+}
+
+.tab-a {
+  color: #1d1d1d;
+  font-weight: 600;
+  transition: color 0s;
+  padding: 15px;
+
+  &:hover {
+    color: rgba(23, 191, 99);
+    background-color: rgba(23, 191, 99, 0.1);
+    border-bottom: 2px solid rgba(23, 191, 99) !important;
+    margin-bottom: -2px;
+  }
+}

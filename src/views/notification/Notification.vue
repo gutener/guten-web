@@ -1,9 +1,10 @@
 <template>
   <div class="align-items-start paddingtop10">
     <headerBr/>
-    <tabs style="height: 53px;">
+    <tabs>
       <tab title="全部" url="/notifications" active></tab>
-      <tab title="提及" url="/notifications/mentions" active></tab>
+      <tab title="提及" url="/notifications/mentions"></tab>
+      <tab title="提及" url="/notifications/mentions"></tab>
     </tabs>
     <NotificationList :userId="userId"
     ></NotificationList>
@@ -11,7 +12,7 @@
 
 </template>
 <script>
-  import {Tab, Tabs} from '@/components/Tabs'
+  import {Tab, Tabs} from '@/components/Tabs/tabs'
   import HeaderBr from '@/components/HeaderBr'
   import NotificationList from "./NotificationList"
   import {mapGetters} from "vuex";

@@ -1,3 +1,4 @@
+import './index.less'
 export const Tabs = {
   name: "tabs",
 
@@ -7,17 +8,17 @@ export const Tabs = {
     );
 
     const tabList = [];
-    tabs.forEach((child, index) => {
+    tabs.forEach((child) => {
       const {title, url, titleSlot, active} = child.componentOptions.propsData;
       const content = titleSlot ? this.$slots[titleSlot] : title;
       const isDisabled = active==='' || false;
       tabList.push(
           <div class="main-layout flex-grow1">
             <router-link
-                class="flex-column justify-center gu-flexCenter"
+                class="flex-column justify-center gu-flexCenter tab-a"
                 role="tab"
                 to={url}
-                aria-selected={this.selectedIndex === index ? "true" : "false"}
+                aria-selected={isDisabled ? "true" : "false"}
                 aria-disabled={isDisabled ? "true" : "false"}
             >
               {content}
@@ -28,7 +29,7 @@ export const Tabs = {
 
     return (
         <div class="main-layout" role="tabs">
-          <nav class="main-layout gu-flex-shrink flex-row flex-grow1" role="tablist">
+          <nav class="gu-tablist main-layout gu-flex-shrink flex-row flex-grow1" role="tablist">
             {this.$slots.left}
             {tabList}
             {this.$slots.right}

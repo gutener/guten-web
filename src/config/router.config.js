@@ -115,7 +115,7 @@ export const constantRouterMap = [
       },
       {
         path: "/notifications/mentions",
-        name: "Notification",
+        name: "Mention",
         component: Mention
       }
     ]

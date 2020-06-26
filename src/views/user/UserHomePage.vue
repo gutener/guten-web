@@ -61,7 +61,7 @@
   import {follow, getUser, unfollow} from '@/api/biz'
   import {mapGetters} from 'vuex'
   import moment from "moment"
-  import {Tab, Tabs} from '@/components/Tabs'
+  import {Tab, Tabs} from '@/components/Tabs/tabs'
   import SeedStreamList from "./SeedStream/SeedStreamList"
   import BookMardList from "./Bookmark/BookMardList"
   export default {
