@@ -1,8 +1,8 @@
 <template>
-  <div v-if="source.action==='seed'" class="main-layout notification">
+  <div v-if="source.action ==='seed'" class="main-layout notification">
     <SeedItem :data="source"/>
   </div>
-  <div v-else-if="source.action==='follow'" class="main-layout notification">
+  <div v-else-if="source.action ==='follow'" class="main-layout notification">
     <FollowItem :data="source"/>
   </div>
 </template>
@@ -22,6 +22,14 @@
     components: {
       SeedItem,
       FollowItem
+    },
+    created() {
+      this.init()
+    },
+    methods: {
+      init() {
+        console.log(this.source.action)
+      }
     }
   }
 </script>

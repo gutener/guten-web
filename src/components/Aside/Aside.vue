@@ -53,6 +53,4 @@
 </script>
 <style lang="less" scoped>
   @import url('../global.less');
-
-
 </style>

@@ -1,5 +1,6 @@
 <template>
   <div>
+
     {{this.tagName}}
     <a @click="handlefollow" class="GuButton GuButton--color GuButton--small" rel="noopener">{{followText}}</a>
   </div>

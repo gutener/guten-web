@@ -1,35 +1,37 @@
 <template>
-  <bottom-scroll @on-bottom="onScrollToBottom" :debounce="200" :offset="0">
-    <virtual-list class="HomeStream-mainColumn"
-                  ref="list"
-                  :data-key="'id'"
-                  :data-sources="items"
-                  :data-component="itemComponent"
-                  :estimate-size="70"
-                  :item-class="'streamItem'"
-                  :footer-class="'loader-wrapper'"
-                  :scrollToBottom="onScrollToBottom"
-    >
-      <div v-show='hasMore' slot="footer" class="loader">
-        <div class="ant-skeleton-content">
-          <h3 class="ant-skeleton-title" style="width: 38%;"></h3>
-          <ul class="ant-skeleton-paragraph">
-            <li></li>
-            <li></li>
-            <li style="width: 61%;"></li>
-          </ul>
+  <div>
+    <bottom-scroll @on-bottom="onScrollToBottom" :debounce="200" :offset="0">
+      <virtual-list class="HomeStream-mainColumn"
+                    ref="list"
+                    :data-key="'id'"
+                    :data-sources="items"
+                    :data-component="itemComponent"
+                    :estimate-size="70"
+                    :item-class="'streamItem'"
+                    :footer-class="'loader-wrapper'"
+                    :scrollToBottom="onScrollToBottom"
+      >
+        <div v-show='hasMore' slot="footer" class="loader">
+          <div class="ant-skeleton-content">
+            <h3 class="ant-skeleton-title" style="width: 38%;"></h3>
+            <ul class="ant-skeleton-paragraph">
+              <li></li>
+              <li></li>
+              <li style="width: 61%;"></li>
+            </ul>
+          </div>
         </div>
-      </div>
-    </virtual-list>
-  </bottom-scroll>
-
+      </virtual-list>
+    </bottom-scroll>
+    <Blank v-if="items.length===0"/>
+  </div>
 </template>
 <script>
   import {notifications} from '@/api/biz'
   import VirtualList from '@/components/VirtualScrollList'
   import NotificationItem from "./NotificationItem"
   import Scroll from '@/components/Scroll'
-
+  import Blank from '@/components/Blank'
   export default {
     data() {
       return {
@@ -48,7 +50,8 @@
     components: {
       VirtualList,
       NotificationItem,
-      'bottom-scroll':Scroll
+      'bottom-scroll':Scroll,
+      Blank
     },
     created() {
       this.getPageData({page_num: this.pageNum, page_size: this.pageSize})
@@ -58,6 +61,9 @@
         notifications(param)
             .then(response => {
               let DataItems = response
+              if(DataItems.length===0){
+                return
+              }
               if(DataItems.length<this.pageSize){
                 this.hasMore=false
               }

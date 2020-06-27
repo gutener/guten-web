@@ -5,22 +5,12 @@
       <tab title="全部" url="/notifications"></tab>
       <tab title="提及" url="/notifications/mentions" active></tab>
     </tabs>
-    <div class="main-layout main-blank">
-      <div class="main-layout">
-        <div class="">
-          <div style="text-align: center;font-size: 1.3rem;font-weight: 500;margin-bottom: 12px;">
-            <span class="">这里暂时没有内容</span></div>
-          <div style="text-align: center;font-size: 0.9rem;color: rgba(0, 0, 0, 0.45);">
-            <span class="">当有人@你时，你会在这里找到它。</span>
-          </div>
-        </div>
-      </div>
-    </div>
+    <Blank Msg="当有人@你时，你会在这里找到它。"/>
   </div>
-
 </template>
 <script>
   import {Tab, Tabs} from '@/components/Tabs/tabs'
+  import Blank from '@/components/Blank'
   import HeaderBr from '@/components/HeaderBr'
   import {mapGetters} from "vuex";
 
@@ -34,6 +24,7 @@
       Tabs,
       Tab,
       'headerBr': HeaderBr,
+      Blank
     },
     created() {
       this.render()

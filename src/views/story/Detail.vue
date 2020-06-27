@@ -71,7 +71,7 @@
               </div>
             </div>
             <div class="gu-floatRight">
-              <a class="" @click="seedReply(reply.target)">{{reply.target.seed}}<i>₲</i></a>
+              <a class="" @click="seedReply(reply.target)">{{reply.target.reward}}<i>₲</i></a>
             </div>
           </div>
           <div class="reply-body" v-html="reply.target.reply_body"></div>

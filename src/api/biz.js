@@ -1,14 +1,15 @@
-import { axios } from '@/utils/request'
+import {axios} from '@/utils/request'
 
-export function getStory(id,from) {
+export function getStory(id, from) {
   return axios({
     url: `/story/1.0/${id}`,
     method: 'get',
     headers: {
-      source:from
+      source: from
     },
   })
 }
+
 export function postStory(obj) {
   return axios({
     url: '/story/1.0',
@@ -16,6 +17,7 @@ export function postStory(obj) {
     data: obj
   })
 }
+
 export function homeFeed(page) {
   return axios({
     url: `/cds/1.0/home-stream`,
@@ -23,6 +25,7 @@ export function homeFeed(page) {
     method: 'get'
   })
 }
+
 export function userSeed(page) {
   return axios({
     url: `/cds/1.0/user-seeded-list`,
@@ -30,6 +33,7 @@ export function userSeed(page) {
     method: 'get'
   })
 }
+
 export function postReply(obj) {
   return axios({
     url: '/reply/1.0',
@@ -37,12 +41,14 @@ export function postReply(obj) {
     data: obj
   })
 }
+
 export function seedReply(replyId) {
   return axios({
     url: `/seed/1.0/${replyId}/reply`,
     method: 'post'
   })
 }
+
 export function listReliesByStory(params) {
   return axios({
     url: `/reply/1.0/list-by-story`,
@@ -50,12 +56,14 @@ export function listReliesByStory(params) {
     params: params,
   })
 }
+
 export function seedStory(storyId) {
   return axios({
     url: `/seed/1.0/${storyId}/story`,
     method: 'post'
   })
 }
+
 export function querytags(tagName) {
   return axios({
     url: `/tags/1.0/query`,
@@ -63,6 +71,7 @@ export function querytags(tagName) {
     method: 'get'
   })
 }
+
 export function checkFollowtag(tagId) {
   return axios({
     url: `/tags/1.0/have_followed`,
@@ -70,6 +79,7 @@ export function checkFollowtag(tagId) {
     method: 'get'
   })
 }
+
 export function postUser(obj) {
   return axios({
     url: '/users/1.0/profile/save',
@@ -77,6 +87,7 @@ export function postUser(obj) {
     data: obj
   })
 }
+
 export function updateUser(obj) {
   return axios({
     url: '/users/1.0/profile/update',
@@ -84,24 +95,28 @@ export function updateUser(obj) {
     data: obj
   })
 }
+
 export function getUser(userName) {
   return axios({
     url: `/users/1.0/profile/${userName}`,
     method: 'get'
   })
 }
+
 export function follow(userid) {
   return axios({
     url: `/users/1.0/follow/${userid}/follow`,
     method: 'post'
   })
 }
+
 export function unfollow(userid) {
   return axios({
     url: `/users/1.0/follow/${userid}/unfollow`,
     method: 'post'
   })
 }
+
 export function addBookmark(params) {
   return axios({
     url: `/story/1.0/bookmark`,
@@ -109,16 +124,19 @@ export function addBookmark(params) {
     method: 'put'
   })
 }
+
 export function listBookmark(param) {
   return axios({
     url: `/story/1.0/bookmark/list`,
     method: 'get',
-    params:param
+    params: param
   })
 }
-export function notifications() {
+
+export function notifications(page) {
   return axios({
     url: `/notification/1.0/notifs`,
     method: 'get',
+    params: page
   })
 }
