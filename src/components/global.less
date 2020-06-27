@@ -1,6 +1,8 @@
 @gu-global-width: 990px;
 @gu-main-col-width: 620px;
 @gu-aside-width: 350px;
+@border-color: #e6ecf0;
+@font-light-color: rgb(101, 119, 134);
 @gu-display-flex: {
   display: -webkit-box;
   display: -moz-box;
@@ -17,6 +19,7 @@ body {
   &.userLayout {
     overflow: auto;
   }
+
   font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, PingFang SC, Microsoft YaHei, Source Han Sans SC, Noto Sans CJK SC, WenQuanYi Micro Hei, sans-serif;
   font-size: 15px;
   color: #1a1a1a;
@@ -38,6 +41,7 @@ svg {
 a, area, button, [role='button'], input:not([type='range']), label, select, summary, textarea {
   -ms-touch-action: none;
   touch-action: none;
+  cursor: pointer;
 }
 
 ::-webkit-input-placeholder { /* WebKit browsers */
@@ -334,8 +338,8 @@ input {
 }
 
 .main-border {
-  border-left: 1px solid #e6ecf0;
-  border-right: 1px solid #e6ecf0;
+  border-left: 1px solid @border-color;
+  border-right: 1px solid @border-color;
 }
 
 .gu-main-width {
@@ -353,7 +357,8 @@ input {
 .paddingtop10 {
   padding-top: 10px;
 }
-.main-blank{
+
+.main-blank {
   padding-top: 39px;
   width: 619px;
 }

@@ -50,6 +50,50 @@
                 </span>
               </a>
             </div>
+            <div class="main-layout user-body">
+              <a-popover trigger="click">
+                <div role="button" class="main-layout flex-row user-inner">
+                  <div class="main-layout avatar">
+                    <img :src="user.avatar" class="avatar-image" style="width: 42px;height: 42px;"
+                         :alt="user.nick_name">
+                  </div>
+                  <div class="main-layout gu-flex-shrink user-container">
+                    <div class="main-layout nickname">
+                      {{user.nick_name}}
+                    </div>
+                    <div class="main-layout username">
+                      @{{user.user_name}}
+                    </div>
+                  </div>
+                  <div class="main-layout flex-grow1 align-items-end">
+                    <svg-icon iconClass="down" class="" style="font-size:22px"></svg-icon>
+                  </div>
+                </div>
+                <template slot="content">
+                  <div class="main-layout">
+                    <div class="main-layout user-body">
+                      <div class="main-layout avatar">
+                        <img :src="user.avatar" class="avatar-image" style="width: 42px;height: 42px;"
+                             :alt="user.nick_name">
+                      </div>
+                      <div class="main-layout gu-flex-shrink user-container">
+                        <div class="main-layout nickname">
+                          {{user.nick_name}}
+                        </div>
+                        <div class="main-layout username">
+                          @{{user.user_name}}
+                        </div>
+                      </div>
+                    </div>
+                    <div class="main-layout">
+                      <a href="javascript:;" @click="handleLogout">
+                        退出 @{{user.user_name}}
+                      </a>
+                    </div>
+                  </div>
+                </template>
+              </a-popover>
+            </div>
           </div>
         </div>
       </div>
@@ -59,20 +103,40 @@
 
 <script>
 
-  import {mapGetters} from "vuex";
+  import {mapActions, mapGetters} from "vuex";
 
   export default {
     data() {
       return {
-        userUrl: ''
+        userUrl: '',
+        user: {
+          user_name: '',
+          nick_name: '',
+          avatar: ''
+        }
       };
     },
     created() {
       this.render()
     },
-    methods:{
+    methods: {
       ...mapGetters(['userInfo']),
-      render(){
+      ...mapActions(['Logout']),
+      render() {
+        this.user.user_name = this.userInfo().user_name
+        this.user.nick_name = this.userInfo().nick_name
+        this.user.avatar = this.userInfo().avatar
+      },
+      handleLogout() {
+        const that = this
+        return that.Logout({}).then(() => {
+          window.location.reload()
+        }).catch(err => {
+          that.$message.error({
+            title: '错误',
+            description: err.message
+          })
+        })
       }
     }
   };
@@ -109,5 +173,31 @@
     font-weight: 600;
     line-height: 49px;
     margin: 0 auto;
+  }
+
+  .user-body {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    width: 94%;
+  }
+
+  .user-inner {
+    padding: 10px;
+    -webkit-box-align: center;
+    align-items: center;
+    border-radius: 99px;
+    background-color: #fff;
+  }
+
+  .user-container {
+    margin-left: 12px;
+
+    .nickname {
+      font-weight: 600;
+    }
+    .username{
+      color:@font-light-color;
+      font-weight: 500;
+    }
   }
 </style>
