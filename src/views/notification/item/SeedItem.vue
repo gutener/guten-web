@@ -49,7 +49,7 @@
   }
 </script>
 <style lang="less" scoped>
-  @import url('../../../components/global.less');
+  /*@import url('../../../components/global.less');*/
 
   .notification-header {
     margin-bottom: 4px;

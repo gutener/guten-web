@@ -2,7 +2,7 @@
   <div class="PostStory-main">
     <article class="PostStory-container">
       <!--<header class="grid PostStory-header">Post a public story</header>-->
-      <div class="grid">
+      <div class="display-flex">
         <section class="PostStory-mainColumn">
           <input class="PostStory-title"
                  v-model="story.title"
@@ -52,7 +52,6 @@
             <button @click="saveStory" class="GuButton GuButton--light">发布</button>
           </div>
         </section>
-        <aside class="PostStory-SideBar"></aside>
       </div>
     </article>
   </div>
@@ -159,7 +158,9 @@
 </script>
 
 <style lang="less" scoped>
+  /*@import url('../../components/global.less');*/
   .PostStory-main {
+    width: @gu-main-col-width;
   }
 
   .PostStory-container {
@@ -170,10 +171,6 @@
     border-right: 0;
     padding: 0 16px;
     margin: 10px auto;
-  }
-
-  .grid {
-    display: flex;
   }
 
   .PostStory-header {
@@ -202,13 +199,6 @@
     border-image: initial;
     border-radius: 12px;
     padding: 0.8em;
-  }
-
-  .PostStory-SideBar {
-    -webkit-box-flex: 1;
-    -ms-flex: 1 1;
-    flex: 1 1;
-    font-size: 14px
   }
 
   .StoryReward-Card {

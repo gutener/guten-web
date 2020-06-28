@@ -34,8 +34,7 @@
   }
 </script>
 <style lang="less" scoped>
-  @import url('../../components/global.less');
-
+  /*@import url('../../components/global.less');*/
   .notification {
     padding: 12px;
     border-bottom: 1px solid @border-color;

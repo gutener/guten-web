@@ -4,9 +4,6 @@
   </button>
 </template>
 <script>
-
-  import _ from "underscore";
-
   export default {
     props: [
       'editor',

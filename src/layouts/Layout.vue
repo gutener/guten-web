@@ -25,9 +25,9 @@
       "guten-header": PageHeader,
       Aside
     }
-  };
+  }
 </script>
 
 <style lang="less" scoped>
-  @import url('../components/global.less');
+  @import url('./layouts');
 </style>

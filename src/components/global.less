@@ -1,16 +1,4 @@
-@gu-global-width: 990px;
-@gu-main-col-width: 620px;
-@gu-aside-width: 350px;
-@border-color: #e6ecf0;
-@font-light-color: rgb(101, 119, 134);
-@gu-display-flex: {
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-}
-
+@import "index";
 body {
   &.colorWeak {
     filter: invert(80%);
@@ -361,4 +349,7 @@ input {
 .main-blank {
   padding-top: 39px;
   width: 619px;
+}
+.row-height{
+  height:@default-row-height;
 }

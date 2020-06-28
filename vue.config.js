@@ -36,6 +36,12 @@ const prodExternals = {
 }
 // vue.config.js
 const vueConfig = {
+  pluginOptions: {
+    "style-resources-loader": {
+      preProcessor: "less",
+      patterns: [path.resolve(__dirname, "src/components/global.less")]
+    }
+  },
   configureWebpack: {
     // webpack plugins
     plugins: [

@@ -143,7 +143,7 @@
 </script>
 
 <style lang="less" scoped>
-  @import url('../components/global.less');
+  /*@import url('../components/global.less');*/
 
   .header-action-options {
     margin-top: 2px;

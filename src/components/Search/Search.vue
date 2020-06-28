@@ -26,9 +26,7 @@
       </div>
     </div>
     <!-- Dropdown Menu  v-if="optionsShown"  -->
-    <div class="main-layout search-content"
-         v-if="optionsShown"
-    >
+    <div class="main-layout search-content" v-if="optionsShown">
       <div class="search-item"
            @mousedown="selectOption(option)"
            v-for="(option, index) in filteredOptions"
@@ -49,10 +47,14 @@
         default: 'dropdown',
         note: 'Input name'
       },
+      initValue: {
+        type: String,
+        required: false,
+        note: 'Input init value'
+      },
       options: {
         type: Array,
-        required: true,
-        default: [],
+        required: false,
         note: 'Options of dropdown. An array of options with id and name',
       },
       placeholder: {
@@ -82,21 +84,29 @@
       }
     },
     created() {
+      this.render()
       this.$emit('selected', this.selected);
     },
     computed: {
       filteredOptions() {
         const filtered = [];
         const regOption = new RegExp(this.searchFilter, 'ig');
-        for (const option of this.options) {
-          if (this.searchFilter.length < 1 || option.name.match(regOption)) {
-            if (filtered.length < this.maxItem) filtered.push(option);
+        if (!!this.options && this.options.length !== 0) {
+          for (const option of this.options) {
+            if (this.searchFilter.length < 1 || option.name.match(regOption)) {
+              if (filtered.length < this.maxItem) filtered.push(option);
+            }
           }
         }
         return filtered;
       }
     },
     methods: {
+      render() {
+        if (!!this.initValue) {
+          this.searchFilter = this.initValue
+        }
+      },
       selectOption(option) {
         this.selected = option;
         this.optionsShown = false;
@@ -186,9 +196,9 @@
     overflow-y: auto;
     min-height: 100px;
     max-height: calc(80vh - 53px);
-    z-index: 1;
-    border-radius: 5px;
-    box-shadow: rgba(101, 119, 134, 0.2) 0px 0px 15px, rgba(101, 119, 134, 0.15) 0px 0px 3px 1px;
+    z-index: 1030;
+    border-radius: 6px;
+    box-shadow: rgba(101, 119, 134, 0.2) 0px 0px 15px, rgba(101, 119, 134, 0) 0px 0px 3px 1px;
 
     .search-item {
       color: black;
@@ -198,6 +208,7 @@
       text-decoration: none;
       display: block;
       cursor: pointer;
+
       &:hover {
         background-color: rgb(245, 248, 250);
       }

@@ -8,9 +8,9 @@
       <a :href="source.url" target="_blank">{{source.target.title}}</a>
     </h2>
     <div v-if="!!source.target.tags" style="margin-bottom: 18px;margin-top: -6px;">
-      <a :href="tag.url" target="_blank" class="tag-node" v-for="tag in tags">
+      <router-link :to="tag.url" class="tag-node" v-for="tag in tags">
         {{tag.name}}
-      </a>
+      </router-link>
     </div>
     <div class="RichContent">
       <div class="RichContent-inner">

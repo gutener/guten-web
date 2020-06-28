@@ -71,7 +71,13 @@ export function querytags(tagName) {
     method: 'get'
   })
 }
-
+export function queryStoryByName(page) {
+  return axios({
+    url: `/tags/1.0/stories`,
+    params: page,
+    method: 'get'
+  })
+}
 export function checkFollowtag(tagId) {
   return axios({
     url: `/tags/1.0/have_followed`,

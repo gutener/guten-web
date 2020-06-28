@@ -60,7 +60,7 @@
   }
 </script>
 <style lang="less" scoped>
-  @import url('../../../components/global.less');
+  /*@import url('../../../components/global.less');*/
 
   .user-section {
     margin-right: 8px;

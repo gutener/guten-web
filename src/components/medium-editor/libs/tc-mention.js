@@ -338,7 +338,7 @@ export const TCMention = MediumEditor.Extension.extend({
       const user= this.word.replace('@','')
       this.activeMentionAt.href=`/${user}`
     }
-    element.target = '_blank'
+    // element.target = '_blank'
   },
 
   wrapWordInMentionAt() {
@@ -399,7 +399,7 @@ export const TCMention = MediumEditor.Extension.extend({
       const textNode = this.activeMentionAt.firstChild
       textNode.textContent = seletedText
       this.activeMentionAt.href = seleted.url
-      this.activeMentionAt.target = '_blank'
+      // this.activeMentionAt.target = '_blank'
       MediumEditor.selection.select(this.document, textNode, seletedText.length)
       //
       // If one of our contenteditables currently has focus, we should

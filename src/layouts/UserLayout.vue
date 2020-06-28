@@ -4,7 +4,8 @@
       <div class="top">
         <div class="header">
           <a href="/">
-            <svg-icon iconClass="g-logo" style="font-size: 38px;position: relative;top: 5px;margin-right: 1rem;"></svg-icon>
+            <svg-icon iconClass="g-logo"
+                      style="font-size: 38px;position: relative;top: 5px;margin-right: 1rem;"></svg-icon>
             <span class="title">GUTEN 觅知</span>
           </a>
         </div>
@@ -30,23 +31,23 @@
 </template>
 
 <script>
-import RouteView from './RouteView'
-import { mixinDevice } from '@/utils/mixin'
+  import RouteView from './RouteView'
+  import {mixinDevice} from '@/utils/mixin'
 
-export default {
-  name: 'UserLayout',
-  components: { RouteView },
-  mixins: [mixinDevice],
-  data () {
-    return {}
-  },
-  mounted () {
-    document.body.classList.add('userLayout')
-  },
-  beforeDestroy () {
-    document.body.classList.remove('userLayout')
+  export default {
+    name: 'UserLayout',
+    components: {RouteView},
+    mixins: [mixinDevice],
+    data() {
+      return {}
+    },
+    mounted() {
+      document.body.classList.add('userLayout')
+    },
+    beforeDestroy() {
+      document.body.classList.remove('userLayout')
+    }
   }
-}
 </script>
 
 <style lang="less" scoped>
@@ -107,6 +108,7 @@ export default {
             top: 2px;
           }
         }
+
         .desc {
           font-size: 14px;
           color: rgba(0, 0, 0, 0.45);
@@ -132,14 +134,17 @@ export default {
         .links {
           margin-bottom: 8px;
           font-size: 14px;
+
           a {
             color: rgba(0, 0, 0, 0.45);
             transition: all 0.3s;
+
             &:not(:last-child) {
               margin-right: 40px;
             }
           }
         }
+
         .copyright {
           color: rgba(0, 0, 0, 0.45);
           font-size: 14px;

@@ -75,7 +75,7 @@ export const constantRouterMap = [
     children: [
       {
         path: "/u/:username",
-        component: UserHomePage
+        component: UserHomePage,
       },
       {
         path: "/u/:username/edit",
@@ -107,10 +107,12 @@ export const constantRouterMap = [
     name: "Notifications",
     component: Layout,
     redirect: '/notifications',
+
     children: [
       {
         path: "/notifications",
         name: "Notification",
+        meta:{title:'通知'},
         component: Notification
       },
       {
@@ -128,6 +130,7 @@ export const constantRouterMap = [
       {
         path: "/bookmarks",
         name: "Bookmark",
+        meta:{title:'书签'},
         component: Bookmark
       }
     ]
@@ -138,7 +141,8 @@ export const constantRouterMap = [
     children: [
       {
         path: "/",
-        component: Home
+        component: Home,
+        meta:{title:'主页'}
       }
     ]
   }

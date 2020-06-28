@@ -29,7 +29,7 @@
   import ReadMode from './libs/ReadMode'
   import _ from 'underscore'
   import TCMention from './libs/tc-mention'
-  import MentionSearch from './Search.vue'
+  import MentionSearch from './MentionSearch'
   import Vue from 'vue'
 
   export default {

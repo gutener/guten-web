@@ -44,14 +44,19 @@
             </div>
           </div>
         </div>
-        <tabs class="user_mainColum-tabs">
-          <tab title="动态">
-            <SeedStreamList :userId="userId"
-            ></SeedStreamList>
-          </tab>
-          <tab v-if="isMyPage" title="书签">
-            <BookMardList></BookMardList>
-          </tab>
+<!--        <tabs class="user_mainColum-tabs">-->
+<!--          <tab title="动态">-->
+<!--            <SeedStreamList :userId="userId"-->
+<!--            ></SeedStreamList>-->
+<!--          </tab>-->
+<!--          <tab v-if="isMyPage" title="书签">-->
+<!--            <BookMardList></BookMardList>-->
+<!--          </tab>-->
+<!--        </tabs>-->
+        <tabs style="height: 53px;">
+          <tab title="STORY" url="/notifications"></tab>
+          <tab title="动态" url="/notifications"></tab>
+          <tab title="书签" url="/notifications/mentions" active></tab>
         </tabs>
       </div>
     </section>

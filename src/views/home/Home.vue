@@ -1,6 +1,14 @@
 <template>
   <div class="">
     <headerBr/>
+    <Search style="width: 100%;"
+            v-on:selected="validateSelection"
+            v-on:filter="getDropdownValues"
+            :disabled="false"
+            :init-value="hashValue"
+            :maxItem="10"
+            placeholder="搜索...">
+    </Search>
     <article class="">
       <HomeStreamList/>
     </article>
@@ -10,7 +18,7 @@
 <script>
   import HomeStreamList from "./components/HomeStreamList"
   import HeaderBr from '@/components/HeaderBr'
-
+  import Search from '@/components/Search'
   export default {
     data() {
       return {
@@ -28,7 +36,8 @@
     },
     components: {
       "HomeStreamList": HomeStreamList,
-      HeaderBr
+      HeaderBr,
+      Search
     }
   }
 </script>

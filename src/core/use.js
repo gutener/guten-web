@@ -11,9 +11,8 @@ import VueClipboard from 'vue-clipboard2'
 
 import '@/icons' // svg 图标
 // TODO antv目前只有登录页面用到，以后删除掉
-import 'ant-design-vue/dist/antd.css';
-import { Popover,ConfigProvider,Skeleton,Form,Button,Input,Tabs,Row,Col,Icon,Checkbox,Select,Progress } from 'ant-design-vue';
-import '@/components/global.less'
+import 'ant-design-vue/dist/antd.css'
+import { Popover,ConfigProvider,Skeleton,Form,Button,Input,Tabs,Row,Col,Icon,Checkbox,Select,Progress } from 'ant-design-vue'
 
 Vue.use(Popover);
 Vue.use(ConfigProvider);
