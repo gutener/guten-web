@@ -60,11 +60,10 @@ export const constantRouterMap = [
   {
     path: "/hashtag",
     name: "Hashtag",
-    redirect: '/hashtag',
     component: Layout,
     children: [
       {
-        path: "/hashtag/:tagName",
+        path: ":tagName",
         component: Tags
       }
     ]

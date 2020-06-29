@@ -1,4 +1,5 @@
 @import "index";
+
 body {
   &.colorWeak {
     filter: invert(80%);
@@ -12,6 +13,10 @@ body {
   font-size: 15px;
   color: #1a1a1a;
   -webkit-tap-highlight-color: rgba(26, 26, 26, 0);
+}
+
+a {
+  color: @gu-main-color;
 }
 
 div, p, h1 {
@@ -219,6 +224,7 @@ input {
   -webkit-box-align: end;
   align-items: flex-end;
 }
+
 .align-items-center {
   -webkit-box-align: center;
   align-items: center;
@@ -228,10 +234,12 @@ input {
   -webkit-box-align: stretch;
   align-items: stretch;
 }
+
 .flex-grow0 {
   -webkit-box-flex: 0;
   flex-grow: 0;
 }
+
 .flex-grow1 {
   -webkit-box-flex: 1;
   flex-grow: 1;
@@ -289,7 +297,6 @@ input {
 }
 
 
-
 .main-border {
   border-left: 1px solid @border-color;
   border-right: 1px solid @border-color;
@@ -310,13 +317,16 @@ input {
 .paddingtop10 {
   padding-top: @default-min-spacing;
 }
+
 .min-marginLeft {
   margin-left: @default-min-spacing;
 }
+
 .main-blank {
   padding-top: 39px;
   width: 619px;
 }
-.row-height{
-  height:@default-row-height;
+
+.row-height {
+  height: @default-row-height;
 }

@@ -5,7 +5,7 @@
       <main class="main-layout align-items-start flex-grow1 gu-main-width">
         <div class="main-layout flex-row ">
           <div class="main-layout align-items-end flex-grow1 gu-main-col-width main-border">
-            <router-view></router-view>
+            <router-view :key="$route.fullPath"></router-view>
           </div>
           <Aside/>
         </div>

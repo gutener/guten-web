@@ -34,6 +34,7 @@
   export default {
     beforeRouteEnter(to, from, next) {
       next(vm => {
+        console.log(to)
         vm.hashValue = to.params.tagName
       })
     },
@@ -56,7 +57,6 @@
     },
     methods: {
       goback(){
-
       },
       render() {
         this.hashValue = `#${this.$route.params.tagName}`
@@ -66,6 +66,11 @@
       validateSelection(val) {
       },
       getDropdownValues(val) {
+      }
+    },
+    watch: {
+      '$route' (to, from) {
+        this.hashValue = `#${to.params.tagName}`
       }
     }
   }

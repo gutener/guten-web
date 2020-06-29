@@ -11,7 +11,7 @@
       </Search>
       <div class="main-layout">
         <aside class="main-layout page-aside-width">
-
+          <HashTag/>
         </aside>
       </div>
     </div>
@@ -20,18 +20,21 @@
 
 <script>
   import Search from '@/components/Search'
+  import HashTag from '@/components/HashTag'
 
   export default {
     components: {
-      Search
+      Search,
+      HashTag
     },
-    methods:{
-      validateSelection(val){
-        console.log(val.id+'-'+val.name)
+    methods: {
+      validateSelection(val) {
+        console.log(val.id + '-' + val.name)
       },
-      getDropdownValues(val){
+      getDropdownValues(val) {
         console.log(val)
       }
+
     }
   }
 </script>
