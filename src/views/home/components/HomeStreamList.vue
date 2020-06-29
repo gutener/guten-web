@@ -54,12 +54,12 @@
         homeFeed(page)
             .then(response => {
               let DataItems = response
+              console.log(response)
               DataItems.forEach((val) => {
                 val.id = val.target.item_id
               })
               if (DataItems.length < this.pageSize)
                 this.hasMore = false
-
               self.items =
                   self.items.length === 0
                       ? self.items = DataItems

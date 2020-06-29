@@ -219,12 +219,19 @@ input {
   -webkit-box-align: end;
   align-items: flex-end;
 }
+.align-items-center {
+  -webkit-box-align: center;
+  align-items: center;
+}
 
 .align-items-stretch {
   -webkit-box-align: stretch;
   align-items: stretch;
 }
-
+.flex-grow0 {
+  -webkit-box-flex: 0;
+  flex-grow: 0;
+}
 .flex-grow1 {
   -webkit-box-flex: 1;
   flex-grow: 1;
@@ -281,49 +288,7 @@ input {
   flex-shrink: 1;
 }
 
-.header-menu-options {
-  margin-top: 2px;
-  margin-bottom: 5px;
-  width: 100%;
 
-  .header-menu-option {
-    -webkit-box-direction: normal;
-    -webkit-box-orient: vertical;
-    flex-direction: column;
-
-    .menu-option-body {
-      padding: 10px;
-      -webkit-box-pack: center;
-      justify-content: center;
-      -webkit-box-align: center;
-      align-items: center;
-      transition-duration: 0.1s;
-
-      &:hover {
-        background-color: rgba(72, 199, 116, 0.12);
-        border-radius: 22px;
-
-        .menu-option-title {
-          color: rgba(72, 199, 116);
-        }
-      }
-
-      .menu-option-title {
-        font-size: 19px;
-        font-weight: bold;
-        margin-right: 15px;
-        margin-left: 20px;
-        border: 0 solid black;
-        box-sizing: border-box;
-        color: rgba(0, 0, 0, 1.00);
-        display: inline;
-        padding: 0;
-        white-space: pre-wrap;
-        word-wrap: break-word;
-      }
-    }
-  }
-}
 
 .main-border {
   border-left: 1px solid @border-color;
@@ -343,9 +308,11 @@ input {
 }
 
 .paddingtop10 {
-  padding-top: 10px;
+  padding-top: @default-min-spacing;
 }
-
+.min-marginLeft {
+  margin-left: @default-min-spacing;
+}
 .main-blank {
   padding-top: 39px;
   width: 619px;

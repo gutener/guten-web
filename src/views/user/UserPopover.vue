@@ -10,7 +10,6 @@
         <img :src="user.avatar" class="avatar-image" style="width: 52px;height: 52px;" :alt="user.nick_name">
       </div>
     </div>
-    <div style="border-bottom: 1px #eee;margin-top:12px"></div>
     <a @click="handlefollow" class="GuButton GuButton--color GuButton--small" rel="noopener">关注</a>
   </div>
 </template>
@@ -23,6 +22,11 @@
         default () {
           return {}
         }
+      }
+    },
+    methods:{
+      handlefollow(){
+
       }
     }
   }

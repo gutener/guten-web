@@ -1,14 +1,6 @@
 <template>
   <div class="">
     <headerBr/>
-    <Search style="width: 100%;"
-            v-on:selected="validateSelection"
-            v-on:filter="getDropdownValues"
-            :disabled="false"
-            :init-value="hashValue"
-            :maxItem="10"
-            placeholder="搜索...">
-    </Search>
     <article class="">
       <HomeStreamList/>
     </article>
@@ -31,7 +23,6 @@
     },
     methods: {
       render() {
-
       }
     },
     components: {

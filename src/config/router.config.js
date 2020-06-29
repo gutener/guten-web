@@ -11,6 +11,8 @@ import UserHomeEdit from "@/views/user/UserHomeEdit"
 import Notification from "@/views/notification/Notification"
 import Mention from "@/views/notification/Mention"
 import Bookmark from "@/views/bookmark/Bookmark"
+
+import Explore from "@/views/explore/Explore"
 /**
  * 基础路由
  * @type { *[] }
@@ -64,6 +66,19 @@ export const constantRouterMap = [
       {
         path: "/hashtag/:tagName",
         component: Tags
+      }
+    ]
+  },
+  {
+    path: "/explore",
+    name: "Explore",
+    redirect: '/explore',
+    component: Layout,
+    children: [
+      {
+        path: "/explore",
+        meta: {title: "探索"},
+        component: Explore
       }
     ]
   },

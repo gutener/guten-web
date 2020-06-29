@@ -25,7 +25,13 @@
             <div class="postMetaInline">
               <!--TODO 没有销毁popover内容-->
               <a-popover trigger="hover" :destroyTooltipOnHide=true>
-                <a :href="source.author.url">{{source.author.nick_name}}</a>
+                <a :href="source.author.url" class="avatar">
+                  <img
+                          :src="source.author.avatar"
+                          :alt="source.author.nick_name"
+                          class="avatar-image" style="width: 26px; height: 26px;">
+                  <span style="margin-left:4px">{{source.author.nick_name}}</span>
+                </a>
                 <UserPopover :user="source.author" slot="content"/>
               </a-popover>
             </div>

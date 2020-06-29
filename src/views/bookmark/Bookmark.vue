@@ -24,13 +24,13 @@
 <script>
   import {listBookmark} from '@/api/biz'
   import VirtualList from '@/components/VirtualScrollList'
-  import SeedCard from "./BookmarkItem"
+  import StreamItem from "@/components/StreamItem"
 
   export default {
     data() {
       return {
         items: [],
-        itemComponent: SeedCard,
+        itemComponent: StreamItem,
         pageNum: 0,
         pageSize: 5,
         hasMore: true
@@ -43,7 +43,7 @@
     },
     components: {
       VirtualList,
-      SeedCard
+      StreamItem
     },
     mounted() {
       window.addEventListener("scroll", this.getScroll)

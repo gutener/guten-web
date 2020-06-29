@@ -15,7 +15,6 @@ const defaultRoutePath = '/'
 
 router.beforeEach((to, from, next) => {
   NProgress.start() // start progress bar
-  console.log(to)
   to.meta && (typeof to.meta.title !== 'undefined' && setDocumentTitle(`${to.meta.title} / ${domTitle}`))
   if (Vue.ls.get(ACCESS_TOKEN)) {
     /* has token */
