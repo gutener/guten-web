@@ -41,6 +41,16 @@
                   </div>
                 </router-link>
                 <router-link class="flex-grow1 header-menu-option align-items-start"
+                             @click.native="clickAction()"
+                             to="/messages">
+                  <div class="menu-option-body"
+                       @mouseover="hovemsg = true"
+                       @mouseout="hovemsg = false">
+                    <svg-icon :iconClass="hovemsg?'message-color':'message'" class="" style="font-size:22px"></svg-icon>
+                    <div class="menu-option-title"><span>私信</span></div>
+                  </div>
+                </router-link>
+                <router-link class="flex-grow1 header-menu-option align-items-start"
                              to="/bookmarks">
                   <div class="menu-option-body"
                        @mouseover="hoverbookmark = true"
@@ -146,7 +156,8 @@
         hovernoti: false,
         hoverbookmark: false,
         hoveruser: false,
-        hoverfund: false
+        hoverfund: false,
+        hovemsg:false
 
       };
     },

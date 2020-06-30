@@ -54,7 +54,6 @@
         homeFeed(page)
             .then(response => {
               let DataItems = response
-              console.log(response)
               DataItems.forEach((val) => {
                 val.id = val.target.item_id
               })
@@ -85,6 +84,5 @@
   }
 </script>
 <style lang="less" scoped>
-  /*@import url('../../../components/global.less');*/
-  @import url('Story.less');
+  @import url('StreamList.less');
 </style>

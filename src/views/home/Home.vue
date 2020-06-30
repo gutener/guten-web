@@ -1,9 +1,9 @@
 <template>
   <div class="">
     <headerBr/>
-    <article class="">
+    <div class="">
       <HomeStreamList/>
-    </article>
+    </div>
   </div>
 </template>
 

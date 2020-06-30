@@ -1,15 +1,13 @@
 <template>
-  <div class="ContentItem story">
-    <button class="GuButton GuButton--seed main-layout" style="margin-left: 12px;margin-top: 12px;">
-      <span class="seed main-layout">{{source.target.reward}}<span class="main-layout" style="margin-top: -6px;"><i>₲</i></span></span>
-    </button>
-    <StoryItem v-if="source.type==='s'" :source="source"/>
-    <ReplyItem v-else-if="source.type==='r'" :source="source"/>
+  <div class="main-layout">
+    <StoryCard v-if="source.type==='s'" :source="story" :activeBookmark="true"/>
+    <ReplyCard v-if="source.type==='r'" :source="reply"/>
   </div>
 </template>
 <script>
-  import StoryItem from "./StoryItem"
-  import ReplyItem from "./ReplyItem"
+  import StoryCard from "@/components/StoryCard"
+  import ReplyCard from "@/components/ReplyCard"
+
   export default {
     name: "hp-card",
     props: {
@@ -20,10 +18,37 @@
         }
       }
     },
-    components: {
-      StoryItem,
-      ReplyItem
+    data() {
+      return {
+        story: {},
+        reply:{}
+      }
     },
+    components: {
+      StoryCard,
+      ReplyCard
+    },
+    created() {
+      this.render()
+    },
+    methods: {
+      render() {
+        if (this.source.type === 's') {
+          this.story = this.source.target
+          this.story.id = this.source.target.item_id
+          if (!!this.source.seeded_user) {
+            this.story.seed_user = this.source.seeded_user
+          }
+          if (!!this.source.author) {
+            this.story.creator = this.source.author
+          }
+        }
+        if (this.source.type === 'r') {
+          this.reply = this.source.target
+          this.reply.id = this.source.target.item_id
+        }
+      }
+    }
   }
 </script>
 <style lang="less" scoped>
@@ -43,27 +68,9 @@
     max-width: 680px;
     width: 100%;
     border-bottom: 1px solid rgb(230, 236, 240);
-    &:hover{
+
+    &:hover {
       background-color: rgb(245, 248, 250);
-    }
-  }
-  .GuButton--seed {
-    letter-spacing: 1px;
-    position: relative;
-    width: 55px;
-    height: 55px;
-    outline: transparent solid 1px;
-    border-radius: 50%;
-    transition: border 0.1s ease-in 0s;
-    padding: 0px;
-    border-width: 1px;
-    border-style: solid;
-    border-color: rgb(255, 255, 255);
-    border-image: initial;
-    background: rgba(0, 0, 0, 0.15);
-    .seed {
-      color: rgba(0, 0, 0, 0.65);
-      margin-top: 8px;
     }
   }
 

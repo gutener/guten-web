@@ -68,9 +68,6 @@
 </script>
 
 <style lang="less">
-  /*@import url('../../../components/global.less');*/
-  /*@import url('../../../layouts/layouts.less');*/
-
   .homeAsider_title {
     margin: 0 32px;
 
