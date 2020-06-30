@@ -42,20 +42,23 @@
       </div>
       <div class="main-layout flex-row justify-between StoryCard-header">
         <div class="flex-row">
-          <svg-icon iconClass="comment-o"></svg-icon>
+          <svg-icon iconClass="comment"></svg-icon>
           <span class="min-marginLeft">{{source.reply_count}}</span>
         </div>
         <div v-if="!!source.seed_count" class="flex-row">
           <svg-icon iconClass="seed-o" style="font-size: 16px"></svg-icon>
           <span class="min-marginLeft">{{source.seed_count}}</span>
         </div>
+        <div role="button" class="flex-row">
+          <svg-icon iconClass="retweet" style="font-size: 18px;"></svg-icon>
+        </div>
         <div v-if="activeBookmark" role="button" class="flex-row">
           <div @click="bookmark">
             <svg-icon iconClass="bookmark" style="font-size: 18px;"></svg-icon>
           </div>
         </div>
-        <div class="flex-row">
-          <svg-icon iconClass="more"></svg-icon>
+        <div role="button" class="flex-row">
+          <svg-icon iconClass="dislike" style="font-size: 19px;"></svg-icon>
         </div>
       </div>
     </div>
