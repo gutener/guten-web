@@ -55,7 +55,7 @@
             .then(response => {
               let DataItems = response
               DataItems.forEach((val) => {
-                val.id = val.target.item_id
+                val.id = val.target.id
               })
               if (DataItems.length < this.pageSize)
                 this.hasMore = false

@@ -21,7 +21,7 @@
     data() {
       return {
         story: {},
-        reply:{}
+        reply: {}
       }
     },
     components: {
@@ -35,17 +35,15 @@
       render() {
         if (this.source.type === 's') {
           this.story = this.source.target
-          this.story.id = this.source.target.item_id
           if (!!this.source.seeded_user) {
             this.story.seed_user = this.source.seeded_user
           }
-          if (!!this.source.author) {
-            this.story.creator = this.source.author
+          if (!!this.source.creator) {
+            this.story.creator = this.source.creator
           }
         }
         if (this.source.type === 'r') {
           this.reply = this.source.target
-          this.reply.id = this.source.target.item_id
         }
       }
     }

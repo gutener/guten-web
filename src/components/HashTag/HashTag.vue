@@ -38,7 +38,6 @@
         queryTagTrend(param)
             .then(response => {
               this.items =response
-              console.log(this.items)
             })
             .catch(error => {
               console.error(error)

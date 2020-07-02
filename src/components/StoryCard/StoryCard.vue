@@ -8,7 +8,7 @@
     <div class="StoryCard-body">
       <div v-if="!!source.seed_user" class="main-layout flex-row">
         <div class="main-layout StoryCard-bar">
-          <svg-icon iconClass="seed" style="margin-right: 6px;margin-top: 2px;" ></svg-icon>
+          <svg-icon iconClass="seed" style="margin-right: 6px;margin-top: 2px;"></svg-icon>
         </div>
         <div v-for="seedUser in source.seed_user" class="main-layout avatar">
           <img :src="seedUser.avatar" :alt="seedUser.nick_name" class="avatar-image" style="width: 20px; height: 20px;">
@@ -49,7 +49,7 @@
           <svg-icon iconClass="seed-o" style="font-size: 16px"></svg-icon>
           <span class="min-marginLeft">{{source.seed_count}}</span>
         </div>
-        <div role="button" class="flex-row">
+        <div role="button" class="flex-row" @click="showModal">
           <svg-icon iconClass="retweet" style="font-size: 18px;"></svg-icon>
         </div>
         <div v-if="activeBookmark" role="button" class="flex-row">
@@ -62,12 +62,19 @@
         </div>
       </div>
     </div>
+    <a-modal v-model="visible">
+      <p>Some contents...</p>
+      <p>Some contents...</p>
+      <p>Some contents...</p>
+    </a-modal>
   </article>
 </template>
 <script>
   import moment from 'moment'
-  import UserPopover from "@/components/UserPopover";
+  import UserPopover from '@/components/UserPopover'
   import {addBookmark} from '@/api/biz'
+  import RetweetModal from './RetweetModal'
+
   export default {
     name: "story-card",
     props: {
@@ -81,26 +88,32 @@
       },
       activeBookmark: {
         type: Boolean,
-        default:false
+        default: false
       }
     },
     components: {
-      UserPopover
+      UserPopover,
+      RetweetModal
     },
     created() {
-      this.init()
+      this.render()
+    },
+    data() {
+      return {
+        visible: false
+      }
     },
     methods: {
       moment: function (date) {
         return moment(date)
       },
-      init() {
+      render() {
         const currentTime = moment()
         let seedTime = moment(this.source.create_time)
         if (currentTime.diff(seedTime, 'days') > 7) {
-          if(currentTime.format('YYYY')===seedTime.format('YYYY')){
+          if (currentTime.format('YYYY') === seedTime.format('YYYY')) {
             this.source.create_time = seedTime.format("MMMDo")
-          }else{
+          } else {
             this.source.create_time = seedTime.format("LL")
           }
         } else {
@@ -110,6 +123,9 @@
         if (!!this.source.cover) {
           this.cover = `background-image: url("${this.source.cover}"); background-position: 50% 50%;`
         }
+      },
+      showModal() {
+        this.visible = true;
       },
       bookmark() {
         const param = {
@@ -132,6 +148,7 @@
     padding-left: @default-15-spacing !important;
     padding-right: @default-15-spacing !important;
     padding-top: @default-15-spacing !important;
+
     &:hover {
       background-color: rgb(245, 248, 250);
     }

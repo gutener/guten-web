@@ -2,13 +2,8 @@ import Vue from 'vue'
 import VueStorage from 'vue-ls'
 // import { loadStyle } from '@/utils/util'
 import * as urls from '@/config/env'
-
-// base library
-
 // ext library
 import VueClipboard from 'vue-clipboard2'
-// import PermissionHelper from '@/utils/helper/permission'
-
 import '@/icons' // svg 图标
 // TODO antv目前只有登录页面用到，以后删除掉
 import 'ant-design-vue/lib/button/style'
@@ -24,7 +19,26 @@ import 'ant-design-vue/lib/icon/style'
 import 'ant-design-vue/lib/checkbox/style'
 import 'ant-design-vue/lib/select/style'
 import 'ant-design-vue/lib/progress/style'
-import { Popover,ConfigProvider,Skeleton,Form,Button,Input,Tabs,Row,Col,Icon,Checkbox,Select,Progress } from 'ant-design-vue'
+import 'ant-design-vue/lib/modal/style'
+import {
+  Button,
+  Checkbox,
+  Col,
+  ConfigProvider,
+  Form,
+  Icon,
+  Input,
+  Modal,
+  Popover,
+  Progress,
+  Row,
+  Select,
+  Skeleton,
+  Tabs
+} from 'ant-design-vue'
+
+// base library
+// import PermissionHelper from '@/utils/helper/permission'
 
 Vue.use(Popover);
 Vue.use(ConfigProvider);
@@ -40,6 +54,7 @@ Vue.use(Icon);
 Vue.use(Checkbox);
 Vue.use(Select);
 Vue.use(Progress);
+Vue.use(Modal);
 //---end
 
 // 加载相关url地址

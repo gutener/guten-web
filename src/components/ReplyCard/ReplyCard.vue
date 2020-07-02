@@ -13,11 +13,11 @@
       </div>
       <div class="reply-story-container">
         <h2 class="ContentItem-title">
-          <a :href="source.url" target="_blank">{{source.title}}</a>
+          <a :href="source.story_url" target="_blank">{{source.story.title}}</a>
         </h2>
         <div class="RichContent">
           <div class="RichContent-inner">
-            <div class="RichText" v-html="source.story_excerpt"></div>
+            <div class="RichText" v-html="source.story.excerpt"></div>
           </div>
         </div>
       </div>
@@ -41,7 +41,7 @@
     },
     methods:{
       render(){
-        this.source.url = `/story/${this.source.story_id}`
+        this.source.story_url = `/story/${this.source.story.id}`
       }
     }
   }
