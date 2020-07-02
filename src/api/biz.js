@@ -2,7 +2,7 @@ import {axios} from '@/utils/request'
 
 export function getStory(id, from) {
   return axios({
-    url: `/story/1.0/${id}`,
+    url: `/story/1.0/story/${id}`,
     method: 'get',
     headers: {
       source: from
@@ -12,7 +12,7 @@ export function getStory(id, from) {
 
 export function postStory(obj) {
   return axios({
-    url: '/story/1.0',
+    url: '/story/1.0/story',
     method: 'put',
     data: obj
   })
