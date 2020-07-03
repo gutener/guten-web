@@ -22,14 +22,14 @@
       </tabs>
     </div>
     <div class="main-layout">
-      <StoryItemList/>
+      <TagItemList :tagName="hashValue"/>
     </div>
   </div>
 </template>
 <script>
   import Search from '@/components/Search'
   import {Tab, Tabs} from '@/components/Tabs/tabs'
-  import StoryItemList from "@/views/tags/story/StoryItemList";
+  import TagItemList from "@/views/tags/StreamItem/TagItemList";
 
   export default {
     beforeRouteEnter(to, from, next) {
@@ -42,7 +42,7 @@
       Tabs,
       Tab,
       Search,
-      StoryItemList
+      TagItemList
     },
     data() {
       return {

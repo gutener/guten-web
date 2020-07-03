@@ -24,64 +24,54 @@
   </bottom-scroll>
 </template>
 <script>
-  import {queryStoryByName} from '@/api/biz'
-  import Search from '@/components/Search'
+  import {queryItemByTag} from '@/api/biz'
+  import TagItem from './TagItem'
   import VirtualList from '@/components/VirtualScrollList'
   import Scroll from '@/components/Scroll'
-  import StoryItem from "./StoryItem";
 
   export default {
-    beforeRouteEnter(to, from, next) {
-      next(vm => {
-        vm.hashValue = to.params.tagName
-      })
-    },
-    components: {
-      Search,
-      VirtualList,
-      'bottom-scroll': Scroll,
-      StoryItem
-    },
     data() {
       return {
-        mainUrl: '',
-        userUrl: '',
-        hashValue: '',
-        followText: '',
         items: [],
-        itemComponent: StoryItem,
+        itemComponent: TagItem,
         pageNum: 0,
         pageSize: 5,
         hasMore: true,
       }
     },
+    props: {
+      tagName: {
+        type: String,
+        default() {
+          return {}
+        }
+      }
+    },
     created() {
-      this.render()
+      this.isLoading = false
+      this.getPageData({page_num: this.pageNum, page_size: this.pageSize, tag_name: this.tagName})
+    },
+    components: {
+      TagItem,
+      VirtualList,
+      'bottom-scroll': Scroll
     },
     methods: {
-      render() {
-        this.hashValue = `#${this.$route.params.tagName}`
-        this.mainUrl = `/hashtag/${this.$route.params.tagName}?src=hashtag_click`
-        this.userUrl = `/hashtag/${this.$route.params.tagName}?src=hashtag_click&f=user`
-        this.queryStory(this.hashValue, this.pageNum, this.pageSize)
-      },
-      queryStory(hashVale, pageNum, pageSize) {
-        const params = {
-          tag_name: hashVale,
-          page_num: pageNum,
-          page_size: pageSize
-        }
-        queryStoryByName(params)
+      getPageData(page) {
+        const self = this
+        queryItemByTag(page)
             .then(response => {
               let DataItems = response
-              if (DataItems.length < this.pageSize) {
+              DataItems.forEach((val) => {
+                val.id = val.target.id
+              })
+              if (DataItems.length < this.pageSize)
                 this.hasMore = false
-              }
-              this.items =
-                  this.items.length === 0
-                      ? this.items = DataItems
-                      : this.items.concat(DataItems)
-              this.pageNum++
+              self.items =
+                  self.items.length === 0
+                      ? self.items = DataItems
+                      : self.items.concat(DataItems)
+              self.pageNum++
             })
             .catch(error => {
               console.error(error)
@@ -94,14 +84,12 @@
         this.isLoading = true
         setTimeout(() => {
           this.isLoading = false
-          this.queryStory(this.hashValue, this.pageNum, this.pageSize)
+          this.getPageData({page_num: this.pageNum, page_size: this.pageSize, tag_name: this.tagName})
         }, 500);
 
-      },
-      validateSelection(val) {
-      },
-      getDropdownValues(val) {
       }
-    }
+    },
   }
 </script>
+<style lang="less" scoped>
+</style>

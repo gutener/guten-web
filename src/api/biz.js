@@ -71,6 +71,13 @@ export function querytags(tagName) {
     method: 'get'
   })
 }
+export function queryItemByTag(tagName) {
+  return axios({
+    url: `/tags/1.0/items`,
+    params: tagName,
+    method: 'get'
+  })
+}
 export function queryTagTrend(page) {
   return axios({
     url: `/tags/1.0/tag_trend`,
