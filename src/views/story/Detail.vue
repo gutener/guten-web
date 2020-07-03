@@ -54,7 +54,7 @@
                   v-on:uploaded="uploadCallback">
           </medium-editor>
           <div style="position: absolute; bottom: 0px; right: 0px;"
-               v-show="reply.reply_body!==''&&reply.reply_body!=='<p><br></p>'">
+               v-show="reply.body!==''&&reply.body!=='<p><br></p>'">
             <button @click="saveReply">
               <svg-icon iconClass="upload" style="font-size:26px"></svg-icon>
             </button>
@@ -74,7 +74,7 @@
               <a class="" @click="seedReply(reply.target)">{{reply.target.reward}}<i>₲</i></a>
             </div>
           </div>
-          <div class="reply-body" v-html="reply.target.reply_body"></div>
+          <div class="reply-body" v-html="reply.target.body"></div>
           <div style="color: rgb(170, 170, 170); padding-left: 1rem; padding-bottom: 0.5rem; cursor: pointer;">
             <div class="">
               <svg-icon iconClass="share" style="font-size:23px"></svg-icon>
@@ -116,7 +116,7 @@
           }
         },
         reply: {
-          reply_body: '',
+          body: '',
           story_id: '',
           reward: 0
         },
@@ -186,7 +186,7 @@
         // console.log("uploaded url", url)
       },
       onChange(content) {
-        this.reply.reply_body = content
+        this.reply.body = content
       },
       saveReply() {
         this.reply.story_id = this.story.id

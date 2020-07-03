@@ -67,16 +67,16 @@
     name: "StoryPost",
     data() {
       return {
-        story:{
-          title:'',
-          body:'',
-          init_reward:0
+        story: {
+          title: '',
+          body: '',
+          init_reward: 0
         },
         options: {
           delay: 500,
           uploadUrl: `${process.env.VUE_APP_API_BASE_URL}/story/images/1.0/?type=g-st`,
-          placeholder:{
-            text:'问题描述或者文章正文'
+          placeholder: {
+            text: '问题描述或者文章正文'
           },
           toolbar: {
             buttons: [
@@ -134,7 +134,7 @@
       rewardplus() {
         this.rewardMax = this.rewardMax + Math.ceil(this.rewardMax / 2)
       },
-      saveStory(){
+      saveStory() {
         this.story.init_reward = this.reward
         postStory(this.story)
             .then(response => {
@@ -203,6 +203,7 @@
 
   .StoryReward-Card {
     margin-top: 2.5rem;
+
     .flex {
       display: -webkit-flex;
       display: flex;

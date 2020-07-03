@@ -1,7 +1,7 @@
 <template>
   <div class="main-layout">
-    <StoryCard v-if="source.type==='s'" :source="story" :activeBookmark="true"/>
-    <ReplyCard v-if="source.type==='r'" :source="reply"/>
+    <StoryCard v-if="source.target_type==='STORY'" :source="source" :activeBookmark="true"/>
+    <ReplyCard v-if="source.target_type==='REPLY'" :source="source"/>
   </div>
 </template>
 <script>
@@ -33,18 +33,6 @@
     },
     methods: {
       render() {
-        if (this.source.type === 's') {
-          this.story = this.source.target
-          if (!!this.source.seeded_user) {
-            this.story.seed_user = this.source.seeded_user
-          }
-          if (!!this.source.creator) {
-            this.story.creator = this.source.creator
-          }
-        }
-        if (this.source.type === 'r') {
-          this.reply = this.source.target
-        }
       }
     }
   }

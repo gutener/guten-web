@@ -16,7 +16,7 @@
       </div>
       <div class="main-layout StoryCard-title">
         <h2 class="main-layout">
-          <a :href="source.url" target="_blank">{{source.title}}</a>
+          <a :href="story.url" target="_blank">{{story.title}}</a>
         </h2>
         <div class="main-layout flex-row StoryCard-bar">
           <div v-if="!!source.creator" role="button">
@@ -28,22 +28,22 @@
             <svg-icon iconClass="dot-light"></svg-icon>
           </div>
           <div class="main-layout">
-            <span>{{source.create_time}}</span>
+            <span>{{story.create_time}}</span>
           </div>
         </div>
       </div>
       <div class="main-layout">
         <div class="main-layout">
-          <div class="main-layout" v-html="source.excerpt"></div>
+          <div class="main-layout" v-html="story.excerpt"></div>
         </div>
-        <div v-if="!!source.cover" class="main-layout StoryCard-cover">
+        <div v-if="!!story.cover" class="main-layout StoryCard-cover">
           <a class="backgroundCover" :style="cover"></a>
         </div>
       </div>
       <div class="main-layout flex-row justify-between StoryCard-header">
         <div class="flex-row">
           <svg-icon iconClass="comment"></svg-icon>
-          <span class="min-marginLeft">{{source.reply_count}}</span>
+          <span class="min-marginLeft">{{story.reply_count}}</span>
         </div>
         <div v-if="!!source.seed_count" class="flex-row">
           <svg-icon iconClass="seed-o" style="font-size: 16px"></svg-icon>
@@ -100,7 +100,8 @@
     },
     data() {
       return {
-        visible: false
+        visible: false,
+        story:{}
       }
     },
     methods: {
@@ -108,20 +109,21 @@
         return moment(date)
       },
       render() {
+        this.story = this.source.target
         const currentTime = moment()
-        let seedTime = moment(this.source.create_time)
-        if (currentTime.diff(seedTime, 'days') > 7) {
-          if (currentTime.format('YYYY') === seedTime.format('YYYY')) {
-            this.source.create_time = seedTime.format("MMMDo")
+        let creatTime = moment(this.story.create_time)
+        if (currentTime.diff(creatTime, 'days') > 7) {
+          if (currentTime.format('YYYY') === creatTime.format('YYYY')) {
+            this.story.create_time = creatTime.format("MMMDo")
           } else {
-            this.source.create_time = seedTime.format("LL")
+            this.story.create_time = creatTime.format("LL")
           }
         } else {
-          this.source.create_time = seedTime.fromNow()
+          this.story.create_time = creatTime.fromNow()
         }
-        this.source.url = `/story/${this.source.id}`
-        if (!!this.source.cover) {
-          this.cover = `background-image: url("${this.source.cover}"); background-position: 50% 50%;`
+        this.story.url = `/story/${this.story.id}`
+        if (!!this.story.cover) {
+          this.cover = `background-image: url("${this.story.cover}"); background-position: 50% 50%;`
         }
       },
       showModal() {
@@ -129,7 +131,7 @@
       },
       bookmark() {
         const param = {
-          story_id: this.source.id
+          story_id: this.story.id
         }
         addBookmark(param)
             .then(response => {

@@ -8,16 +8,16 @@
     <div class="StoryCard-body">
       <div class="main-layout">
         <div class="main-layout">
-          <div class="main-layout" v-html="source.excerpt"></div>
+          <div class="main-layout" v-html="reply.excerpt"></div>
         </div>
       </div>
       <div class="reply-story-container">
         <h2 class="ContentItem-title">
-          <a :href="source.story_url" target="_blank">{{source.story.title}}</a>
+          <a :href="source.story_url" target="_blank">{{reply.story.title}}</a>
         </h2>
         <div class="RichContent">
           <div class="RichContent-inner">
-            <div class="RichText" v-html="source.story.excerpt"></div>
+            <div class="RichText" v-html="reply.story.excerpt"></div>
           </div>
         </div>
       </div>
@@ -36,12 +36,18 @@
         }
       }
     },
+    data() {
+      return {
+        reply:{}
+      }
+    },
     created() {
       this.render()
     },
     methods:{
       render(){
-        this.source.story_url = `/story/${this.source.story.id}`
+        this.reply=this.source.target
+        this.source.story_url = `/story/${this.reply.story.id}`
       }
     }
   }
