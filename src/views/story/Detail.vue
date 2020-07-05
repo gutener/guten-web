@@ -61,20 +61,20 @@
           </div>
         </div>
       </div>
-      <section class="streamItem " v-for="reply in replies" :key="reply.target.id">
+      <section class="streamItem " v-for="reply in replies" :key="reply.id">
         <div class="reply-section">
           <div class="gu-clearfix reply-header">
             <div class="gu-floatLeft">
-              <a v-if="!!reply.author">{{reply.author.nick_name}}</a>
+              <a v-if="!!reply.creator">{{reply.creator.nick_name}}</a>
               <div style="font-size: 0.8rem;color: rgba(0, 0, 0, 0.45);margin-top: 2px;">
-                {{reply.target.create_time}}
+                {{reply.create_time}}
               </div>
             </div>
             <div class="gu-floatRight">
-              <a class="" @click="seedReply(reply.target)">{{reply.target.reward}}<i>₲</i></a>
+              <a class="" @click="seedReply(reply)">{{reply.reward}}<i>₲</i></a>
             </div>
           </div>
-          <div class="reply-body" v-html="reply.target.body"></div>
+          <div class="reply-body" v-html="reply.body"></div>
           <div style="color: rgb(170, 170, 170); padding-left: 1rem; padding-bottom: 0.5rem; cursor: pointer;">
             <div class="">
               <svg-icon iconClass="share" style="font-size:23px"></svg-icon>
@@ -138,6 +138,7 @@
       getStoryInfo(id) {
         getStory(id, 'app_detail')
             .then(response => {
+              this.story.id = response.id
               this.story.body = response.body
               this.story.title = response.title
               this.story.reward = response.reward
@@ -211,7 +212,7 @@
             .then(replyRep => {
               this.replies = replyRep
               this.replies.forEach((val) => {
-                val.target.create_time = moment(val.target.create_time).fromNow()
+                val.create_time = moment(val.create_time).fromNow()
               })
             })
             .catch(error => {
