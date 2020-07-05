@@ -269,6 +269,10 @@ input {
   height: 100%;
 }
 
+.width100 {
+  height: 100%;
+}
+
 .gu-header-width {
   width: 252px;
 }
@@ -296,7 +300,6 @@ input {
   flex-shrink: 1;
 }
 
-
 .main-border {
   border-left: 1px solid @border-color;
   border-right: 1px solid @border-color;
@@ -314,7 +317,7 @@ input {
   width: @gu-aside-width;
 }
 
-.paddingtop10 {
+.min-paddingTop {
   padding-top: @default-min-spacing;
 }
 
@@ -322,6 +325,16 @@ input {
   margin-left: @default-min-spacing;
 }
 
+.min-marginBottom {
+  margin-bottom: @default-min-spacing;
+}
+
+.min-marginTop {
+  margin-top: @default-min-spacing;
+}
+.min-border-radius{
+  border-radius: @default-min-radius
+}
 .main-blank {
   padding-top: 39px;
   width: 619px;
@@ -330,6 +343,12 @@ input {
 .row-height {
   height: @default-row-height;
 }
+
+.padding-default {
+  padding-left: @default-15-spacing;
+  padding-right: @default-15-spacing;
+}
+
 .GuButton--seed {
   letter-spacing: 1px;
   position: relative;

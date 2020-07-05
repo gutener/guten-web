@@ -15,10 +15,10 @@
 </template>
 
 <script>
-  import VueUploadComponent from 'vue-upload-component';
-  import {library} from '@fortawesome/fontawesome-svg-core';
-  import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome';
-  import {faImages} from '@fortawesome/free-regular-svg-icons';
+  import VueUploadComponent from 'vue-upload-component'
+  import {library} from '@fortawesome/fontawesome-svg-core'
+  import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome'
+  import {faImages} from '@fortawesome/free-regular-svg-icons'
   import _ from 'underscore';
 
   library.add(faImages)

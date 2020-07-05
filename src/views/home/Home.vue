@@ -1,7 +1,8 @@
 <template>
   <div class="">
     <headerBr/>
-    <div class="">
+    <ItemPost/>
+    <div class="main-layout">
       <HomeStreamList/>
     </div>
   </div>
@@ -11,12 +12,14 @@
   import HomeStreamList from "./components/HomeStreamList"
   import HeaderBr from '@/components/HeaderBr'
   import Search from '@/components/Search'
+  import ItemPost from "./components/ItemPost"
+
   export default {
     data() {
       return {
         recommend: [],
         loading: true
-      };
+      }
     },
     created() {
       this.render();
@@ -28,19 +31,9 @@
     components: {
       "HomeStreamList": HomeStreamList,
       HeaderBr,
-      Search
+      Search,
+      ItemPost
     }
   }
 </script>
 
-<style lang="less" scoped>
-
-  .HomeStream-container {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: start;
-    -ms-flex-align: start;
-    align-items: flex-start;
-  }
-</style>

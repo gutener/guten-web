@@ -110,7 +110,7 @@
         },
         postSidebar: false,
         options: {
-          uploadUrl: `${process.env.VUE_APP_API_BASE_URL}/story/images/1.0/?type=g-st`,
+          uploadUrl: `${process.env.VUE_APP_API_BASE_URL}/story/1.0/image/upload?type=g-st`,
           placeholder: {
             text: '回复'
           }

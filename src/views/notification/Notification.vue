@@ -1,5 +1,5 @@
 <template>
-  <div class="align-items-start paddingtop10">
+  <div class="align-items-start min-paddingTop">
     <headerBr/>
     <tabs>
       <tab title="全部" url="/notifications" active></tab>

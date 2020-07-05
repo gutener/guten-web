@@ -1,5 +1,5 @@
 <template>
-  <div class="main-layout align-items-start flex-grow1 gu-aside-width paddingtop10">
+  <div class="main-layout align-items-start flex-grow1 gu-aside-width min-paddingTop">
     <div class="main-layout">
       <Search
               v-on:selected="validateSelection"

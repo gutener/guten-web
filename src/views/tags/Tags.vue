@@ -1,5 +1,5 @@
 <template>
-  <div class="main-layout paddingtop10">
+  <div class="main-layout min-paddingTop">
     <div class="main-layout">
       <div class="main-layout flex-row row-height" style="margin: 0 24px;">
         <div @click="$router.go(-1)" role="button" class="main-layout justify-center" style="min-width: 59px;">

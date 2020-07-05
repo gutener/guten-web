@@ -160,3 +160,10 @@ export function notifications(page) {
     params: page
   })
 }
+export function postImage(obj) {
+  return axios({
+    url: '/story/1.0/image/save',
+    method: 'put',
+    data: obj
+  })
+}
