@@ -2,15 +2,17 @@
   <div>
     <!-- Editor Mode -->
     <div class="medium-editor-container" v-if="!readOnly">
-      <insert-embed v-if="editor"
-                    :uploadUrl="options.uploadUrl"
-                    :onChange="triggerChange"
-                    :editorRef="$refs.editor"
-                    :editor="editor"
-                    v-on:uploaded="uploadedCallback"></insert-embed>
-      <list-handler v-if="editor"
-                    :editor="editor"
-                    :onChange="triggerChange"></list-handler>
+      <div v-if="listHandler!=='false'">
+        <insert-embed v-if="editor"
+                      :uploadUrl="options.uploadUrl"
+                      :onChange="triggerChange"
+                      :editorRef="$refs.editor"
+                      :editor="editor"
+                      v-on:uploaded="uploadedCallback"></insert-embed>
+        <list-handler v-if="editor"
+                      :editor="editor"
+                      :onChange="triggerChange"></list-handler>
+      </div>
       <div class="editor"
            v-bind:class="editorClass"
            v-html="prefill"
@@ -74,7 +76,7 @@
         hasContent: false
       };
     },
-    props: ["options", "onChange", "prefill", "readOnly"],
+    props: ["options", "onChange", "prefill", "readOnly","listHandler"],
     computed: {
       editorOptions() {
         return _.extend(this.defaultOptions, this.options);

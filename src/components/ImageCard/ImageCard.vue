@@ -11,9 +11,7 @@
         <span class="light-bar">{{imageItem.createTime}}</span>
       </div>
       <div v-if="!!imageItem.body" class="main-layout">
-        <div class="main-layout">
-          {{imageItem.body}}
-        </div>
+        <div class="main-layout" v-html="imageItem.body"></div>
       </div>
       <div class="main-layout marginTop10 min-border-radius">
         <div class="main-layout" style="height: 324px" v-if="images.length!==0">

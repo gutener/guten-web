@@ -10,12 +10,13 @@
         </div>
       </div>
       <div class="main-layout justify-center flex-grow1">
+        <medium-editor
+                listHandler="false"
+                style="min-height:75px; max-width: 530px"
+                :options="options"
+                :onChange="onChange">
+        </medium-editor>
         <div class="main-layout">
-          <div :class="$options.name" class="flex-row">
-            <div :class="`${$options.name}__messageBox`">
-              <tweet-box v-model="tweet"/>
-            </div>
-          </div>
           <div class="main-layout" style="height: 304px" v-if="images.length!==0">
             <div class="main-layout flex-row height100" v-if="images.length<=2">
               <div aria-label="Media" role="group" class="main-layout flex-grow1 image-group" v-for="image in images">
@@ -97,6 +98,7 @@
 </template>
 <script>
   import VueUploadComponent from 'vue-upload-component'
+  import Editor from '@/components/medium-editor/Editor'
   import TweetBox from "@/components/Post/TweetBox"
   import {mapGetters} from "vuex"
   import {postImage,postShotText} from '@/api/biz'
@@ -109,12 +111,45 @@
         images: [],
         imagesFirstColumn: [],
         imagesSecondColumn: [],
-        itemObj: {}
+        itemObj: {},
+        options: {
+          delay: 500,
+          placeholder: {
+            text: '发布想法，观点，让大家讨论'
+          },
+          toolbar: {
+            buttons: [
+              'bold',
+              'italic',
+              'h1',
+              'h2',
+              'h3',
+              'quote',
+              'anchor',
+              'orderedlist',
+              'justifyLeft',
+              'justifyCenter',
+              'justifyRight',
+            ]
+          },
+          paste: {
+            /* This example includes the default options for paste,
+               if nothing is passed this is what it used */
+            forcePlainText: true,
+            cleanPastedHTML: true,
+            cleanAttrs: ['style', 'dir'],
+            cleanTags: ['label', 'meta'],
+            unwrapTags: ['sub', 'sup']
+          },
+        },
       }
     },
     methods: {
       ...mapGetters(['userInfo']),
       render() {
+      },
+      onChange(content) {
+        this.tweet = content
       },
       inputFilter(newFile, oldFile, prevent) {
         if (newFile && !oldFile) {
@@ -176,6 +211,7 @@
     },
     components: {
       TweetBox,
+      "medium-editor": Editor,
       'file-upload': VueUploadComponent
     }
   }

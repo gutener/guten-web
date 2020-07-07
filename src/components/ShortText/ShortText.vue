@@ -13,7 +13,7 @@
         </div>
       </div>
       <div class="">
-        <span class="default-line-height">{{shortText.body}}</span>
+        <div class="main-layout default-line-height" v-html="shortText.body"></div>
       </div>
       <div class="main-layout flex-row justify-between marginTop10">
         <div role="button" class="flex-row">
