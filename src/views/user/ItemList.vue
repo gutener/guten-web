@@ -33,6 +33,9 @@
     props: {
       userName: {
         type: String
+      },
+      itemType: {
+        type: String
       }
     },
     data() {
@@ -46,7 +49,12 @@
     },
     created() {
       this.isLoading = false
-      this.getPageData({page_num: this.pageNum, page_size: this.pageSize,user_name:this.userName})
+      this.getPageData({
+        page_num: this.pageNum,
+        page_size: this.pageSize,
+        user_name: this.userName,
+        item_type: this.itemType
+      })
     },
     components: {
       StreamItem,
@@ -81,7 +89,12 @@
         this.isLoading = true
         setTimeout(() => {
           this.isLoading = false
-          this.getPageData({page_num: this.pageNum, page_size: this.pageSize,user_name:this.userName})
+          this.getPageData({
+            page_num: this.pageNum,
+            page_size: this.pageSize,
+            user_name: this.userName,
+            item_type: this.itemType
+          })
         }, 500);
 
       }

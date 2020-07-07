@@ -99,13 +99,13 @@
   import VueUploadComponent from 'vue-upload-component'
   import TweetBox from "@/components/Post/TweetBox"
   import {mapGetters} from "vuex"
-  import {postImage} from '@/api/biz'
+  import {postImage,postShotText} from '@/api/biz'
 
   export default {
     data() {
       return {
         tweet: ``,
-        postImageUrl: `${process.env.VUE_APP_API_BASE_URL}/story/1.0/image/upload?type=item`,
+        postImageUrl: `${process.env.VUE_APP_API_BASE_URL}/item/1.0/image/upload?type=item`,
         images: [],
         imagesFirstColumn: [],
         imagesSecondColumn: [],
@@ -143,7 +143,6 @@
           } else if (this.images.length % 2 === 0) {
             this.imagesSecondColumn.push(image)
           }
-          console.log(this.images)
         }
       },
       sliceItems: function (start, end) {
@@ -158,13 +157,21 @@
           }
           imageList.push(image)
         })
-        this.itemObj.image_list = imageList
-        postImage(this.itemObj).then(response => {
-          console.log(response)
+        if(imageList.length!==0){
+          this.itemObj.image_list = imageList
+          postImage(this.itemObj).then(response => {
+            console.log(response)
 
-        }).catch(error => {
-          console.error(error)
-        })
+          }).catch(error => {
+            console.error(error)
+          })
+        }else{
+          postShotText(this.itemObj).then(response => {
+            console.log(response)
+          }).catch(error => {
+            console.error(error)
+          })
+        }
       }
     },
     components: {

@@ -3,7 +3,7 @@
     <Profile :user-name="userName"/>
     <tabs style="height: 53px;">
       <tab title="全部" :url="urlItem" active></tab>
-      <tab title="回复" url="/notifications"></tab>
+      <tab title="短文本" :url="urlItem"></tab>
       <tab title="媒体" :url="urlMedia"></tab>
     </tabs>
     <ItemList :user-name="userName"/>
@@ -19,7 +19,7 @@
       return {
         userName: '',
         urlItem: '',
-        urlMedia:''
+        urlMedia: ''
       }
     },
     components: {

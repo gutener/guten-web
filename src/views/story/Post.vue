@@ -74,7 +74,7 @@
         },
         options: {
           delay: 500,
-          uploadUrl: `${process.env.VUE_APP_API_BASE_URL}/story/1.0/image/upload?type=g-st`,
+          uploadUrl: `${process.env.VUE_APP_API_BASE_URL}/item/1.0/image/upload?type=item`,
           placeholder: {
             text: '问题描述或者文章正文'
           },

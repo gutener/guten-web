@@ -1,5 +1,5 @@
 <template>
-  <article class="main-layout flex-row StoryCard">
+  <article class="main-layout flex-row padding-default paddingTop10 paddingBottom10">
     <div class="main-layout align-items-center flex-grow0 StoryCard-aside">
       <button class="GuButton GuButton--seed">
         <span class="seed">{{source.reward}}<span class="main-layout" style="margin-top: -6px;"><i>₲</i></span></span>
@@ -40,7 +40,7 @@
           <a class="backgroundCover" :style="cover"></a>
         </div>
       </div>
-      <div class="main-layout flex-row justify-between StoryCard-header">
+      <div class="main-layout flex-row justify-between marginTop10">
         <div class="flex-row">
           <svg-icon iconClass="comment"></svg-icon>
           <span class="min-marginLeft">{{story.reply_count}}</span>
@@ -147,10 +147,6 @@
 <style lang="less" scoped>
   .StoryCard {
     border-bottom: 1px solid rgb(230, 236, 240) !important;
-    padding-left: @default-15-spacing !important;
-    padding-right: @default-15-spacing !important;
-    padding-top: @default-15-spacing !important;
-
     &:hover {
       background-color: rgb(245, 248, 250);
     }
@@ -200,7 +196,4 @@
     }
   }
 
-  .StoryCard-header {
-    margin-top: @default-min-spacing;
-  }
 </style>

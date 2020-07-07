@@ -25,11 +25,11 @@
             <span>{{user.create_time}}</span>加入
           </div>
         </div>
-        <div class="main-layout flex-row  ">
-          <a class="flex-row marginRight10">
+        <div class="main-layout flex-row">
+          <a class="flex-row marginRight10" v-if="!!user.following_count">
             <span style="font-weight: bold;">{{user.following_count}}</span> 正在关注
           </a>
-          <a class="flex-row">
+          <a class="flex-row" v-if="!!user.followers_count">
             <span style="font-weight: bold;">{{user.followers_count}}</span> 个关注者
           </a>
         </div>

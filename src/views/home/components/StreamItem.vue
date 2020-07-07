@@ -3,12 +3,14 @@
     <StoryCard v-if="source.target_type==='STORY'" :source="source" :activeBookmark="true"/>
     <ReplyCard v-if="source.target_type==='REPLY'" :source="source"/>
     <ImageCard v-if="source.target_type==='IMAGE'" :source="source"/>
+    <ShortText v-if="source.target_type==='SHORTTEXT'" :source="source"/>
   </div>
 </template>
 <script>
   import StoryCard from "@/components/StoryCard"
   import ReplyCard from "@/components/ReplyCard"
   import ImageCard from "@/components/ImageCard"
+  import ShortText from "@/components/ShortText"
   export default {
     name: "hp-card",
     props: {
@@ -28,7 +30,8 @@
     components: {
       StoryCard,
       ReplyCard,
-      ImageCard
+      ImageCard,
+      ShortText
     },
     created() {
       this.render()

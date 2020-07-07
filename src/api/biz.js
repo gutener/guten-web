@@ -2,7 +2,7 @@ import {axios} from '@/utils/request'
 
 export function getStory(id, from) {
   return axios({
-    url: `/story/1.0/story/${id}`,
+    url: `/item/1.0/story/${id}`,
     method: 'get',
     headers: {
       source: from
@@ -12,7 +12,14 @@ export function getStory(id, from) {
 
 export function postStory(obj) {
   return axios({
-    url: '/story/1.0/story',
+    url: '/item/1.0/story',
+    method: 'put',
+    data: obj
+  })
+}
+export function postShotText(obj) {
+  return axios({
+    url: '/item/1.0/short_text/save',
     method: 'put',
     data: obj
   })
@@ -35,7 +42,7 @@ export function userSeed(page) {
 }
 export function queryItemsByCurrentUser(page) {
   return axios({
-    url: `/cds/1.0/items/current-user`,
+    url: `/cds/1.0/items/by_user`,
     params: page,
     method: 'get'
   })
