@@ -33,7 +33,13 @@ export function userSeed(page) {
     method: 'get'
   })
 }
-
+export function queryItemsByCurrentUser(page) {
+  return axios({
+    url: `/cds/1.0/items/current-user`,
+    params: page,
+    method: 'get'
+  })
+}
 export function postReply(obj) {
   return axios({
     url: '/reply/1.0',

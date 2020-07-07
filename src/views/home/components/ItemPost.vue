@@ -105,7 +105,7 @@
     data() {
       return {
         tweet: ``,
-        postImageUrl: `${process.env.VUE_APP_API_BASE_URL}/story/1.0/image/upload?type=g-st`,
+        postImageUrl: `${process.env.VUE_APP_API_BASE_URL}/story/1.0/image/upload?type=item`,
         images: [],
         imagesFirstColumn: [],
         imagesSecondColumn: [],

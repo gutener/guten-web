@@ -11,71 +11,45 @@
             </div>
             <div class="main-layout header-menu-options">
               <nav class="main-layout align-items-start">
-                <router-link class="flex-grow1 header-menu-option align-items-start"
-                             @click.native="clickAction()"
-                             to="/">
-                  <div class="menu-option-body"
-                       @mouseover="hovehome = true"
-                       @mouseout="hovehome = false">
-                    <svg-icon :iconClass="hovehome?'home-color':'home'" class="" style="font-size:22px"></svg-icon>
+                <router-link class="flex-grow1 header-menu-option align-items-start" to="/">
+                  <div class="menu-option-body">
+                    <svg-icon iconClass="home" class="menu-icon"style="font-size:22px;"></svg-icon>
                     <div class="menu-option-title"><span>主页</span></div>
                   </div>
                 </router-link>
-                <router-link class="flex-grow1 header-menu-option align-items-start"
-                             to="/explore">
-                  <div class="menu-option-body"
-                       @mouseover="hoverhash = true"
-                       @mouseout="hoverhash = false">
-                    <svg-icon :iconClass="hoverhash?'hash-color':'hash'" class="" style="font-size:23px"></svg-icon>
+                <router-link class="flex-grow1 header-menu-option align-items-start" to="/explore">
+                  <div class="menu-option-body">
+                    <svg-icon iconClass="hash" class="menu-icon" style="font-size:23px"></svg-icon>
                     <div class="menu-option-title"><span>频道</span></div>
                   </div>
                 </router-link>
-                <router-link class="flex-grow1 header-menu-option align-items-start"
-                             to="/notifications">
-                  <div class="menu-option-body"
-                       @mouseover="hovernoti = true"
-                       @mouseout="hovernoti = false">
-                    <svg-icon :iconClass="hovernoti?'notification-color':'notification'" class=""
-                              style="font-size:22px"></svg-icon>
+                <router-link class="flex-grow1 header-menu-option align-items-start" to="/notifications">
+                  <div class="menu-option-body">
+                    <svg-icon iconClass="notification" class="menu-icon" style="font-size:22px"></svg-icon>
                     <div class="menu-option-title"><span>消息</span></div>
                   </div>
                 </router-link>
-                <router-link class="flex-grow1 header-menu-option align-items-start"
-                             @click.native="clickAction()"
-                             to="/messages">
-                  <div class="menu-option-body"
-                       @mouseover="hovemsg = true"
-                       @mouseout="hovemsg = false">
-                    <svg-icon :iconClass="hovemsg?'message-color':'message'" class="" style="font-size:22px"></svg-icon>
+                <router-link class="flex-grow1 header-menu-option align-items-start" to="/messages">
+                  <div class="menu-option-body">
+                    <svg-icon iconClass="message" class="menu-icon" style="font-size:22px"></svg-icon>
                     <div class="menu-option-title"><span>私信</span></div>
                   </div>
                 </router-link>
-                <router-link class="flex-grow1 header-menu-option align-items-start"
-                             to="/bookmarks">
-                  <div class="menu-option-body"
-                       @mouseover="hoverbookmark = true"
-                       @mouseout="hoverbookmark = false">
-                    <svg-icon :iconClass="hoverbookmark?'bookmark-color':'bookmark'" class=""
-                              style="font-size:22px"></svg-icon>
+                <router-link class="flex-grow1 header-menu-option align-items-start" to="/bookmarks">
+                  <div class="menu-option-body">
+                    <svg-icon iconClass="bookmark" class="menu-icon" style="font-size:22px"></svg-icon>
                     <div class="menu-option-title"><span>书签</span></div>
                   </div>
                 </router-link>
-                <router-link class="flex-grow1 header-menu-option align-items-start"
-                             to="/fund">
-                  <div class="menu-option-body"
-                       @mouseover="hoverfund = true"
-                       @mouseout="hoverfund = false">
-                    <svg-icon :iconClass="hoverfund?'fund-color':'fund'" class=""
-                              style="font-size:22px"></svg-icon>
+                <router-link class="flex-grow1 header-menu-option align-items-start" to="/fund">
+                  <div class="menu-option-body">
+                    <svg-icon iconClass="fund" class="menu-icon" style="font-size:22px"></svg-icon>
                     <div class="menu-option-title"><span>资金</span></div>
                   </div>
                 </router-link>
-                <router-link class="flex-grow1 header-menu-option align-items-start"
-                             :to="`/u/${userInfo().user_name}`">
-                  <div class="menu-option-body"
-                       @mouseover="hoveruser = true"
-                       @mouseout="hoveruser = false">
-                    <svg-icon :iconClass="hoveruser?'user-color':'user'" class="" style="font-size:22px"></svg-icon>
+                <router-link class="flex-grow1 header-menu-option align-items-start" :to="`/u/${userInfo().user_name}`">
+                  <div class="menu-option-body">
+                    <svg-icon iconClass="user" class="menu-icon" style="font-size:22px"></svg-icon>
                     <div class="menu-option-title"><span>个人资料</span></div>
                   </div>
                 </router-link>
@@ -150,15 +124,7 @@
           user_name: '',
           nick_name: '',
           avatar: ''
-        },
-        hovehome: false,
-        hoverhash: false,
-        hovernoti: false,
-        hoverbookmark: false,
-        hoveruser: false,
-        hoverfund: false,
-        hovemsg:false
-
+        }
       };
     },
     created() {
@@ -181,14 +147,6 @@
             title: '错误',
             description: err.message
           })
-        })
-      },
-      clickAction() {
-        this.$children.forEach(e=>{
-          if(e.$el.classList.value.indexOf('router-link-exact-active')!==-1){
-            // e.$children[0].iconName='#icon-home-color'
-            // e.$children[0].iconClass='home-color'
-          }
         })
       }
     }
@@ -218,12 +176,16 @@
         &:hover {
           background-color: rgba(72, 199, 116, 0.12);
           border-radius: 22px;
-
+          .menu-icon {
+            color: rgba(72, 199, 116);
+          }
           .menu-option-title {
             color: rgba(72, 199, 116);
           }
         }
-
+        .menu-icon{
+          color:rgba(0, 0, 0, 1.00);
+        }
         .menu-option-title {
           font-size: 19px;
           font-weight: bold;
@@ -242,6 +204,9 @@
 
     .header-menu-option.router-link-exact-active {
       .menu-option-title {
+        color: #00BD6A;
+      }
+      .menu-icon {
         color: #00BD6A;
       }
     }

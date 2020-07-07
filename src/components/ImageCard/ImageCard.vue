@@ -6,7 +6,7 @@
       </div>
     </div>
     <div class="main-layout min-marginTop min-border-radius">
-      <div class="main-layout" style="height: 424px" v-if="images.length!==0">
+      <div class="main-layout" style="height: 364px" v-if="images.length!==0">
         <div class="main-layout flex-row height100" v-if="images.length<=2">
           <div aria-label="Media" role="group" class="main-layout flex-grow1 image-group" v-for="image in images">
             <div class="image-style" :style="image.style"></div>
@@ -76,7 +76,7 @@
     methods: {
       render() {
         this.imageItem = this.source.target
-        this.images = this.imageItem.image_list
+        this.images = this.imageItem.imageList
         this.images.forEach(val=>{
           val.style=`background-image: url("${val.src}");`
         })

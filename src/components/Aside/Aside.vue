@@ -29,7 +29,6 @@
     },
     methods: {
       validateSelection(val) {
-        console.log(val.id + '-' + val.name)
       },
       getDropdownValues(val) {
         console.log(val)

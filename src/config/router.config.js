@@ -5,7 +5,8 @@ import Post from "@/views/story/Post"
 import StoryDetail from "@/views/story/Detail"
 import Seed from "@/views/fund/Seed"
 import Tags from "@/views/tags/Tags"
-import UserHomePage from "@/views/user/UserHomePage"
+import ProfileItem from "@/views/user/Profile_Item"
+import ProfileMedia from "@/views/user/Profile_Media"
 import UserHomeEdit from "@/views/user/UserHomeEdit"
 
 import Notification from "@/views/notification/Notification"
@@ -82,17 +83,21 @@ export const constantRouterMap = [
     ]
   },
   {
-    path: "/u",
-    name: "User",
-    redirect: '/u/:username',
+    path: '/u',
+    name: 'User',
     component: Layout,
+
     children: [
       {
-        path: "/u/:username",
-        component: UserHomePage,
+        path: '/u/:username',
+        component: ProfileItem,
       },
       {
-        path: "/u/:username/edit",
+        path: '/u/:username/media',
+        component: ProfileMedia,
+      },
+      {
+        path: '/u/:username/edit',
         component: UserHomeEdit
       }
     ]
