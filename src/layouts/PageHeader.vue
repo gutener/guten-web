@@ -41,12 +41,12 @@
                     <div class="menu-option-title"><span>书签</span></div>
                   </div>
                 </router-link>
-                <router-link class="flex-grow1 header-menu-option align-items-start" to="/fund">
-                  <div class="menu-option-body">
-                    <svg-icon iconClass="fund" class="menu-icon" style="font-size:22px"></svg-icon>
-                    <div class="menu-option-title"><span>资金</span></div>
-                  </div>
-                </router-link>
+<!--                <router-link class="flex-grow1 header-menu-option align-items-start" to="/fund">-->
+<!--                  <div class="menu-option-body">-->
+<!--                    <svg-icon iconClass="fund" class="menu-icon" style="font-size:22px"></svg-icon>-->
+<!--                    <div class="menu-option-title"><span>账户</span></div>-->
+<!--                  </div>-->
+<!--                </router-link>-->
                 <router-link class="flex-grow1 header-menu-option align-items-start" :to="`/u/${userInfo().user_name}`">
                   <div class="menu-option-body">
                     <svg-icon iconClass="user" class="menu-icon" style="font-size:22px"></svg-icon>

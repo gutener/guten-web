@@ -57,7 +57,7 @@ export function postReply(obj) {
 
 export function seedReply(replyId) {
   return axios({
-    url: `/seed/1.0/${replyId}/reply`,
+    url: `/seed/1.0/reply/${replyId}`,
     method: 'post'
   })
 }
@@ -70,10 +70,24 @@ export function listReliesByStory(params) {
   })
 }
 
-export function seedStory(storyId) {
+export function seedItem(itemId) {
   return axios({
-    url: `/seed/1.0/${storyId}/story`,
+    url: `/seed/1.0/item/${itemId}`,
     method: 'post'
+  })
+}
+export function seededHistoryByUser(userName,page) {
+  return axios({
+    url: `/seed/1.0/${userName}/seeded-history`,
+    method: 'get',
+    params: page,
+  })
+}
+export function seedingHistoryByUser(userName,page) {
+  return axios({
+    url: `/seed/1.0/${userName}/seeding-history`,
+    method: 'get',
+    params: page,
   })
 }
 
@@ -152,7 +166,7 @@ export function unfollow(userid) {
 
 export function addBookmark(params) {
   return axios({
-    url: `/story/1.0/bookmark`,
+    url: `/item/1.0/bookmark`,
     params: params,
     method: 'put'
   })
@@ -160,7 +174,7 @@ export function addBookmark(params) {
 
 export function listBookmark(param) {
   return axios({
-    url: `/story/1.0/bookmark/list`,
+    url: `/item/1.0/bookmark/list`,
     method: 'get',
     params: param
   })
@@ -175,7 +189,7 @@ export function notifications(page) {
 }
 export function postImage(obj) {
   return axios({
-    url: '/story/1.0/image/save',
+    url: '/item/1.0/image/save',
     method: 'put',
     data: obj
   })

@@ -1,12 +1,12 @@
 <template>
   <bottom-scroll @on-bottom="onScrollToBottom" :debounce="200" :offset="0">
-    <virtual-list class="HomeStream-mainColumn"
+    <virtual-list class=""
                   ref="list"
                   :data-key="'id'"
                   :data-sources="items"
                   :data-component="itemComponent"
                   :estimate-size="70"
-                  :item-class="'streamItem'"
+                  :item-class="'main-layout'"
                   :footer-class="'loader-wrapper'"
                   :scrollToBottom="onScrollToBottom"
     >
@@ -24,16 +24,24 @@
   </bottom-scroll>
 </template>
 <script>
-  import {homeFeed} from '@/api/biz'
-  import StreamItem from './StreamItem'
+  import {seedingHistoryByUser} from '@/api/biz'
+  import SeedItem from './SeedItem'
   import VirtualList from '@/components/VirtualScrollList'
   import Scroll from '@/components/Scroll'
 
   export default {
+    props: {
+      userName: {
+        type: String
+      },
+      itemType: {
+        type: String
+      }
+    },
     data() {
       return {
         items: [],
-        itemComponent: StreamItem,
+        itemComponent: SeedItem,
         pageNum: 0,
         pageSize: 5,
         hasMore: true,
@@ -41,29 +49,28 @@
     },
     created() {
       this.isLoading = false
-      this.getPageData({page_num: this.pageNum, page_size: this.pageSize})
+      this.getPageData({
+        page_num: this.pageNum,
+        page_size: this.pageSize
+      })
     },
     components: {
-      StreamItem,
+      SeedItem,
       VirtualList,
       'bottom-scroll': Scroll
     },
     methods: {
       getPageData(page) {
-        const self = this
-        homeFeed(page)
+        seedingHistoryByUser(this.userName, page)
             .then(response => {
               let DataItems = response
-              DataItems.forEach((val) => {
-                val.id = val.target.id
-              })
               if (DataItems.length < this.pageSize)
                 this.hasMore = false
-              self.items =
-                  self.items.length === 0
-                      ? self.items = DataItems
-                      : self.items.concat(DataItems)
-              self.pageNum++
+              this.items =
+                  this.items.length === 0
+                      ? this.items = DataItems
+                      : this.items.concat(DataItems)
+              this.pageNum++
             })
             .catch(error => {
               console.error(error)
@@ -76,7 +83,10 @@
         this.isLoading = true
         setTimeout(() => {
           this.isLoading = false
-          this.getPageData({page_num: this.pageNum, page_size: this.pageSize})
+          this.getPageData({
+            page_num: this.pageNum,
+            page_size: this.pageSize
+          })
         }, 500);
 
       }

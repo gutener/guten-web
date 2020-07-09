@@ -5,15 +5,15 @@ import Post from "@/views/story/Post"
 import StoryDetail from "@/views/story/Detail"
 import Seed from "@/views/fund/Seed"
 import Tags from "@/views/tags/Tags"
-import ProfileItem from "@/views/user/Profile_Item"
-import ProfileMedia from "@/views/user/Profile_Media"
+import ProfileItem from "@/views/user/profile/Profile_Item"
+import SeedHistory from "@/views/user/seedinfo/SeedHistory"
 import UserHomeEdit from "@/views/user/UserHomeEdit"
-
 import Notification from "@/views/notification/Notification"
 import Mention from "@/views/notification/Mention"
 import Bookmark from "@/views/bookmark/Bookmark"
 
 import Explore from "@/views/explore/Explore"
+
 /**
  * 基础路由
  * @type { *[] }
@@ -93,8 +93,20 @@ export const constantRouterMap = [
         component: ProfileItem,
       },
       {
+        path: '/u/:username/short_text',
+        component: ProfileItem,
+      },
+      {
         path: '/u/:username/media',
-        component: ProfileMedia,
+        component: ProfileItem,
+      },
+      {
+        path: '/u/:username/seeding',
+        component: SeedHistory
+      },
+      {
+        path: '/u/:username/seeded',
+        component: SeedHistory
       },
       {
         path: '/u/:username/edit',
@@ -131,7 +143,7 @@ export const constantRouterMap = [
       {
         path: "/notifications",
         name: "Notification",
-        meta:{title:'通知'},
+        meta: {title: '通知'},
         component: Notification
       },
       {
@@ -149,7 +161,7 @@ export const constantRouterMap = [
       {
         path: "/bookmarks",
         name: "Bookmark",
-        meta:{title:'书签'},
+        meta: {title: '书签'},
         component: Bookmark
       }
     ]
@@ -161,7 +173,7 @@ export const constantRouterMap = [
       {
         path: "/",
         component: Home,
-        meta:{title:'主页'}
+        meta: {title: '主页'}
       }
     ]
   }

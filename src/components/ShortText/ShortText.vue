@@ -8,7 +8,7 @@
     </div>
     <div class="marginLeft10">
       <div class="main-layout flex-row">
-        <div class="main-layout font-light-color">
+        <div class="main-layout font-light">
           <span class="light-bar">{{shortText.create_time}}</span>
         </div>
       </div>

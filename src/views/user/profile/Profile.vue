@@ -7,7 +7,7 @@
             <span>{{user.nick_name}}</span>
           </div>
           <div class="main-layout flex-row gu-flex-shrink">
-            <span class="">@{{user.user_name}}</span>
+            <span class="font-light">@{{user.user_name}}</span>
           </div>
         </div>
         <div v-if="user.biography" class="main-layout marginBottom10" style="width: 420px;">
@@ -17,21 +17,29 @@
         </div>
         <div class="main-layout flex-row  marginBottom10">
           <div class="flex-row marginRight10">
-            <svg-icon iconClass="location" class="min-marginRight" style="font-size:20px;color:rgb(101, 119, 134)"></svg-icon>
-            <span>{{user.location}}</span>
+            <svg-icon iconClass="location" class="min-marginRight"
+                      style="font-size:20px;color:rgb(101, 119, 134)"></svg-icon>
+            <span class="font-light">{{user.location}}</span>
           </div>
           <div class="flex-row">
-            <svg-icon iconClass="date" class="min-marginRight" style="font-size:18px;color:rgb(101, 119, 134)"></svg-icon>
-            <span>{{user.create_time}}</span>加入
+            <svg-icon iconClass="date" class="min-marginRight"
+                      style="font-size:18px;color:rgb(101, 119, 134)"></svg-icon>
+            <span class="font-light">{{user.create_time}}加入</span>
           </div>
         </div>
         <div class="main-layout flex-row">
-          <a class="flex-row marginRight10" v-if="!!user.following_count">
-            <span style="font-weight: bold;">{{user.following_count}}</span> 正在关注
+          <a class="font-light flex-row marginRight10" v-if="!!user.following_count">
+            <span class="font-bold">{{user.following_count}}</span> 正在关注
           </a>
-          <a class="flex-row" v-if="!!user.followers_count">
-            <span style="font-weight: bold;">{{user.followers_count}}</span> 个关注者
+          <a class="font-light flex-row marginRight10" v-if="!!user.followers_count">
+            <span class="font-bold">{{user.followers_count}}</span> 个关注者
           </a>
+          <router-link class="font-light flex-row marginRight10" v-if="!!user.seeding_count" :to="urlSeeding">
+            <span class="font-bold">{{user.seeding_count}}</span> 次SEEDING
+          </router-link>
+          <router-link class="font-light flex-row" v-if="!!user.seeded_count" :to="urlSeeded">
+            <span class="font-bold">{{user.seeded_count}}</span> 次SEEDED
+          </router-link>
         </div>
       </div>
       <div class="main-layout">
@@ -46,6 +54,7 @@
   </a-skeleton>
 </template>
 <script>
+  import {domTitle, setDocumentTitle} from '@/utils/domUtil'
   import {follow, getUser, unfollow} from '@/api/biz'
   import moment from "moment";
   import {mapGetters} from "vuex";
@@ -64,19 +73,27 @@
         isFollow: 0,
         followText: '',
         userId: '',
+        urlSeeding:'',
+        urlSeeded:''
       }
     },
     created() {
-      this.getUserInfo()
+      this.render()
       this.isOwner()
     },
     methods: {
       ...mapGetters(['userInfo']),
+      render() {
+        this.urlSeeding = `/u/${this.userName}/seeding`
+        this.urlSeeded = `/u/${this.userName}/seeded`
+        this.getUserInfo()
+      },
       getUserInfo() {
         getUser(this.userName)
             .then(response => {
               this.userId = response.user_id
               this.user = response
+              setDocumentTitle(`${this.user.nick_name}(@${this.user.user_name}) / ${domTitle}`)
               if (!this.user.nick_name) {
                 this.user.nick_name = 'GUTENer'
               }

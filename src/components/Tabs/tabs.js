@@ -1,4 +1,5 @@
 import './index.less'
+
 export const Tabs = {
   name: "tabs",
 
@@ -11,7 +12,7 @@ export const Tabs = {
     tabs.forEach((child) => {
       const {title, url, titleSlot, active} = child.componentOptions.propsData;
       const content = titleSlot ? this.$slots[titleSlot] : title;
-      const isDisabled = active==='' || false;
+      const isDisabled = active || active === '' || false;
       tabList.push(
           <div class="main-layout flex-grow1">
             <router-link
@@ -41,7 +42,7 @@ export const Tabs = {
 
 export const Tab = {
   name: 'tab',
-  props: ['title', 'url', 'titleSlot','active','disabled'],
+  props: ['title', 'url', 'titleSlot', 'active', 'disabled'],
   render() {
     return (
         <div class="" role="tabpanel">

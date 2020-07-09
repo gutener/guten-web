@@ -270,7 +270,7 @@ input {
 }
 
 .width100 {
-  height: 100%;
+  width: 100%;
 }
 
 .gu-header-width {
@@ -320,9 +320,19 @@ input {
 .paddingTop10 {
   padding-top: @default-10-spacing;
 }
+
 .paddingBottom10 {
   padding-bottom: @default-10-spacing;
 }
+
+.paddingRight15 {
+  padding-right: @default-15-spacing;
+}
+
+.paddingLeft15 {
+  padding-left: @default-15-spacing;
+}
+
 .marginLeft10 {
   margin-left: @default-10-spacing;
 }
@@ -343,16 +353,15 @@ input {
   margin-top: @default-10-spacing;
 }
 
+.marginTop15 {
+  margin-top: @default-15-spacing;
+}
+
 .min-border-radius {
   border-radius: @default-min-radius
 }
 
-.main-blank {
-  padding-top: 39px;
-  width: 619px;
-}
-
-.row-height {
+.header-row-height {
   height: @default-row-height;
 }
 
@@ -360,18 +369,33 @@ input {
   padding-left: @default-15-spacing;
   padding-right: @default-15-spacing;
 }
+
 .default-line-height {
   line-height: @default-line-height;
 }
-.font-light-color {
+
+.font-light {
   color: @font-light-color;
+  font-weight: 500;
 }
+
+.font-bold {
+  color: rgba(0, 0, 0, 1.00);
+  font-weight: 800;
+}
+
 .light-bar {
   color: @font-light-color;
   line-height: 1.5;
   font-size: 14px;
   font-weight: 600;
 }
+
+.main-blank {
+  padding-top: 39px;
+  width: 619px;
+}
+
 .GuButton--seed {
   letter-spacing: 1px;
   position: relative;
@@ -389,5 +413,68 @@ input {
 
   .seed {
     color: rgba(0, 0, 0, 0.65);
+  }
+}
+
+.loader {
+  display: table;
+  width: @gu-main-col-width;
+  padding-left: @default-15-spacing;
+  padding-right: @default-15-spacing;
+  padding-top: @default-15-spacing;
+  animation: initial;
+  border: none;
+
+  .ant-skeleton-content {
+    display: table-cell;
+    width: 100%;
+    vertical-align: top;
+
+    .ant-skeleton-title {
+      width: 100%;
+      height: 16px;
+      margin-top: 16px;
+      background: #f2f2f2
+    }
+
+    .ant-skeleton-paragraph > li {
+      width: 100%;
+      height: 16px;
+      list-style: none;
+      background: #f2f2f2;
+    }
+
+    .ant-skeleton-title, .ant-skeleton-paragraph > li {
+      background: linear-gradient(90deg, #f2f2f2 25%, #e6e6e6 37%, #f2f2f2 63%);
+      background-size: 400% 100%;
+      -webkit-animation: ant-skeleton-loading 1.4s ease infinite;
+      animation: ant-skeleton-loading 1.4s ease infinite;
+    }
+
+    .ant-skeleton-title + .ant-skeleton-paragraph {
+      margin-top: 24px;
+    }
+
+    .ant-skeleton-paragraph > li + li {
+      margin-top: 16px;
+    }
+  }
+}
+
+@-webkit-keyframes ant-skeleton-loading {
+  0% {
+    background-position: 100% 50%
+  }
+  to {
+    background-position: 0 50%
+  }
+}
+
+@keyframes ant-skeleton-loading {
+  0% {
+    background-position: 100% 50%
+  }
+  to {
+    background-position: 0 50%
   }
 }

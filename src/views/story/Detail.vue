@@ -86,7 +86,8 @@
   </article>
 </template>
 <script>
-  import {getStory, listReliesByStory, postReply, seedReply, seedStory} from '@/api/biz'
+  import {domTitle, setDocumentTitle} from '@/utils/domUtil'
+  import {getStory, listReliesByStory, postReply, seedReply, seedItem} from '@/api/biz'
   import Editor from '@/components/medium-editor/Editor'
   import moment from 'moment'
   import SeedButton from "@/components/Button/SeedButton";
@@ -110,7 +111,7 @@
         },
         postSidebar: false,
         options: {
-          uploadUrl: `${process.env.VUE_APP_API_BASE_URL}/story/1.0/image/upload?type=g-st`,
+          uploadUrl: `${process.env.VUE_APP_API_BASE_URL}/item/1.0/image/upload?type=item`,
           placeholder: {
             text: '回复'
           }
@@ -138,6 +139,7 @@
       getStoryInfo(id) {
         getStory(id, 'app_detail')
             .then(response => {
+              setDocumentTitle(`${response.title} / ${domTitle}`)
               this.story.id = response.id
               this.story.body = response.body
               this.story.title = response.title
@@ -153,8 +155,8 @@
        * seed to story
        */
       seed() {
-        const storyId = this.story.id
-        seedStory(storyId)
+        const itemId = `s${this.story.id}`
+        seedItem(itemId)
             .then(response => {
               this.story.reward = response
             })
