@@ -87,7 +87,7 @@
 </template>
 <script>
   import {domTitle, setDocumentTitle} from '@/utils/domUtil'
-  import {getStory, listReliesByStory, postReply, seedReply, seedItem} from '@/api/biz'
+  import {getItemById, listReliesByItem, postItem, seedReply, seedItem} from '@/api/biz'
   import Editor from '@/components/medium-editor/Editor'
   import moment from 'moment'
   import SeedButton from "@/components/Button/SeedButton";
@@ -137,15 +137,18 @@
         return moment(date)
       },
       getStoryInfo(id) {
-        getStory(id, 'app_detail')
+        const params={
+          item_type:'s'
+        }
+        getItemById(id, params)
             .then(response => {
               setDocumentTitle(`${response.title} / ${domTitle}`)
-              this.story.id = response.id
-              this.story.body = response.body
-              this.story.title = response.title
+              this.story.id = response.target.id
+              this.story.body = response.target.body
+              this.story.title = response.target.title
               this.story.reward = response.reward
-              this.story.reply_count = response.reply_count
-              this.story.create_time = moment(response.create_time).fromNow()
+              this.story.reply_count = response.target.reply_count
+              this.story.create_time = moment(response.target.create_time).fromNow()
             })
             .catch(error => {
               console.error(error)
@@ -192,10 +195,10 @@
         this.reply.body = content
       },
       saveReply() {
-        this.reply.story_id = this.story.id
-        this.reply.story_title = this.story.title
+        this.reply.item_type='r'
+        this.reply.source_item_id = this.story.id
         const self = this
-        postReply(this.reply)
+        postItem(this.reply)
             .then(response => {
               this.listRelies(this.story.id)
               self.$refs.replyContainer.$refs.editor.innerHTML = ''

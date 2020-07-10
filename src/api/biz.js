@@ -1,18 +1,16 @@
 import {axios} from '@/utils/request'
 
-export function getStory(id, from) {
+export function getItemById(id,params) {
   return axios({
-    url: `/item/1.0/story/${id}`,
+    url: `/item/1.0/item/${id}`,
     method: 'get',
-    headers: {
-      source: from
-    },
+    params:params
   })
 }
 
-export function postStory(obj) {
+export function postItem(obj) {
   return axios({
-    url: '/item/1.0/story',
+    url: '/item/1.0/item/save',
     method: 'put',
     data: obj
   })
@@ -47,14 +45,6 @@ export function queryItemsByCurrentUser(page) {
     method: 'get'
   })
 }
-export function postReply(obj) {
-  return axios({
-    url: '/reply/1.0',
-    method: 'put',
-    data: obj
-  })
-}
-
 export function seedReply(replyId) {
   return axios({
     url: `/seed/1.0/reply/${replyId}`,
@@ -62,9 +52,9 @@ export function seedReply(replyId) {
   })
 }
 
-export function listReliesByStory(params) {
+export function listReliesByItem(params) {
   return axios({
-    url: `/reply/1.0/list-by-story`,
+    url: `/item/1.0/list-by-item`,
     method: 'get',
     params: params,
   })

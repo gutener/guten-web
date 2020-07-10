@@ -121,7 +121,7 @@
         } else {
           this.story.create_time = creatTime.fromNow()
         }
-        this.story.url = `/story/${this.story.id}`
+        this.story.url = `/story/${this.source.id}`
         if (!!this.story.cover) {
           this.cover = `background-image: url("${this.story.cover}"); background-position: 50% 50%;`
         }

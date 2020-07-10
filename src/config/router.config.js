@@ -11,8 +11,9 @@ import UserHomeEdit from "@/views/user/UserHomeEdit"
 import Notification from "@/views/notification/Notification"
 import Mention from "@/views/notification/Mention"
 import Bookmark from "@/views/bookmark/Bookmark"
-
 import Explore from "@/views/explore/Explore"
+import ShortText from "@/views/shorttext/ShortText"
+
 
 /**
  * 基础路由
@@ -55,6 +56,17 @@ export const constantRouterMap = [
       {
         path: "/new-story",
         component: Post
+      }
+    ]
+  },
+  {
+    path: "/creation",
+    name: "ShortText",
+    component: Layout,
+    children: [
+      {
+        path: ":st_id",
+        component: ShortText
       }
     ]
   },

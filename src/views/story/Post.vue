@@ -61,7 +61,7 @@
   import Editor from '@/components/medium-editor/Editor'
   import SlideBar from '@/components/slide-bar/SlideBar'
 
-  import {postStory} from '@/api/biz'
+  import {postItem} from '@/api/biz'
 
   export default {
     name: "StoryPost",
@@ -136,7 +136,8 @@
       },
       saveStory() {
         this.story.init_reward = this.reward
-        postStory(this.story)
+        this.story.item_type='s'
+        postItem(this.story)
             .then(response => {
               console.log(response)
               // if (response.code === 200) {

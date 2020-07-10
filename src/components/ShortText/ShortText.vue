@@ -6,13 +6,13 @@
                                                      style="margin-top: -6px;"><i>₲</i></span></span>
       </button>
     </div>
-    <div class="marginLeft10">
+    <div role="button" class="marginLeft10">
       <div class="main-layout flex-row">
         <div class="main-layout font-light">
           <span class="light-bar">{{shortText.create_time}}</span>
         </div>
       </div>
-      <div class="">
+      <div @click="openDetail" class="">
         <div class="main-layout default-line-height" v-html="shortText.body"></div>
       </div>
       <div class="main-layout flex-row justify-between marginTop10">
@@ -41,7 +41,8 @@
     },
     data() {
       return {
-        shortText: {}
+        shortText: {},
+        stUrl: ''
       }
     },
     created() {
@@ -61,6 +62,10 @@
         } else {
           this.shortText.create_time = creatTime.fromNow()
         }
+      },
+      openDetail() {
+        this.stUrl = `/creation/${this.source.id}`
+        this.$router.push(this.stUrl)
       }
     }
   }
@@ -68,6 +73,7 @@
 <style lang="less" scoped>
   .short-text-card {
     border-bottom: 1px solid rgb(230, 236, 240) !important;
+
     &:hover {
       background-color: rgb(245, 248, 250);
     }

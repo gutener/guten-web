@@ -50,20 +50,16 @@
     },
     methods: {
       getPageData(page) {
-        const self = this
         homeFeed(page)
             .then(response => {
               let DataItems = response
-              DataItems.forEach((val) => {
-                val.id = val.target.id
-              })
               if (DataItems.length < this.pageSize)
                 this.hasMore = false
-              self.items =
-                  self.items.length === 0
-                      ? self.items = DataItems
-                      : self.items.concat(DataItems)
-              self.pageNum++
+              this.items =
+                  this.items.length === 0
+                      ? this.items = DataItems
+                      : this.items.concat(DataItems)
+              this.pageNum++
             })
             .catch(error => {
               console.error(error)
