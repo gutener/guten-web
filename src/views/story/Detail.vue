@@ -74,7 +74,7 @@
               <a class="" @click="seedReply(reply)">{{reply.reward}}<i>₲</i></a>
             </div>
           </div>
-          <div class="reply-body" v-html="reply.body"></div>
+          <div class="reply-body" v-html="reply.target.body"></div>
           <div style="color: rgb(170, 170, 170); padding-left: 1rem; padding-bottom: 0.5rem; cursor: pointer;">
             <div class="">
               <svg-icon iconClass="share" style="font-size:23px"></svg-icon>
@@ -142,7 +142,7 @@
         }
         getItemById(id, params)
             .then(response => {
-              setDocumentTitle(`${response.title} / ${domTitle}`)
+              setDocumentTitle(`${response.target.title} / ${domTitle}`)
               this.story.id = response.target.id
               this.story.body = response.target.body
               this.story.title = response.target.title
@@ -209,15 +209,15 @@
       },
       listRelies(storyId) {
         const params = {
-          story_id: storyId,
+          item_id: storyId,
           page_num: 0,
           page_size: 5
         }
-        listReliesByStory(params)
+        listReliesByItem(params)
             .then(replyRep => {
               this.replies = replyRep
               this.replies.forEach((val) => {
-                val.create_time = moment(val.create_time).fromNow()
+                val.create_time = moment(val.target.create_time).fromNow()
               })
             })
             .catch(error => {

@@ -54,7 +54,7 @@ export function seedReply(replyId) {
 
 export function listReliesByItem(params) {
   return axios({
-    url: `/item/1.0/list-by-item`,
+    url: `/item/1.0/reply/list-by-item`,
     method: 'get',
     params: params,
   })
